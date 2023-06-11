@@ -1,0 +1,12 @@
+body {
+    min-width: 372px;
+    
+}
+
+.footer-hidden {
+    display: none;
+}
+
+.show-footer {
+    display: block !important;
+}
