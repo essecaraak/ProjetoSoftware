@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\cadastro_login_controller;
+use App\Http\Controllers\viewscontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +19,22 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/cliente/cadastro', function () {
-    return view('/cliente/cadastro');
+route::prefix('cadastro')->group(function(){
+
+    Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
+    Route::post('/create', [cadastro_login_controller::class,'cadastro'])->name('cadastrar');
+
 });
 
-Route::get('/cliente/login', function () {
+
+Route::get('/login', function () {
     return view('/cliente/login');
 });
 
 
+Route::fallback(function () {
+    return "Erro de rota!";
+});
 
 /*
 Route::get('/', function () {

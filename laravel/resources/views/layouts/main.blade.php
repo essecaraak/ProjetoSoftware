@@ -29,8 +29,8 @@
                         </ul>
                         <div class="align-self-end">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="/cliente/cadastro" class="nav-link text-white">Cadastre-se</a></li>
-                                <li class="nav-item"><a href="/cliente/login" class="nav-link text-white">Login</a></li>
+                                <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
+                                <li class="nav-item"><a href="/login" class="nav-link text-white">Login</a></li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
