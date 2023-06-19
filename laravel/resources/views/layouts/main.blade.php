@@ -24,8 +24,8 @@
 
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">Cel: (24) 99999-8752</a></li>
-                            <li class="nav-item">E-mail: bemdoces2019@gmail.com</a></li>
+                            <li class="nav-item"><span class="nav-link text-white">Cel: (24) 99999-8752</span></li>
+                            <li class="nav-item"><span class="nav-link text-white">E-mail: bemdoces2019@gmail.com</span></li>
                         </ul>
                         <div class="align-self-end">
                             <ul class="navbar-nav">
@@ -52,7 +52,7 @@
             @yield('content')
         </main>
 
-        <footer class="border-top text-muted bg-light ">
+        <footer class="border-top text-light bg-dark">
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">&copy; 2023 - Bem Doces</div>

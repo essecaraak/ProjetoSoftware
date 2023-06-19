@@ -11,22 +11,22 @@
                     <a href="dados" class="list-group-item list-group-item-action">
                         <i class="bi-person fs-6"></i> Dados Pessoais
                     </a>
-                    <a href="/cliente_contatos.html" class="list-group-item list-group-item-action bg-danger text-light">
+                    <a href="contatos" class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi-mailbox fs-6"></i> Contatos
                     </a>
-                    <a href="/cliente_endereco.html" class="list-group-item list-group-item-action">
+                    <a href="endereco" class="list-group-item list-group-item-action">
                         <i class="bi-house-door fs-6"></i> Endereço
                     </a>
-                    <a href="/cliente_pedidos.html" class="list-group-item list-group-item-action">
+                    <a href="pedidos" class="list-group-item list-group-item-action">
                         <i class="bi-truck fs-6"></i> Pedidos
                     </a>
-                    <a href="/cliente_favoritos.html" class="list-group-item list-group-item-action">
+                    <a href="favoritos" class="list-group-item list-group-item-action">
                         <i class="bi-heart fs-6"></i> Favoritos
                     </a>
-                    <a href="/cliente_senha.html" class="list-group-item list-group-item-action">
+                    <a href="#" class="list-group-item list-group-item-action">
                         <i class="bi-lock fs-6"></i> Alterar Senha
                     </a>
-                    <a href="/index.html" class="list-group-item list-group-item-action">
+                    <a href="/" class="list-group-item list-group-item-action">
                         <i class="bi-door-open fs-6"></i> Sair
                     </a>
                 </div>

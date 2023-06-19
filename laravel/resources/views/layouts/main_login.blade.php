@@ -52,7 +52,7 @@
             @yield('content')
         </main>
 
-        <footer class="border-top text-muted bg-light ">
+        <footer class="border-top text-light bg-dark">
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">&copy; 2023 - Bem Doces</div>
@@ -62,7 +62,7 @@
             </div>
         </footer>
     </div>
-            <!-- Bootstrap JavaScript -->
-            <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </body>
 </html>

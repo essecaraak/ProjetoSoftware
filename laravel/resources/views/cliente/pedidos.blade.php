@@ -8,55 +8,31 @@
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
-                    <a href="/cliente_dados.html" class="list-group-item list-group-item-action">
+                    <a href="dados" class="list-group-item list-group-item-action">
                         <i class="bi-person fs-6"></i> Dados Pessoais
                     </a>
-                    <a href="/cliente_contatos.html" class="list-group-item list-group-item-action">
+                    <a href="contatos" class="list-group-item list-group-item-action">
                         <i class="bi-mailbox fs-6"></i> Contatos
                     </a>
-                    <a href="/cliente_endereco.html" class="list-group-item list-group-item-action">
+                    <a href="endereco" class="list-group-item list-group-item-action">
                         <i class="bi-house-door fs-6"></i> Endereço
                     </a>
-                    <a href="/cliente_pedidos.html"
+                    <a href="pedidos"
                         class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi-truck fs-6"></i> Pedidos
                     </a>
-                    <a href="/cliente_favoritos.html" class="list-group-item list-group-item-action">
+                    <a href="favoritos" class="list-group-item list-group-item-action">
                         <i class="bi-heart fs-6"></i> Favoritos
                     </a>
-                    <a href="/cliente_senha.html" class="list-group-item list-group-item-action">
+                    <a href="#" class="list-group-item list-group-item-action">
                         <i class="bi-lock fs-6"></i> Alterar Senha
                     </a>
-                    <a href="/index.html" class="list-group-item list-group-item-action">
+                    <a href="/" class="list-group-item list-group-item-action">
                         <i class="bi-door-open fs-6"></i> Sair
                     </a>
                 </div>
             </div>
             <div class="col-8">
-                <form class="row mb-3">
-                    <div class="col-12 col-md-6 mb-3">
-                        <div class="form-floating">
-                            <select class="form-select">
-                                <option value="30">Últimos 30 dias</option>
-                                <option value="60">Últimos 60 dias</option>
-                                <option value="90">Últimos 90 dias</option>
-                                <option value="180">Últimos 180 dias</option>
-                                <option value="360" selected>Últimos 360 dias</option>
-                                <option value="9999">Todo o período</option>
-                            </select>
-                            <label>Período</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-floating">
-                            <select class="form-select">
-                                <option value="1" selected>Mais novos primeiro</option>
-                                <option value="2">Mais antigos primeiro</option>
-                            </select>
-                            <label>Ordenação</label>
-                        </div>
-                    </div>
-                </form>
                 <div class="accordion" id="divPedidos">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
