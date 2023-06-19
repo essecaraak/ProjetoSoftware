@@ -48,32 +48,6 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="col-sm-12 col-md-6">
-                <fieldset class="row gx-3">
-                    <legend>Endereço</legend>
-                    <div class="form-floating mb-3 col-md-6 col-lg-4">
-                        <input class="form-control" type="text" id="txtCEP" placeholder=" " />
-                        <label for="txtCEP">CEP</label>
-                    </div>
-                    <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="text" id="txtCEP" placeholder=" " />
-                        <label for="txtRua">Rua</label>
-                    </div>
-    
-                    <div class="clearfix"></div>
-                    <div class="form-floating mb-3 col-md-4">
-                        <input class="form-control" type="text"  id="txtNumero" placeholder=" " />
-                        <label for="txtNumero">Número</label>
-                    </div>
-                    <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="text" id="txtComplemento" placeholder=" " />
-                        <label for="txtComplemento">Complemento</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="text" id="txtReferencia" placeholder=" " />
-                        <label for="txtReferencia">Referência</label>
-                    </div>
-                </fieldset>
                 <fieldset class="row gx-3">
                     <legend>Senha de Acesso</legend>
                     <div class="form-floating mb-3 col-lg-6">
@@ -86,12 +60,10 @@
                     </div>
                 </fieldset>
             </div>
-        </div>
-        <hr/>
-        <div class="mb-3 text-left">
             <a class="btn btn-lg btn-light btn-outline-danger" href="/">Cancelar</a>
             <input type="submit" value="Cadastrar" class="btn btn-lg btn-danger"/>
-        </div>
+        </div> 
+        <br>
     </form>
 </div>
 @endsection

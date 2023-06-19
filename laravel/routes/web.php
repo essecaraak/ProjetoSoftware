@@ -18,6 +18,8 @@ use App\Http\Controllers\viewscontroller;
 Route::get('/', function () {
     return view('index');
 });
+
+
 //cadastro
 route::prefix('cadastro')->group(function(){
 

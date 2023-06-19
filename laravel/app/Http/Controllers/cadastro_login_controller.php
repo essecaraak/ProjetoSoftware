@@ -14,7 +14,7 @@ class cadastro_login_controller extends Controller
 
         $data = $request->all();
         $data['senha']=bcrypt($request->senha);
-       $user = User::create($data);
+        $user = User::create($data);
 
        return redirect()->route('tela_cadastro');
        
