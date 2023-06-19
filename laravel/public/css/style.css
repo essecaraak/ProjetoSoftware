@@ -1,6 +1,5 @@
 body {
     min-width: 372px;
-    
 }
 
 .footer-hidden {
@@ -9,4 +8,8 @@ body {
 
 .show-footer {
     display: block !important;
+}
+
+.espacamento {
+    margin-left: 10px;
 }

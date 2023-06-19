@@ -22,11 +22,11 @@
                         <input class="form-control" type="text" name="nome" id="txtNome" value="{{old('nome')}}" placeholder=" "autofocus/>
                         <label for="txtNome">Nome</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-6 col-xl-4">
+                    <div class="form-floating mb-3 col-md-6 ">
                         <input class="form-control" type="text" id="txtCPF" placeholder=" "/>
                         <label for="txtCPF">CPF</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-6 col-xl-4">
+                    <div class="form-floating mb-3 col-md-6">
                         <input class="form-control" type="date" id="txtDataNascimento" placeholder=" " />
                         <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
                             Nascimento</label>
@@ -34,6 +34,8 @@
                             de Nascimento</label>
                     </div>
                 </fieldset>
+            </div>
+            <div class="col-sm-12 col-md-6">
                 <fieldset>
                     <legend>Contatos</legend>
                     <div class="form-floating mb-3 col-md-8">

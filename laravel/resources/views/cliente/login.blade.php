@@ -29,7 +29,6 @@
                 <p class="mt-3">
                     Esqueceu sua senha? <a href="/recuperarsenha.html">Clique aqui</a> para recuperá-la.
                 </p>
-                <br><br><br><br><br><br><br><br><br><br><br>
             </form>
         </div>
     </div>

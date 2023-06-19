@@ -24,13 +24,13 @@
 
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item"><span class="nav-link text-white">Cel: (24) 99999-8752</span></li>
-                            <li class="nav-item"><span class="nav-link text-white">E-mail: bemdoces2019@gmail.com</span></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white">Cel: (24) 99999-8752</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link text-white">E-mail: bemdoces2019@gmail.com</a></li>
                         </ul>
                         <div class="align-self-end">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
-                                <li class="nav-item"><a href="/login" class="nav-link text-white">Login</a></li>
+                                <li class="nav-item"><a href="/cliente/cadastro" class="nav-link text-white">Nome do Cliente</a></li>
+                                <li class="nav-item"><a href="/cliente/cadastro" class="nav-link text-white">Sair</a></li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
@@ -62,7 +62,7 @@
             </div>
         </footer>
     </div>
-            <!-- Bootstrap JavaScript -->
-            <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </body>
 </html>
