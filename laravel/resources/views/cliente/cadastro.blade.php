@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Informe seus dados, por favor</h1>
+    <h1>Realize seu cadastro</h1>
     <hr>
     <form class="mt-3">
         <div class="row">
@@ -15,11 +15,11 @@
                         <input class="form-control" type="text" id="txtNome" placeholder=" "autofocus/>
                         <label for="txtNome">Nome</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-6 col-xl-4">
+                    <div class="form-floating mb-3 col-md-6 ">
                         <input class="form-control" type="text" id="txtCPF" placeholder=" "/>
                         <label for="txtCPF">CPF</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-6 col-xl-4">
+                    <div class="form-floating mb-3 col-md-6">
                         <input class="form-control" type="date" id="txtDataNascimento" placeholder=" " />
                         <label for="txtDataNascimento" class="d-inline d-sm-none d-md-inline d-lg-none">Data
                             Nascimento</label>
@@ -27,53 +27,17 @@
                             de Nascimento</label>
                     </div>
                 </fieldset>
+            </div>
+            <div class="col-sm-12 col-md-6">
                 <fieldset>
                     <legend>Contatos</legend>
                     <div class="form-floating mb-3 col-md-8">
                         <input class="form-control" type="email" id="txtEmail" placeholder=" " />
                         <label for="txtEmail">E-mail</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-6">
+                    <div class="form-floating mb-3 col-md-8">
                         <input class="form-control" placeholder=" " type="text" id="txtTelefone" />
                         <label for="txtTelefone">Telefone</label>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <fieldset class="row gx-3">
-                    <legend>Endereço</legend>
-                    <div class="form-floating mb-3 col-md-6 col-lg-4">
-                        <input class="form-control" type="text" id="txtCEP" placeholder=" " />
-                        <label for="txtCEP">CEP</label>
-                    </div>
-                    <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="text" id="txtCEP" placeholder=" " />
-                        <label for="txtRua">Rua</label>
-                    </div>
-    
-                    <div class="clearfix"></div>
-                    <div class="form-floating mb-3 col-md-4">
-                        <input class="form-control" type="text" id="txtNumero" placeholder=" " />
-                        <label for="txtNumero">Número</label>
-                    </div>
-                    <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="text" id="txtComplemento" placeholder=" " />
-                        <label for="txtComplemento">Complemento</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="text" id="txtReferencia" placeholder=" " />
-                        <label for="txtReferencia">Referência</label>
-                    </div>
-                </fieldset>
-                <fieldset class="row gx-3">
-                    <legend>Senha de Acesso</legend>
-                    <div class="form-floating mb-3 col-lg-6">
-                        <input class="form-control" type="password" id="txtSenha" placeholder=" " />
-                        <label for="txtSenha">Senha</label>
-                    </div>
-                    <div class="form-floating mb-3 col-lg-6">
-                        <input class="form-control" id="txtConfirmacaoSenha" placeholder=" " />
-                        <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
                     </div>
                 </fieldset>
             </div>
