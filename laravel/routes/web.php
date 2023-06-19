@@ -18,7 +18,7 @@ use App\Http\Controllers\viewscontroller;
 Route::get('/', function () {
     return view('index');
 });
-
+//cadastro
 route::prefix('cadastro')->group(function(){
 
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
