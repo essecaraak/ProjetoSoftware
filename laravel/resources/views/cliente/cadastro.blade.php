@@ -81,7 +81,7 @@
                         <label for="txtSenha">Senha</label>
                     </div>
                     <div class="form-floating mb-3 col-lg-6">
-                        <input class="form-control" id="txtConfirmacaoSenha" type="password" value="{{old('confirmação de senha')}}" name="confirmação de senha" placeholder=" " />
+                        <input class="form-control" id="txtConfirmacaoSenha" name="confirmação de senha" type="password" value="{{old('confirmação de senha')}}" name="confirmação de senha" placeholder=" " />
                         <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
                     </div>
                 </fieldset>
