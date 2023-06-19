@@ -16,7 +16,7 @@ class cadastro_login_controller extends Controller
         $data['senha']=bcrypt($request->senha);
        $user = User::create($data);
 
-       return redirect()->route('tela_cadastro');
+       return redirect()->route('tela_cadastro')->with("sucesso","usuário cadastrado com sucesso");
        
     }
 }

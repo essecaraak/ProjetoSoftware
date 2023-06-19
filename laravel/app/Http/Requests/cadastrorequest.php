@@ -37,13 +37,14 @@ class cadastrorequest extends FormRequest
                 'unique:users',
             ],
             'senha'=>[
-                'required_with:confirmação de senha',
-                'same:confirmação de senha',
                 'string',
                 'min:8',
                 'max:20',
+                'required_with:confirma_senha',
+                'same:confirma_senha',
+                
             ],
-            'confirmação de senha'=>[
+            'confirma_senha'=>[
                 'string',
                 'min:8',
                 'max:20',
