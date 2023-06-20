@@ -21,16 +21,9 @@
 
                 <button type="button" onclick="window.location.href='#'"
                     class="btn btn-lg btn-danger">Entrar</button>
-
-                <p class="mt-3">
-                    Ainda não é cadastrado? <a href="/cadastro.html">Clique aqui</a> para se cadastrar.
-                </p>
-
-                <p class="mt-3">
-                    Esqueceu sua senha? <a href="/recuperarsenha.html">Clique aqui</a> para recuperá-la.
-                </p>
             </form>
         </div>
+        <br>
     </div>
 </main>
 @endsection

@@ -4,13 +4,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Minha Conta</h1>
+        <h2>Nome do Cliente</h2>
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
-                    <a href="dados" class="list-group-item list-group-item-action">
-                        <i class="bi-person fs-6"></i> Dados Pessoais
-                    </a>
                     <a href="contatos" class="list-group-item list-group-item-action">
                         <i class="bi-mailbox fs-6"></i> Contatos
                     </a>
@@ -20,12 +17,6 @@
                     <a href="pedidos"
                         class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi-truck fs-6"></i> Pedidos
-                    </a>
-                    <a href="favoritos" class="list-group-item list-group-item-action">
-                        <i class="bi-heart fs-6"></i> Favoritos
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <i class="bi-lock fs-6"></i> Alterar Senha
                     </a>
                     <a href="/" class="list-group-item list-group-item-action">
                         <i class="bi-door-open fs-6"></i> Sair
@@ -343,4 +334,5 @@
             </div>
         </div>
     </div>
+    <br>
 @endsection

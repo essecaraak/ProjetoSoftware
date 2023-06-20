@@ -41,12 +41,12 @@ Route::get('/cliente/pedidos', function () {
     return view('/cliente/pedidos');
 });
 
-Route::get('/cliente/dados', function () {
-    return view('/cliente/dados');
-});
-
 Route::get('/cliente/endereco', function () {
     return view('/cliente/endereco');
+});
+
+Route::get('/cliente/novo_endereco', function () {
+    return view('/cliente/novo_endereco');
 });
 
 Route::get('/cliente/favoritos', function () {

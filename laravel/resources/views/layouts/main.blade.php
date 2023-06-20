@@ -14,9 +14,10 @@
     <title>@yield('title')</title>
     </head>
     <body>
-        <div class="d-flex flex-column wrapper">
+        <div class="d-flex flex-column wrapper background">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3">
                 <div class="container">
+                <img class="logo" src="img/logo.png"></img>
                 <a class="navbar-brand" href="/"><strong>Bem Doces</strong></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -49,10 +50,17 @@
         </header>
 
         <main class="flex-fill">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <h1>{{$error}}</h1>
+            @endforeach
+        @elseif(session('sucesso'))
+            <p>{{session('sucesso')}}</p>
+        @endif
             @yield('content')
         </main>
 
-        <footer class="border-top text-light bg-dark">
+        <footer class="border-top text-light footer">
             <div class="container">
                 <div class="row py-3">
                     <div class="col-12 col-md-4 text-center">&copy; 2023 - Bem Doces</div>
@@ -62,7 +70,7 @@
             </div>
         </footer>
     </div>
-            <!-- Bootstrap JavaScript -->
-            <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </body>
 </html>
