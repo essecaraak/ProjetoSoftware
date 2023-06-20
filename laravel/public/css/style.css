@@ -28,3 +28,16 @@ body {
     width: 3%;
     height: 3%;
 }
+
+.error {
+    margin-top: 0px;
+    background-color: rgba(0, 0, 0, 0.26);
+    color: #DC3545;
+}
+
+.success {
+    margin-top: 0px;
+    font-size: 32px;
+    background-color: rgba(0, 0, 0, 0.26);
+    color: #0c6301;
+}
