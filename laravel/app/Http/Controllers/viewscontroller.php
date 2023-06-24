@@ -13,4 +13,8 @@ class viewscontroller extends Controller
     public function tela_login(){
         return view('/cliente/login');
     }
+
+    public function tela_index(){
+        return view('/index');
+    }
 }
