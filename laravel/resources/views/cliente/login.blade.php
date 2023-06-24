@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Bem Doces')
+@section('title', 'Bem Doces | Login')
 
 @section('content')
 <main class="flex-fill">

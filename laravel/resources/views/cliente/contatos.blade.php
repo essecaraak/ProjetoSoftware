@@ -1,6 +1,6 @@
 @extends('layouts.main_login')
 
-@section('title', 'Bem Doces')
+@section('title', 'Bem Doces | Contatos')
 
 @section('content')
     <div class="container">
@@ -16,6 +16,9 @@
                     </a>
                     <a href="pedidos" class="list-group-item list-group-item-action">
                         <i class="bi-truck fs-6"></i> Pedidos
+                    </a>
+                    <a href="cartao" class="list-group-item list-group-item-action">
+                        <i class="bi bi-card-list"></i> Cartão
                     </a>
                     <a href="/" class="list-group-item list-group-item-action">
                         <i class="bi-door-open fs-6"></i> Sair

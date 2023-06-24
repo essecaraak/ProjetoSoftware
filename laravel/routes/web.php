@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 
 //tela de cadastro
+
+//Route Controlar Cadastro
 route::prefix('cadastro')->group(function(){
 
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
@@ -39,6 +41,10 @@ route::prefix('login')->group(function(){
 
 });
 
+//Route Retorna View
+Route::get('/', function () {
+    return view('index');
+});
 Route::get('/cliente/contatos', function () {
     return view('/cliente/contatos');
 });
@@ -55,24 +61,24 @@ Route::get('/cliente/novo_endereco', function () {
     return view('/cliente/novo_endereco');
 });
 
-Route::get('/cliente/favoritos', function () {
-    return view('/cliente/favoritos');
+Route::get('/cliente/cartao', function () {
+    return view('/cliente/cartao');
 });
 
+Route::get('/cliente/novo_cartao', function () {
+    return view('/cliente/novo_cartao');
+});
+
+//Route Opcional - Favoritos
+//Route::get('/cliente/favoritos', function () {
+//    return view('/cliente/favoritos');
+//});
 
 
+//Route tratamento de Erros
 Route::fallback(function () {
     return "Erro de rota!";
 });
 
-/*
-Route::get('/', function () {
-
-    $array = [1,2,3,4,5];
-    $nome = 'gabriel';
-    $idade = 31;
-    return view('welcome', ['nome' => $nome, 'idade' => $idade,'array' => $array]);
-});
-*/
 
 
