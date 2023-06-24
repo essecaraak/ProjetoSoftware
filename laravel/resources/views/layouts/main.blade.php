@@ -52,7 +52,7 @@
         <main class="flex-fill">
         @if($errors->any())
             @foreach($errors->all() as $error)
-                <h1>{{$error}}</h1>
+                <p>{{$error}}</p>
             @endforeach
         @elseif(session('sucesso'))
             <p>{{session('sucesso')}}</p>

@@ -20,17 +20,20 @@ Route::get('/', function () {
 });
 
 
-//cadastro
+//tela de cadastro
 route::prefix('cadastro')->group(function(){
 
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
-    Route::post('/create', [cadastro_login_controller::class,'cadastro'])->name('cadastrar');
+    Route::post('/create', [cadastro_login_controller::class,'cadastro'])->name('cadastro-create');
 
 });
 
+//tela de login
 
-Route::get('/login', function () {
-    return view('/cliente/login');
+route::prefix('login')->group(function(){
+
+    route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
+
 });
 
 Route::get('/cliente/contatos', function () {
