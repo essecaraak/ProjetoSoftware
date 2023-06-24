@@ -48,15 +48,21 @@
         <header>
             @yield('header')
         </header>
+        
+        <!-- Tratamento de erros e respostas do servidor-->
+            @if($errors->any())
+                <div class="error">
+                    @foreach($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                </div>
+            @elseif(session('sucesso'))
+                <div class="success">
+                    <p>{{session('sucesso')}}</p>
+                </div>
+            @endif
 
         <main class="flex-fill">
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <p>{{$error}}</p>
-            @endforeach
-        @elseif(session('sucesso'))
-            <p>{{session('sucesso')}}</p>
-        @endif
             @yield('content')
         </main>
 
