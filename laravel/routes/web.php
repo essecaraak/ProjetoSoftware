@@ -15,14 +15,11 @@ use App\Http\Controllers\viewscontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+//tela inicial
+Route::get('/', [viewscontroller::class, 'tela_index'])->name('index');
 
 
 //tela de cadastro
-
-//Route Controlar Cadastro
 route::prefix('cadastro')->group(function(){
 
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
@@ -32,7 +29,6 @@ route::prefix('cadastro')->group(function(){
 });
 
 //tela de login
-
 route::prefix('login')->group(function(){
 
     Route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
