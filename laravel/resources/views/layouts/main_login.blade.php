@@ -31,7 +31,7 @@
                         <div class="align-self-end">
                             <ul class="navbar-nav">
                                 <li class="nav-item"><a href="contatos" class="nav-link text-white">Acessar minha conta</a></li>
-                                <li class="nav-item"><a href="/" class="nav-link text-white">Sair</a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">Sair</a></li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
@@ -50,14 +50,22 @@
         </header>
 
         <main class="flex-fill">
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <h1>{{$error}}</h1>
-            @endforeach
-        @elseif(session('sucesso'))
-            <p>{{session('sucesso')}}</p>
-        @endif
-            @yield('content')
+         <!-- Tratamento de erros e respostas do servidor-->
+         @if($errors->any())
+                <div class="error">
+                    @foreach($errors->all() as $error)
+                        <p>{{$error}}</p>
+                    @endforeach
+                </div>
+            @elseif(session('mensagem_sucesso'))
+                <div class="success">
+                    <p>{{session('mensagem_sucesso')}}</p>
+                </div>
+            @elseif(session('mensagem_falha'))
+                <div class="error">
+                    <p>{{session('mensagem_falha')}}</p>
+                </div>
+            @endif
         </main>
             <footer class="border-top text-light footer">
                 <div class="container">

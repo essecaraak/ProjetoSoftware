@@ -30,8 +30,13 @@
                         </ul>
                         <div class="align-self-end">
                             <ul class="navbar-nav">
+                            @if(!session('user'))
                                 <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
-                                <li class="nav-item"><a href="/login" class="nav-link text-white">Login</a></li>
+                                <li class="nav-item"><a href="{{route('tela_login')}}" class="nav-link text-white">Login</a></li>
+                            @else
+                                <li class="nav-item"><a href="contatos" class="nav-link text-white">minha conta</a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
+                            @endif
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
@@ -56,9 +61,13 @@
                         <p>{{$error}}</p>
                     @endforeach
                 </div>
-            @elseif(session('sucesso'))
+            @elseif(session('mensagem_sucesso'))
                 <div class="success">
-                    <p>{{session('sucesso')}}</p>
+                    <p>{{session('mensagem_sucesso')}}</p>
+                </div>
+            @elseif(session('mensagem_falha'))
+                <div class="error">
+                    <p>{{session('mensagem_falha')}}</p>
                 </div>
             @endif
 

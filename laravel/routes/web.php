@@ -17,14 +17,15 @@ use App\Http\Controllers\viewscontroller;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 
 //tela de cadastro
 route::prefix('cadastro')->group(function(){
 
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
-    Route::post('/create', [cadastro_login_controller::class,'cadastro'])->name('cadastro-create');
+    Route::post('/store', [cadastro_login_controller::class,'cadastro'])->name('cadastro-store');
+    
 
 });
 
@@ -32,7 +33,9 @@ route::prefix('cadastro')->group(function(){
 
 route::prefix('login')->group(function(){
 
-    route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
+    Route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
+    Route::post('/store', [cadastro_login_controller::class,'login'])->name('login-store');
+    Route::get('/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
 });
 

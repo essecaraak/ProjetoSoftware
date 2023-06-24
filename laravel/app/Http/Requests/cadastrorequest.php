@@ -31,12 +31,14 @@ class cadastrorequest extends FormRequest
             ],
             'email'=>[
                 'required',
+                'email',
                 'string',
                 'max:200',
                 'min:3',
                 'unique:users',
             ],
             'senha'=>[
+                'required',
                 'string',
                 'min:8',
                 'max:20',
@@ -45,6 +47,7 @@ class cadastrorequest extends FormRequest
                 
             ],
             'confirma_senha'=>[
+                'required',
                 'string',
                 'min:8',
                 'max:20',
@@ -57,6 +60,27 @@ class cadastrorequest extends FormRequest
                 
             ]
                 
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nome.required' => 'o campo nome é obrigatório',
+            'nome.max' => 'o nome não pode ter mais que 200 caracteres',
+            'email.required' => 'o campo email é obrigatório',
+            'email.email' => 'o email deve ser válido',
+            'email.max' => 'o email deve ter no máximo 200 caracteres',
+            'email.unique' => 'o email digitado ja está em uso',
+            'senha.required' => 'o campo senha é obrigatório',
+            'senha.required_with' => 'a senha deve ser confirmada',
+            'senha.same' => 'a confirmação de senha deve ser igual a senha',
+            'senha.min' => 'a senha deve ter no mínimo 8 caracteres',
+            'senha.max' => 'a senha deve ter no máximo 20 caracteres',
+            'confirma_senha.required' => 'a confirmação da senha é obrigatória',
+            'telefone.required' => 'o campo telefone é obrigatório',
+            'telefone.numeric' => 'o telefone deve ser um número',
+            'telefone.min' => 'o telefone deve ter 11 dígitos',
+            'telefone.max' => 'o telefone deve ter 11 dígitos',
         ];
     }
 }

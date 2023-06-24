@@ -1,4 +1,7 @@
+
 @extends('layouts.main')
+
+@section('title','Bem Doces | Cadastro')
 
 @section('title', 'Bem Doces')
 

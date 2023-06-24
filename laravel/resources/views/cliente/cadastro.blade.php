@@ -1,13 +1,12 @@
-@extends('layouts.main')
 
-@section('title','Bem Doces | Cadastro')
+@extends('layouts.main')
 
 @section('content')
 
 <div class="container">
     <h1>Realize seu cadastro</h1>
     <hr>
-    <form class="mt-3" action="{{route('cadastro-create')}}" method="post">
+    <form class="mt-3" action="{{route('cadastro-store')}}" method="post">
         @csrf
         <div class="row">
             <div class="col-sm-12 col-md-6">
