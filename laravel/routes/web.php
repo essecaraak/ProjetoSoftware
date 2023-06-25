@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\cadastro_login_controller;
-use App\Http\Controllers\viewscontroller;
+use App\Http\Controllers\{
+    cadastro_login_controller,
+    viewscontroller,
+    AtendenteController,
+    CompraController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +45,14 @@ route::prefix('login')->group(function(){
 
 });
 
-//Route Retorna View
-Route::get('/', function () {
-    return view('index');
+route::prefix('atendente')->group(function(){
+    Route::get('/', [AtendenteController::class, 'Index'])->name('atendente_index');
 });
+
+route::prefix('compra')->group(function(){
+    Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('alterar_status_compra');
+});
+
 Route::get('/cliente/contatos', function () {
     return view('/cliente/contatos');
 });
