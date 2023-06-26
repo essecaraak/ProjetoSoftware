@@ -1,7 +1,6 @@
-
 @extends('layouts.main')
 
-@section('title','Bem Doces | Cadastro')
+@section('title','Bem Doces')
 
 @section('title', 'Bem Doces')
 

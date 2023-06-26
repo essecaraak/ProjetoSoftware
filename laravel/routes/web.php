@@ -8,43 +8,21 @@ use App\Http\Controllers\{
     CompraController
 };
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
-
-//tela de cadastro
-
 //Route Controlar Cadastro
 route::prefix('cadastro')->group(function(){
-
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
     Route::post('/store', [cadastro_login_controller::class,'cadastro'])->name('cadastro-store');
-    
-
 });
 
-//tela de login
-
+//Route Controlar Login
 route::prefix('login')->group(function(){
-
     Route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
     Route::post('/store', [cadastro_login_controller::class,'login'])->name('login-store');
     Route::get('/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
 });
 
+//Route Atendente
 route::prefix('atendente')->group(function(){
     Route::get('/', [AtendenteController::class, 'Index'])->name('atendente_index');
 });
@@ -53,6 +31,12 @@ route::prefix('compra')->group(function(){
     Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('alterar_status_compra');
 });
 
+//Route retorna View
+Route::get('/', function () {
+    return view('index');
+})->name('index');
+
+//Cliente
 Route::get('/cliente/contatos', function () {
     return view('/cliente/contatos');
 });
@@ -75,6 +59,20 @@ Route::get('/cliente/cartao', function () {
 
 Route::get('/cliente/novo_cartao', function () {
     return view('/cliente/novo_cartao');
+});
+
+//Atendente
+Route::get('/atendente/index', function () {
+    return view('/atendente/index');
+});
+
+//Administrador
+Route::get('/administrador/gerenciar_produtos', function () {
+    return view('/administrador/gerenciar_produtos');
+});
+
+Route::get('/administrador/gerenciar_feed', function () {
+    return view('/administrador/gerenciar_feed');
 });
 
 //Route Opcional - Favoritos
