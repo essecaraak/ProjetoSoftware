@@ -18,8 +18,7 @@ class cadastro_login_controller extends Controller
         $data = $request->all();
         $data['senha'] = Hash::make($request->senha);
         $user = User::create($data);
-
-       return redirect()->route('tela_cadastro')->with("mensagem_sucesso","usuário cadastrado com sucesso");
+        return redirect()->route('tela_cadastro')->with("mensagem_sucesso","usuário cadastrado com sucesso");
        
     }
     public function login(loginrequest $request){

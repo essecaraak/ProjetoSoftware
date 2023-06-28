@@ -7,7 +7,7 @@
 <div class="container">
     <h1>Novo Cartão</h1>
     <hr>
-    <form class="mt-3" action="{{route('cadastrar')}}" method="post">
+    <form class="mt-3" action="" method="post">
         @csrf
         <div class="row">
             <div class="col-sm-12">
