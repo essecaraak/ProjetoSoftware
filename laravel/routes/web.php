@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\cadastro_login_controller;
 use App\Http\Controllers\viewscontroller;
 
@@ -20,27 +21,48 @@ Route::get('/', [viewscontroller::class, 'tela_index'])->name('index');
 
 
 //tela de cadastro
-route::prefix('cadastro')->group(function(){
+=======
+use App\Http\Controllers\{
+    cadastro_login_controller,
+    viewscontroller,
+    AtendenteController,
+    CompraController
+};
 
+//Route Controlar Cadastro
+>>>>>>> e0651baf25f08f391684f0ad3629b8432296fccc
+route::prefix('cadastro')->group(function(){
     Route::get('/', [viewscontroller::class,'tela_cadastro'])->name('tela_cadastro');
     Route::post('/store', [cadastro_login_controller::class,'cadastro'])->name('cadastro-store');
-    
-
 });
 
+<<<<<<< HEAD
 //tela de login
+=======
+//Route Controlar Login
+>>>>>>> e0651baf25f08f391684f0ad3629b8432296fccc
 route::prefix('login')->group(function(){
-
     Route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
     Route::post('/store', [cadastro_login_controller::class,'login'])->name('login-store');
     Route::get('/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
 });
 
-//Route Retorna View
+//Route Atendente
+route::prefix('atendente')->group(function(){
+    Route::get('/', [AtendenteController::class, 'Index'])->name('atendente_index');
+});
+
+route::prefix('compra')->group(function(){
+    Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('alterar_status_compra');
+});
+
+//Route retorna View
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
+
+//Cliente
 Route::get('/cliente/contatos', function () {
     return view('/cliente/contatos');
 });
@@ -63,6 +85,20 @@ Route::get('/cliente/cartao', function () {
 
 Route::get('/cliente/novo_cartao', function () {
     return view('/cliente/novo_cartao');
+});
+
+//Atendente
+Route::get('/atendente/index', function () {
+    return view('/atendente/index');
+});
+
+//Administrador
+Route::get('/administrador/gerenciar_produtos', function () {
+    return view('/administrador/gerenciar_produtos');
+});
+
+Route::get('/administrador/gerenciar_feed', function () {
+    return view('/administrador/gerenciar_feed');
 });
 
 //Route Opcional - Favoritos

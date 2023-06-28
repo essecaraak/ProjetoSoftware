@@ -42,7 +42,7 @@ class cadastro_login_controller extends Controller
             return 'logado como adm';
         }
         if($user->usertype =='atendente'){
-            return 'logado como atendente';
+            return redirect()->route('atendente_index');
         }
     }
 

@@ -34,7 +34,7 @@
                                 <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
                                 <li class="nav-item"><a href="{{route('tela_login')}}" class="nav-link text-white">Login</a></li>
                             @else
-                                <li class="nav-item"><a href="contatos" class="nav-link text-white">minha conta</a></li>
+                                <li class="nav-item"><a href="cliente/contatos" class="nav-link text-white">minha conta</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                             @endif
                                 <li class="nav-item">
