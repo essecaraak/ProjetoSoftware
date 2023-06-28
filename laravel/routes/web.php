@@ -17,29 +17,17 @@ use App\Http\Middleware\verificalogado;
 route::middleware([verificacliente::class])->group(function(){
 
     //Cliente
-    Route::get('/cliente/contatos', function () {
-        return view('/cliente/contatos');
-    });
+    route::prefix('cliente')->group(function(){
 
-    Route::get('/cliente/pedidos', function () {
-        return view('/cliente/pedidos');
+        Route::get('/contatos', [viewscontroller::class, 'tela_contatos'])->name('contatos');
+        Route::get('/pedidos', [viewscontroller::class, 'tela_pedidos'])->name('pedidos');
+        Route::get('/endereco', [viewscontroller::class, 'tela_endereco'])->name('endereco');
+        Route::get('/novo_endereco', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
+        Route::get('/cartao', [viewscontroller::class, 'tela_cartao'])->name('cartao');
+        Route::get('/novo_cartao', [viewscontroller::class, 'tela_novo_cartao'])->name('novo_cartao');
+    
     });
-
-    Route::get('/cliente/endereco', function () {
-        return view('/cliente/endereco');
-    });
-
-    Route::get('/cliente/novo_endereco', function () {
-        return view('/cliente/novo_endereco');
-    });
-
-    Route::get('/cliente/cartao', function () {
-        return view('/cliente/cartao');
-    });
-
-    Route::get('/cliente/novo_cartao', function () {
-        return view('/cliente/novo_cartao');
-    });
+    
 
 });
 
@@ -49,17 +37,14 @@ route::middleware([verificacliente::class])->group(function(){
 route::middleware([verificaatendente::class])->group(function(){
 
     //Route Atendente
+
     route::prefix('atendente')->group(function(){
-        Route::get('/', [AtendenteController::class, 'Index'])->name('atendente_index');
-    });
+        Route::get('/', [viewscontroller::class, 'tela_atendente'])->name('atendente-index');
 
-    route::prefix('compra')->group(function(){
-        Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('alterar_status_compra');
-    });
+        route::prefix('compra')->group(function(){
 
-    //Atendente
-    Route::get('/atendente/index', function () {
-        return view('/atendente/index');
+            Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('compra-alterar-status');
+        });
     });
 
 });
@@ -70,13 +55,13 @@ route::middleware([verificaatendente::class])->group(function(){
 route::middleware([verificaadministrador::class])->group(function(){
 
     //Administrador
-    Route::get('/administrador/gerenciar_produtos', function () {
-        return view('/administrador/gerenciar_produtos');
-    })->name('administrador-index');
+    route::prefix('administrador')->group(function(){
 
-    Route::get('/administrador/gerenciar_feed', function () {
-        return view('/administrador/gerenciar_feed');
+        Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
+        Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
+        
     });
+    
 
 });
 
@@ -105,12 +90,9 @@ route::middleware([verificalogado::class])->group(function(){
 
 // Rotas de acesso global
 
+Route::get('/',[viewscontroller::class,'tela_index'])->name('index');
 
-//Route retorna View
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
+Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
 
 //Route Opcional - Favoritos
@@ -120,6 +102,7 @@ Route::get('/', function () {
 
 
 //Route tratamento de Erros
+
 Route::fallback(function () {
     return "Erro de rota!";
 });
