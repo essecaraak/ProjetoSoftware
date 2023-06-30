@@ -48,8 +48,6 @@
         <header>
             @yield('header')
         </header>
-
-        <main class="flex-fill">
          <!-- Tratamento de erros e respostas do servidor-->
          @if($errors->any())
                 <div class="error">
@@ -66,6 +64,8 @@
                     <p>{{session('mensagem_falha')}}</p>
                 </div>
             @endif
+        <main class="flex-fill">
+        @yield('content')
         </main>
             <footer class="border-top text-light footer">
                 <div class="container">

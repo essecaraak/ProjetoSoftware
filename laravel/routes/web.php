@@ -5,7 +5,8 @@ use App\Http\Controllers\{
     cadastro_login_controller,
     viewscontroller,
     AtendenteController,
-    CompraController
+    CompraController,
+    produtoscontroller
 };
 use App\Http\Middleware\verificaadministrador;
 use App\Http\Middleware\verificaatendente;
@@ -60,6 +61,11 @@ route::middleware([verificaadministrador::class])->group(function(){
         Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
         Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
         
+        route::prefix('novo_produto')->group(function(){
+
+            Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
+            Route::post('/create', [produtoscontroller::class, 'produtos_create'])->name('novo-produto-create');
+        });
     });
     
 

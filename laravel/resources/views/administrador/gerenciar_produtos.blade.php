@@ -9,7 +9,7 @@
             <div class="col-6">
                 <div class="list-group">
                     <div class="d-flex align-items-center">
-                        <a href="endereco" class="list-group-item list-group-item-action bg-danger text-light">
+                        <a href="" class="list-group-item list-group-item-action bg-danger text-light">
                             <i class="bi bi-cash-stack fs-6"></i> Gerenciar Produtos
                         </a>
                     </div>
@@ -25,7 +25,7 @@
                 </div>
             </div>            
             <div>
-                <a href="novo_produto" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo produto</button></a>
+                <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo produto</button></a>
                 <form action="">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
