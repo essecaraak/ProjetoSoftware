@@ -38,7 +38,7 @@ class cadastro_login_controller extends Controller
             return redirect()->route('index');
         }
         if($user->usertype =='administrador'){
-            return 'logado como adm';
+            return redirect()->route('administrador-index');
         }
         if($user->usertype =='atendente'){
             return redirect()->route('atendente_index');

@@ -80,7 +80,6 @@ route::middleware([verificalogado::class])->group(function(){
     //tela de login
     route::prefix('login')->group(function(){
         Route::get('/',[viewscontroller::class,'tela_login'])->name('tela_login');
-        Route::post('/store', [cadastro_login_controller::class,'login'])->name('login-store');
         Route::get('/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
     });
@@ -92,6 +91,7 @@ route::middleware([verificalogado::class])->group(function(){
 
 Route::get('/',[viewscontroller::class,'tela_index'])->name('index');
 
+Route::post('/login/store', [cadastro_login_controller::class,'login'])->name('login-store');
 Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 
 
