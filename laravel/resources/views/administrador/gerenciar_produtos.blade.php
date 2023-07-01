@@ -38,29 +38,29 @@
                             <div id="pedido000010" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="text" id="txtRua" placeholder=" " />
+                                        <input class="form-control" type="text" name="nome" id="txtRua" placeholder=" " />
                                         <label for="txtRua">Nome: <span></span></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" id="descricao" placeholder= " "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" name="descricao" class="form-control" id="descricao" placeholder= " "></textarea>
                                         <label for="descricao">Descrição: <span></span></label>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center">
                                             <div class="form-floating mb-3 col-md-3">
-                                                <input class="form-control" type="number" placeholder=" " />
+                                                <input class="form-control" name="valor" type="number" placeholder=" " />
                                                 <label for="txtCEP">Preço: <span></span></label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <input class="form-control" type="number" id="txtNumero" placeholder=" " />
+                                                <input class="form-control" name="quantidade" type="number" id="txtNumero" placeholder=" " />
                                                 <label for="txtNumero">Quantidade: <span></span></label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <input class="form-control" type="file" accept="image/png,image/jpeg" id="imagemInput" placeholder=" " />
+                                                <input class="form-control" name="imagem" type="file" accept="image/png,image/jpeg" id="imagemInput" placeholder=" " />
                                                 <label for="imagemInput">Imagem:</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <select class="form-control" id="tipo" placeholder=" ">
+                                                <select class="form-control" name="tipo" id="tipo" placeholder=" ">
                                                     <option>Embalagens e Descartáveis</option>
                                                     <option>Artigos para Festa</option>
                                                     <option>Doces e Bebidas</option>

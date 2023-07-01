@@ -6,7 +6,7 @@
     <div class="container">
         <h1>Novo Produto</h1>
         <hr>
-        <form class="mt-3" action="{{route('novo-produto-create')}}" method="post">
+        <form class="mt-3" enctype="multipart/form-data" action="{{route('novo-produto-create')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-sm-12">
@@ -23,7 +23,7 @@
                 <div class="col-sm-12">
                     <div class="col-md-4">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="number" name="valor" placeholder=" " />
+                            <input class="form-control" type="number" step="any" name="valor" placeholder=" " />
                             <label for="txtCEP">Preço: <span></span></label>
                         </div>
                     </div>
@@ -36,16 +36,16 @@
                     <div class="col-md-4">
                         <div class="form-floating mb-3">
                             <select class="form-control" id="tipo" name="tipo" placeholder=" ">
-                                <option value="1">Embalagens e Descartáveis</option>
-                                <option value="2">Artigos para Festa</option>
-                                <option value="3">Doces e Bebidas</option>
+                                <option >Embalagens e Descartáveis</option>
+                                <option >Artigos para Festa</option>
+                                <option >Doces e Bebidas</option>
                             </select>
                             <label for="tipo"><b>Tipo:</b></label>
                         </div>
                     </div>
                     <div class="form-floating col-md-4">
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="file" accept="image/png,image/jpeg" id="imagemInput" name="imagem" placeholder=" " />
+                            <input class="form-control" type="file"  accept="image/png,image/jpeg" id="imagemInput" name="imagem" placeholder=" " />
                             <label for="imagemInput">Imagem:</label>
                         </div>
                     </div>

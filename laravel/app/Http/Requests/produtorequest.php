@@ -22,7 +22,40 @@ class produtorequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome'=>[
+                'required',
+                'string',
+                'max:200',
+                'min:1',    
+            ],
+            'tipo'=>[
+                'required',
+                'string', 
+                'min:1',
+                'max:100',
+            ],        
+        'descricao'=>[
+            'min:0',
+            'max:1000',
+
+        ],
+        'valor'=>[
+            'required',
+            'decimal:2',
+            'min:0,00',
+            'max:9999,99',
+        ],
+        'imagem'=>[
+            'required',
+            'image',
+
+        ],
+        'quantidade'=>[
+            'required',
+            'integer',
+            'min:0',
+            'max:2147483647'
+        ],
         ];
     }
 }

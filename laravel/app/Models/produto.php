@@ -15,6 +15,12 @@ class produto extends Model
         'tipo',
         'descricao',
         'valor',
+        'imagem',
+        'quantidade',
         
+    ];
+
+    protected $attributes = [
+        'descricao' => ' ',
     ];
 }
