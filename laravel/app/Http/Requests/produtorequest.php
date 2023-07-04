@@ -58,4 +58,25 @@ class produtorequest extends FormRequest
         ],
         ];
     }
+    public function messages()
+    {
+        return [
+            'nome.required' => 'o campo nome é obrigatório',
+            'nome.max' => 'o nome não pode ter mais que 200 caracteres',
+            'tipo.required' => 'Não altere o campo de tipo',
+            'tipo.string' => 'Não altere o campo de tipo',
+            'tipo.min' => 'Não altere o campo de tipo',
+            'tipo.max' => 'Não altere o campo de tipo',
+            'descricao.max' => 'o máximo de caracteres da descrição é 1000',
+            'valor.required' => 'o valor é obrigatório',
+            'valor.decimal' => 'o valor deve ser um numero decimal com duas casas após a vírgula',
+            'valor.max' => 'o preço máximo de produto é 9999,99',
+            'valor.min' => 'o preço não pode ser negativo',
+            'imagem.required' => 'a imagem do produto é obrigatória',
+            'quantidade.required' => 'a quantidade de produtos no estoque é obrigatória',
+            'quantidade.integer' => 'a quantidade de produtos deve ser um número inteiro',
+            'quantidade.min' => 'o numero de produtos não pode ser menor que 0',
+            'quantidade.max' => 'o numero de produtos não pode ser tão grande',
+        ];
+    }
 }

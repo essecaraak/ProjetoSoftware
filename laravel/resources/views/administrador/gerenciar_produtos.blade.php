@@ -26,47 +26,49 @@
             </div>            
             <div>
                 <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo produto</button></a>
+                @foreach($produtos as $produto)
                 <form action="">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#pedido000010">
-                                    <b>Nome do Produto</b>
+                                    <b>{{$produto->nome}}</b>
                                 </button>
                             </h2>
                             <div id="pedido000010" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="text" name="nome" id="txtRua" placeholder=" " />
+                                        <input class="form-control" type="text" value="{{$produto->nome}}" name="nome" id="txtRua" placeholder=" " />
                                         <label for="txtRua">Nome: <span></span></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" name="descricao" class="form-control" id="descricao" placeholder= " "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" value="{{$produto->descricao}}" name="descricao" class="form-control" id="descricao" placeholder= " "></textarea>
                                         <label for="descricao">Descrição: <span></span></label>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center">
                                             <div class="form-floating mb-3 col-md-3">
-                                                <input class="form-control" name="valor" type="number" placeholder=" " />
+                                                <input class="form-control" name="valor" value="{{$produto->valor}}" type="number" placeholder=" " />
                                                 <label for="txtCEP">Preço: <span></span></label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <input class="form-control" name="quantidade" type="number" id="txtNumero" placeholder=" " />
+                                                <input class="form-control" name="quantidade" value="{{$produto->quantidade}}" type="number" id="txtNumero" placeholder=" " />
                                                 <label for="txtNumero">Quantidade: <span></span></label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <input class="form-control" name="imagem" type="file" accept="image/png,image/jpeg" id="imagemInput" placeholder=" " />
+                                                <input class="form-control" name="imagem" type="file" value="{{$produto->imagem}}"  accept="image/png,image/jpeg" id="imagemInput" placeholder=" " />
                                                 <label for="imagemInput">Imagem:</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <select class="form-control" name="tipo" id="tipo" placeholder=" ">
+                                                <select class="form-control"value="{{$produto->tipo}} name="tipo" id="tipo" placeholder=" ">
                                                     <option>Embalagens e Descartáveis</option>
                                                     <option>Artigos para Festa</option>
                                                     <option>Doces e Bebidas</option>
                                                 </select>
                                                 <label for="tipo"><b>Tipo:</b></label>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-center" id="imagemPreview"></div>
@@ -78,6 +80,7 @@
                         </div>
                     </div>
                 </form>
+                @endforeach
             </div>
         </div>
     </div>

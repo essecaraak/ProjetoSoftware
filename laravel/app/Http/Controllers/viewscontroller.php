@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compras;
+use App\Models\produto;
 use Illuminate\Http\Request;
 
 class viewscontroller extends Controller
@@ -59,7 +60,9 @@ class viewscontroller extends Controller
     //telas do administrador
 
     public function tela_administrador(){
-        return view('/administrador/gerenciar_produtos');
+        $produtos = produto::all();
+
+        return view('/administrador/gerenciar_produtos',['produtos'=>$produtos]);
     }
     public function tela_gerenciar_feed(){
         return view('/administrador/gerenciar_feed');
