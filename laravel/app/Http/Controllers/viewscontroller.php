@@ -22,6 +22,10 @@ class viewscontroller extends Controller
         return view('/index');
     }
 
+    public function visualizar_produto(){
+        return view('/visualizar_produto');
+    }
+
     //telas do cliente
 
     public function tela_contatos(){

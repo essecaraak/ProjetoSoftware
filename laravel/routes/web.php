@@ -91,6 +91,10 @@ route::middleware([verificalogado::class])->group(function(){
 
     });
 
+    //tela visualizar produto
+    Route::get('/visualizar_produto', [viewscontroller::class, 'visualizar_produto'])->name('visualizar_produto');
+    
+
 });
 
 
@@ -100,13 +104,6 @@ Route::get('/',[viewscontroller::class,'tela_index'])->name('index');
 
 Route::post('/login/store', [cadastro_login_controller::class,'login'])->name('login-store');
 Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
-
-
-//Route Opcional - Favoritos
-//Route::get('/cliente/favoritos', function () {
-//    return view('/cliente/favoritos');
-//});
-
 
 //Route tratamento de Erros
 
