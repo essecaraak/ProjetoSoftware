@@ -65,6 +65,7 @@ route::middleware([verificaadministrador::class])->group(function(){
 
             Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
             Route::post('/create', [produtoscontroller::class, 'produtos_create'])->name('novo-produto-create');
+            Route::post('/update{{$id}}', [produtoscontroller::class, 'produtos_update']);
         });
     });
     
