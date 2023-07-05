@@ -60,12 +60,16 @@ route::middleware([verificaadministrador::class])->group(function(){
 
         Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
         Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
+        route::prefix('produto')->group(function(){
+            
+            Route::get('/update/{id}', [produtoscontroller::class, 'produtos_update'])->name('produto-update');
+            Route::get('/delete/{id}', [produtoscontroller::class, 'produtos_delete'])->name('produto-delete');
+        });
         
         route::prefix('novo_produto')->group(function(){
 
             Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
             Route::post('/create', [produtoscontroller::class, 'produtos_create'])->name('novo-produto-create');
-            Route::post('/update{{$id}}', [produtoscontroller::class, 'produtos_update']);
         });
     });
     

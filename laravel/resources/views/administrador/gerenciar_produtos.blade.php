@@ -27,7 +27,7 @@
             <div>
                 <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo produto</button></a>
                 @foreach($produtos as $produto)
-                <form action="">
+                <form action="{{route('produto-update',[$produto->id])}}" method="get">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -43,7 +43,7 @@
                                         <label for="txtRua">Nome: <span></span></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" value="{{$produto->descricao}}" name="descricao" class="form-control" id="descricao" placeholder= " "></textarea>
+                                        <textarea style="width: 100%; height: 150px;"  name="descricao" class="form-control" id="descricao" placeholder= " ">{{$produto->descricao}}</textarea>
                                         <label for="descricao">Descrição: <span></span></label>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -57,14 +57,25 @@
                                                 <label for="txtNumero">Quantidade: <span></span></label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <input class="form-control" name="imagem" type="file" value="{{$produto->imagem}}"  accept="image/png,image/jpeg" id="imagemInput" placeholder=" " />
+                                                <!--<image src="{{asset('/storage/img/produtos/'.$produto->imagem)}}"/>-->
+                                                <input class="form-control" type="file"  accept="image/png,image/jpeg" id="imagemInput" name="imagem" placeholder=" " />
                                                 <label for="imagemInput">Imagem:</label>
                                             </div>
                                             <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <select class="form-control"value="{{$produto->tipo}} name="tipo" id="tipo" placeholder=" ">
+                                                <select class="form-control"value="{{$produto->tipo}}" name="tipo" id="tipo" placeholder=" ">
+                                                @if($produto->tipo == 'Embalagens e Descartáveis' )
                                                     <option>Embalagens e Descartáveis</option>
-                                                    <option>Artigos para Festa</option>
-                                                    <option>Doces e Bebidas</option>
+                                                    <option >Artigos para Festa</option>
+                                                    <option >Doces e Bebidas</option>
+                                                @elseif(($produto->tipo == 'Artigos para Festa' ))
+                                                    <option >Artigos para Festa</option>
+                                                    <option>Embalagens e Descartáveis</option>
+                                                    <option >Doces e Bebidas</option>
+                                                @else
+                                                    <option >Doces e Bebidas</option>
+                                                    <option>Embalagens e Descartáveis</option>
+                                                    <option >Artigos para Festa</option>
+                                                @endif
                                                 </select>
                                                 <label for="tipo"><b>Tipo:</b></label>
                                             </div>
@@ -73,8 +84,8 @@
                                     </div>
                                     <div class="d-flex justify-content-center" id="imagemPreview"></div>
                                     <br><br>
-                                    <button type="button" class="btn btn-danger">Excluir produto</button>
-                                    <button type="button" class="btn btn-success">Salvar alterações</button>
+                                    <button type="button" onclick="window.location='{{route("produto-delete",[$produto->id])}}'" class="btn btn-danger">Excluir produto</button>
+                                    <button type="submit" class="btn btn-success">Salvar alterações</button>
                                 </div>
                             </div>
                         </div>
