@@ -29,6 +29,11 @@ class viewscontroller extends Controller
 
     //telas do cliente
 
+    public function tela_visualizar_produto($id){
+        $produto = produto::findOrFail($id);
+
+        return view('/visualizar_produto', ['produto'=>$produto]);
+    }
     public function tela_contatos(){
         return view('/cliente/contatos');
     }

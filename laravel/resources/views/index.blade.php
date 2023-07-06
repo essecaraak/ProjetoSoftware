@@ -73,7 +73,7 @@
                 <a href="#" class="position-absolute end-0 p-2 text-danger">
                     <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                 </a>
-                <a href="/produto.html">
+                <a href="{{route('visualizar-produto',[$produto->id])}}">
                     <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
                 </a>
                 <div class="card-header">
@@ -94,7 +94,7 @@
                         <b>Produto Esgotado</b>
                     </small>
                     @else
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
+                    <a href="{{route('visualizar-produto',[$produto->id])}}" class="btn btn-danger mt-2 d-block">
                         Adicionar ao Carrinho
                     </a>
                     <small class="text-success">

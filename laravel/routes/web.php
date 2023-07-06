@@ -26,6 +26,7 @@ route::middleware([verificacliente::class])->group(function(){
         Route::get('/novo_endereco', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
         Route::get('/cartao', [viewscontroller::class, 'tela_cartao'])->name('cartao');
         Route::get('/novo_cartao', [viewscontroller::class, 'tela_novo_cartao'])->name('novo_cartao');
+        Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
     
     });
     
