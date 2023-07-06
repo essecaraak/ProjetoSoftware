@@ -59,28 +59,7 @@
                         <option>Ordenar pelo maior preço</option>
                     </select>
                 </form>
-                <nav class="d-inline-block me-3">
-                    <ul class="pagination pagination-sm my-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">6</a>
-                        </li>
-                    </ul>
-                </nav>
+                
             </div>
         </div>
     </div>
@@ -88,324 +67,48 @@
     <hr mt-3>
 
     <div class="row g-3">
+        @foreach($produtos as $produto)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <div class="card text-center bg-light">
                 <a href="#" class="position-absolute end-0 p-2 text-danger">
                     <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                 </a>
                 <a href="/produto.html">
-                    <img src="/img/produtos/000001.jpg" class="card-img-top">
+                    <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
                 </a>
                 <div class="card-header">
-                    R$ 4,50
+                    R$ {{$produto->valor}}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
+                    <h5 class="card-title">{{$produto->nome}}</h5>
                     <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
+                        {{$produto->descricao}}
                     </p>
                 </div>
                 <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000002.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000003.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
+                    @if($produto->quantidade==0)
                     <a href="#" class="btn btn-light disabled mt-2 d-block">
                         <small>Reabastecendo Estoque</small>
                     </a>
                     <small class="text-danger">
                         <b>Produto Esgotado</b>
                     </small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart-fill" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000004.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
+                    @else
                     <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
                         Adicionar ao Carrinho
                     </a>
-                    <small class="text-success">320,5kg em estoque</small>
+                    <small class="text-success">
+                        {{$produto->quantidade}} unidades em estoque
+                    </small>
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000005.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000006.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000007.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000008.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart-fill" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000009.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000010.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000011.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <img src="/img/produtos/000012.jpg" class="card-img-top">
-                <div class="card-header">
-                    R$ 4,50
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Banana Prata</h5>
-                    <p class="card-text truncar-3l">
-                        Banana prata da melhor qualidade possível, direto do produtor rural para a sua mesa.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <a href="carrinho.html" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
-                    </a>
-                    <small class="text-success">320,5kg em estoque</small>
-                </div>
-            </div>
-        </div>
-    </div>
+        @endforeach
+
 
     <hr class="mt-3">
 
-    <div class="row pb-3">
-        <div class="col-12">
-            <div class="d-flex flex-row-reverse justify-content-center justify-content-md-start">
-                <form class="d-inline-block">
-                    <select class="form-select form-select-sm">
-                        <option>Ordenar pelo nome</option>
-                        <option>Ordenar pelo menor preço</option>
-                        <option>Ordenar pelo maior preço</option>
-                    </select>
-                </form>
-                <nav class="d-inline-block me-3">
-                    <ul class="pagination pagination-sm my-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">6</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    
 </div>
 @endsection

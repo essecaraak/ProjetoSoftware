@@ -19,7 +19,8 @@ class viewscontroller extends Controller
     }
 
     public function tela_index(){
-        return view('/index');
+        $produtos = produto::all();
+        return view('/index',['produtos'=> $produtos]);
     }
 
     public function visualizar_produto(){

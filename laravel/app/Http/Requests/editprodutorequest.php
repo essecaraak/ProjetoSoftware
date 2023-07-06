@@ -45,10 +45,6 @@ class editprodutorequest extends FormRequest
             'min:0,00',
             'max:9999,99',
         ],
-        'imagem'=>[
-            'image',
-
-        ],
         'quantidade'=>[
             'required',
             'integer',
