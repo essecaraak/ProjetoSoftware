@@ -23,20 +23,21 @@
                         </a>
                     </div>
                 </div>
-            </div>            
+            </div>         
             <div>
-                <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo produto</button></a>
+                <br>
+                <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger" style="margin-bottom: 30px;">Adicionar novo produto</button></a>
                 @foreach($produtos as $produto)
                 <form action="{{route('produto-update',[$produto->id])}}" method="get">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#pedido000010">
+                                    data-bs-target="#pedido{{ $produto->id }}">
                                     <b>{{$produto->nome}}</b>
                                 </button>
                             </h2>
-                            <div id="pedido000010" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                            <div id="pedido{{ $produto->id }}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" type="text" value="{{$produto->nome}}" name="nome" id="txtRua" placeholder=" " />

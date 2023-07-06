@@ -31,7 +31,7 @@
                         </ul>
                         <div class="align-self-end">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="cliente/contatos" class="nav-link text-white">Acessar minha conta</a></li>
+                                <li class="nav-item"><a href="contatos" class="nav-link text-white">Acessar minha conta</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">Sair</a></li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">

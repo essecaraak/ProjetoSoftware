@@ -12,8 +12,8 @@ document.getElementById('imagemInput').addEventListener('change', function(event
                 var ctx = canvas.getContext('2d');
                 
                 // Define o tamanho desejado
-                var width = 250;
-                var height = 250;
+                var width = 220;
+                var height = 220;
                 
                 // Configura o canvas com as dimensões desejadas
                 canvas.width = width;
