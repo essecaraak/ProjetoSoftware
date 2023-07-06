@@ -68,8 +68,8 @@
 
     <div class="row g-3">
         @foreach($produtos as $produto)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-            <div class="card text-center bg-light">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
+            <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
                 <a href="#" class="position-absolute end-0 p-2 text-danger">
                     <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                 </a>
@@ -81,9 +81,6 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{$produto->nome}}</h5>
-                    <p class="card-text truncar-3l">
-                        {{$produto->descricao}}
-                    </p>
                 </div>
                 <div class="card-footer">
                     @if($produto->quantidade==0)
