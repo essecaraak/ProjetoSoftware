@@ -22,7 +22,7 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control" type="number" step="any" name="valor" placeholder=" " />
-                                <label for="txtCEP">Preço: <span></span></label>
+                                <label for="txtCEP">Preço:<span></span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
