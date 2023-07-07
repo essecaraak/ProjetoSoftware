@@ -67,41 +67,171 @@
     <hr mt-3>
 
     <div class="row g-3">
-        @foreach($produtos as $produto)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
-            <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
-                <a href="#" class="position-absolute end-0 p-2 text-danger">
-                    <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
-                </a>
-                <a href="{{route('visualizar-produto',[$produto->id])}}">
-                    <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
-                </a>
-                <div class="card-header">
-                    R$ {{$produto->valor}}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{$produto->nome}}</h5>
-                </div>
-                <div class="card-footer">
-                    @if($produto->quantidade==0)
-                    <a href="#" class="btn btn-light disabled mt-2 d-block">
-                        <small>Reabastecendo Estoque</small>
+        @if(session('user'))
+            @if(session('user')->usertype == 'cliente')   
+            <!-- exibição de produtos para cliente --> 
+                @foreach($produtos as $produto)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
+                        <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
+                            <a href="#" class="position-absolute end-0 p-2 text-danger">
+                                <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+                            </a>
+                            <a href="{{route('visualizar-produto',[$produto->id])}}">
+                                <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
+                            </a>
+                            <div class="card-header">
+                                R$ {{$produto->valor}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{$produto->nome}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                @if($produto->quantidade==0)
+                                <a href="#" class="btn btn-light disabled mt-2 d-block">
+                                    <small>Reabastecendo Estoque</small>
+                                </a>
+                                <small class="text-danger">
+                                    <b>Produto Esgotado</b>
+                                </small>
+                                @else
+                                <a href="{{route('visualizar-produto',[$produto->id])}}" class="btn btn-danger mt-2 d-block">
+                                    Adicionar ao Carrinho
+                                </a>
+                                <small class="text-success">
+                                    @if($produto->quantidade==1)
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @else
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @endif
+                                </small>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                 @endforeach
+            @elseif(session('user')->usertype == 'administrador')
+                <!-- exibição de produtos para administrador --> 
+                @foreach($produtos as $produto)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
+                        <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
+                            <a href="#" class="position-absolute end-0 p-2 text-danger">
+                                <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+                            </a>
+                            <a href="{{route('administrador-index')}}">
+                                <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
+                            </a>
+                            <div class="card-header">
+                                R$ {{$produto->valor}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{$produto->nome}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                @if($produto->quantidade==0)
+                                <a href="{{route('administrador-index')}}" class="btn btn-light disabled mt-2 d-block">
+                                    <small>Reabasteça o Estoque</small>
+                                </a>
+                                <small class="text-danger">
+                                    <b>Produto Esgotado</b>
+                                </small>
+                                @else
+                                <a href="{{route('administrador-index')}}" class="btn btn-danger mt-2 d-block">
+                                    Gerenciar produto
+                                </a>
+                                <small class="text-success">
+                                    @if($produto->quantidade==1)
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @else
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @endif
+                                </small>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                 @endforeach
+            @elseif(session('user')->usertype == 'atendente')     
+                <!-- exibição de produtos para atendente --> 
+                @foreach($produtos as $produto)
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
+                        <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
+                            <a  class="position-absolute end-0 p-2 text-danger">
+                                <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+                            </a>
+                            <a >
+                                <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
+                            </a>
+                            <div class="card-header">
+                                R$ {{$produto->valor}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{$produto->nome}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                @if($produto->quantidade==0)
+                                <a  class="btn btn-light disabled mt-2 d-block">
+                                    <small>Administrador precisa reabastecer o Estoque</small>
+                                </a>
+                                <small class="text-danger">
+                                    <b>Produto Esgotado</b>
+                                </small>
+                                @else
+                                
+                                <small class="text-success">
+                                    @if($produto->quantidade==1)
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @else
+                                        {{$produto->quantidade}} unidade em estoque
+                                    @endif
+                                </small>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                 @endforeach
+            @endif
+
+        @else
+            @foreach($produtos as $produto)
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
+                <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
+                    <a  class="position-absolute end-0 p-2 text-danger">
+                        <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
                     </a>
-                    <small class="text-danger">
-                        <b>Produto Esgotado</b>
-                    </small>
-                    @else
-                    <a href="{{route('visualizar-produto',[$produto->id])}}" class="btn btn-danger mt-2 d-block">
-                        Adicionar ao Carrinho
+                    <a>
+                        <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
                     </a>
-                    <small class="text-success">
-                        {{$produto->quantidade}} unidades em estoque
-                    </small>
-                    @endif
+                    <div class="card-header">
+                        R$ {{$produto->valor}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{$produto->nome}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        @if($produto->quantidade==0)
+                        <a  class="btn btn-light disabled mt-2 d-block">
+                            <small>Reabastecendo Estoque</small>
+                        </a>
+                        <small class="text-danger">
+                            <b>Produto Esgotado</b>
+                        </small>
+                        @else
+                        <a  class="btn btn-danger mt-2 d-block">
+                            Faça login para comprar
+                        </a>
+                        <small class="text-success">
+                            @if($produto->quantidade==1)
+                                {{$produto->quantidade}} unidade em estoque
+                            @else
+                                {{$produto->quantidade}} unidade em estoque
+                            @endif
+                        </small>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
-        @endforeach
+            @endforeach
+        @endif
 
 
     <hr class="mt-3">

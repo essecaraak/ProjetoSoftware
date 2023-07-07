@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     cadastro_login_controller,
     viewscontroller,
     AtendenteController,
+    carrinhocontroller,
     CompraController,
     produtoscontroller
 };
@@ -27,6 +28,13 @@ route::middleware([verificacliente::class])->group(function(){
         Route::get('/cartao', [viewscontroller::class, 'tela_cartao'])->name('cartao');
         Route::get('/novo_cartao', [viewscontroller::class, 'tela_novo_cartao'])->name('novo_cartao');
         Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
+        route::prefix('carrinho')->group(function(){
+            route::prefix('produto')->group(function(){
+
+                Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto '])->name('carrinho-produto-insert');
+            });
+        });
+        
     
     });
     
