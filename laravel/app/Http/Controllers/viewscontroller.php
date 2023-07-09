@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Compras;
 use App\Models\produto;
+use App\Models\produto_compra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class viewscontroller extends Controller
 {
@@ -31,8 +33,10 @@ class viewscontroller extends Controller
 
     public function tela_visualizar_produto($id){
         $produto = produto::findOrFail($id);
-
-        return view('/visualizar_produto', ['produto'=>$produto]);
+        $produto_compra =DB::table('produto_compra')
+            ->where('fk_produto_id','=',$id)
+            ->where('fk_compra_id','=',session('carrinho')->id)->get()->first();
+        return view('/visualizar_produto', ['produto'=>$produto,'comprado'=>$produto_compra]);
     }
     public function tela_contatos(){
         return view('/cliente/contatos');

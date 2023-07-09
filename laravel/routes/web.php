@@ -30,8 +30,7 @@ route::middleware([verificacliente::class])->group(function(){
         Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
         route::prefix('carrinho')->group(function(){
             route::prefix('produto')->group(function(){
-
-                Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto '])->name('carrinho-produto-insert');
+                Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto'])->name('carrinho-produto-insert');
             });
         });
         

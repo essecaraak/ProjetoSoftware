@@ -33,10 +33,10 @@
                             @if(!session('user'))
                                 <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
                                 <li class="nav-item"><a href="{{route('tela_login')}}" class="nav-link text-white">Login</a></li>
-                            @else
-                                <li class="nav-item"><a href="cliente/contatos" class="nav-link text-white">minha conta</a></li>
+                            @elseif(session('user')->usertype == 'cliente')
+                                <li class="nav-item"><a href="#" class="nav-link text-white">cartôes</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link text-white">endereços</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
-                            @endif
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
@@ -44,6 +44,15 @@
                                         </svg>
                                     </a>
                                 </li>
+                            @elseif(session('user')->usertype == 'administrador')
+                                <li class="nav-item"><a href="{{route('administrador-index')}}" class="nav-link text-white">Área do administrador</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link text-white"> cupons </a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
+                            @elseif(session('user')->usertype == 'atendente')
+                                <li class="nav-item"><a href="#" class="nav-link text-white">Área do atendente</a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
+                            @endif
+                                
                             </ul>
                         </div>
                     </div>

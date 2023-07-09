@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('descricao', 1000);
             $table->unsignedBigInteger('fk_user_cliente_id');
             $table->foreign("fk_user_cliente_id")->references("id")->on("users");
-            $table->unsignedBigInteger('fk_user_atendente_id');
+            $table->unsignedBigInteger('fk_user_atendente_id')->nullable($value = true);
             $table->foreign("fk_user_atendente_id")->references("id")->on("users");
-            $table->unsignedBigInteger('fk_cartao_id');
+            $table->unsignedBigInteger('fk_cartao_id')->nullable($value = true);
             $table->foreign("fk_cartao_id")->references("id")->on("cartao");
-            $table->unsignedBigInteger('fk_endereco_id');
+            $table->unsignedBigInteger('fk_endereco_id')->nullable($value = true);
             $table->foreign("fk_endereco_id")->references("id")->on("endereco");
             $table->timestamps();
         });

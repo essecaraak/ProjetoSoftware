@@ -1,4 +1,4 @@
-@extends('layouts.main_login')
+@extends('layouts.main')
 
 @section('title', 'Bem Doces | Administrador')
 
@@ -12,10 +12,10 @@
                 <div class="col-sm-6">
                     <div class="form-floating mb-3">
                         <input class="form-control border" type="text" name="nome" placeholder=" " />
-                        <label for="txtEmail">Nome do Produto</label>
+                        <label for="nome">Nome do Produto</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea style="width: 100%; height: 150px;" class="form-control" id="descricao" name="descricao" placeholder=" "></textarea>
+                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao" name="descricao" placeholder=" "></textarea>
                         <label for="descricao">Descrição:</label>
                     </div>
                     <div class="row">
@@ -28,7 +28,7 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
                                 <input class="form-control border" type="number" name="quantidade" placeholder=" " />
-                                <label class="form-label" for="txtConfirmacaoSenha">Quantidade:</label>
+                                <label class="form-label" for="quantidade">Quantidade:</label>
                             </div>
                         </div>
                     </div>

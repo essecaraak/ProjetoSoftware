@@ -1,4 +1,4 @@
-@extends('layouts.main_login')
+@extends('layouts.main')
 
 @section('title', 'Bem Doces | Administrador')
 
