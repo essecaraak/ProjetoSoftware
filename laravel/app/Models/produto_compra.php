@@ -14,6 +14,9 @@ class produto_compra extends Model
         'fk_produto_id',
         'fk_compra_id',
         'quantidade',
+        'valorproduto',
+        'nomeproduto',
+        'tipoproduto',
         
         
     ];
