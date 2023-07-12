@@ -17,7 +17,7 @@
         <div class="d-flex flex-column wrapper background">
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3">
                 <div class="container">
-                <img class="logo" src="img/logo.png"></img>
+                <img class="logo" src="{{asset('/storage/imagensapp/logo.png')}}"></img>
                 <a class="navbar-brand" href="/"><strong>Bem Doces</strong></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>

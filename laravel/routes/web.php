@@ -103,17 +103,13 @@ route::middleware([verificalogado::class])->group(function(){
 
     });
 
-    //tela visualizar produto
-    Route::get('/visualizar_produto', [viewscontroller::class, 'visualizar_produto'])->name('visualizar_produto');
-    
-
 });
 
 
 // Rotas de acesso global
 
 Route::get('/',[viewscontroller::class,'tela_index'])->name('index');
-
+Route::get('/pesquisaproduto',[viewscontroller::class,'pesquisa_produto'])->name('pesquisa_produto');
 Route::post('/login/store', [cadastro_login_controller::class,'login'])->name('login-store');
 Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 

@@ -8,6 +8,8 @@ use App\Models\produto_compra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isNull;
+
 class viewscontroller extends Controller
 {
 
@@ -21,12 +23,53 @@ class viewscontroller extends Controller
     }
 
     public function tela_index(){
-        $produtos = produto::all();
-        return view('/index',['produtos'=> $produtos]);
+        $produtos = DB::Table('produto')
+        ->select('*')
+        ->orderBy('nome')->get();
+        return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
     }
+ 
 
-    public function visualizar_produto(){
-        return view('/visualizar_produto');
+    public function pesquisa_produto(Request $request){
+
+        
+        if(!isNull($request->textobusca)){
+            if($request->tipobusca =='Ordenar pelo menor preço'){
+                $produtos = DB::Table('produto')
+                    ->select('*')
+                    ->orderBy('valor')->get();
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
+            }else if($request->tipobusca =='Ordenar pelo maior preço'){
+                $produtos = DB::Table('produto')
+                    ->select('*')
+                    ->orderBy('valor')->get()->reverse()->values();
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
+            }else{
+                return redirect()->route('index');
+            }
+        }else{
+            if($request->tipobusca =='Ordenar pelo menor preço'){
+                $produtos = DB::Table('produto')
+                    ->select('*')
+                    ->where('nome','LIKE','%'.$request->textobusca.'%')
+                    ->orderBy('valor')->get();
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
+            }else if($request->tipobusca =='Ordenar pelo maior preço'){
+                $produtos = DB::Table('produto')
+                    ->select('*')
+                    ->where('nome','LIKE','%'.$request->textobusca.'%')
+                    ->orderBy('valor')->get()->reverse()->values();
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
+            }else{
+                $produtos = DB::Table('produto')
+                    ->select('*')
+                    ->where('nome','LIKE','%'.$request->textobusca.'%')
+                    ->orderBy('nome')->get();
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
+            }
+        }
+        
+        
     }
 
     //telas do cliente
