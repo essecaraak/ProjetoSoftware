@@ -39,4 +39,24 @@ class Compras extends Model
         'hora_compra'=>NULL,
         'hora_finalizacao'=>NULL,
     ];
+
+    public function comprador()
+    {
+        return $this->hasOne(User::class, 'id', 'fk_user_cliente_id');
+    }
+
+    public function atendente()
+    {
+        return $this->hasOne(User::class, 'id', 'fk_user_atendente_id');
+    }
+
+    public function cartao()
+    {
+        return $this->hasOne(Cartao::class, 'id', 'fk_cartao_id');
+    }
+
+    public function endereco()
+    {
+        return $this->hasOne(Endereco::class, 'id', 'fk_endereco_id');
+    }
 }

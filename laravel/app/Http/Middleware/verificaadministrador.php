@@ -19,7 +19,7 @@ class verificaadministrador
             if(Auth()->user()->usertype=="administrador"){
                 return $next($request);
             }else if(Auth()->user()->usertype=="atendente"){
-                return redirect()->route('atendente_index');
+                return redirect()->route('atendente-index');
             }else if(Auth()->user()->usertype=="cliente"){
                 return redirect()->route('index');
             }

@@ -101,7 +101,7 @@
                                     @if($produto->quantidade==1)
                                         {{$produto->quantidade}} unidade em estoque
                                     @else
-                                        {{$produto->quantidade}} unidade em estoque
+                                        {{$produto->quantidade}} unidades em estoque
                                     @endif
                                 </small>
                                 @endif

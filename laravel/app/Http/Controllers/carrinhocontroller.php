@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\DB;
 
 class carrinhocontroller extends Controller
 {
+
+    public function index(Request $request) {
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
+            ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
+            ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->where('compra.status', '=', 'carrinho')
+            ->where('compra.fk_user_cliente_id', '=', Auth()->user()->id)
+            ->get();
+
+        return view('cliente\carrinho',['produtos'=> $produtos]);
+    }
+
     public function inserir_produto(Request $request, $id){
         $produto= produto::where('id',$id)->first();
         $procom = new produto_compra();

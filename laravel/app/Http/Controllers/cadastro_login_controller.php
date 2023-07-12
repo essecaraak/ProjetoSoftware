@@ -48,7 +48,7 @@ class cadastro_login_controller extends Controller
         if($user->usertype =='cliente'){
             $carrinho= DB::table('Compra')
             ->where('fk_user_cliente_id','=',$user->id)
-            ->where('status','=','carrinho')->get()->first();
+            ->where('status','=','carrinho')->first();
             
             if(!$carrinho){
                 $novocarrinho = new Compras();
