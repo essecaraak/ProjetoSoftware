@@ -65,7 +65,9 @@
     </div>
     <br>
     <h2 class="h2" style="color:white">Selecione a Forma de Pagamento</h2>
-    <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3">
+    <br>
+    <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo cartão</a>
+    <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" >
         <div class="mb-4 mx-2 flex-even col-md-4">
             <input type="radio" class="btn-check" name="pagamento" autocomplete="off" id="pag1">
             <label class="btn btn-outline-danger p-4 h-100 w-100" for="pag1">
@@ -84,7 +86,7 @@
                 </div>
             </label>
         </div>
-        <div class="mb-4 mx-2 flex-even col-md-6">
+        <div class="mb-4 mx-2 flex-even col-md-4">
             <input type="radio" class="btn-check" name="pagamento" autocomplete="off" id="pag2">
             <label class="btn btn-outline-danger p-4 h-100 w-100" for="pag2">
                 <h3>
@@ -92,22 +94,46 @@
                 </h3>
                 <hr>
                 <h4>Telefone: <b>24999911641</b></h4>
-                <h4>Por favor enviar o comprovante para o telefone da chave PIX e mostrar o comprovante para o entregador</h4>
+                <span>Por favor enviar o comprovante para o telefone da chave PIX e mostrar o comprovante para o entregador</span>
             </label>
         </div>
-        <div class="mb-4 mx-2 flex-even col-md-6">
-            <input type="radio" class="btn-check" name="pagamento" autocomplete="off" id="cartao1">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="cartao1">
+        <div class="mb-4 mx-2 flex-even col-md-4">
+            <input type="radio" class="btn-check" autocomplete="off">
+            <label class="btn btn-outline-danger p-4 h-100 w-100">
                 <h3>
                     <b class="text-dark">Cartão de Crédito</b>
                 </h3>
                 <hr>
-                
-                
-            
+                <div class="mb-4 mx-2 flex-even">
+                    <input type="radio" class="btn-check" name="pagamento" 
+                        autocomplete="off" id="cartao1">
+                    <label class="btn btn-outline-danger p-4 h-100 w-100" for="cartao1">
+                        <span>
+                            <b class="text-dark">Loja</b><br>
+                            <hr>
+                            <b>Ricardo Maroquio</b><br>
+                            Rua Caminho Virtual, 101<br>
+                            Compulândia/PC<br>
+                            CEP 01.010-101
+                        </span>
+                    </label>
+                </div>
+                <div class="mb-4 mx-2 flex-even">
+                    <input type="radio" class="btn-check" name="pagamento" 
+                        autocomplete="off" id="cartao2">
+                    <label class="btn btn-outline-danger p-4 h-100 w-100" for="cartao2">
+                        <span>
+                            <b class="text-dark">Loja</b><br>
+                            <hr>
+                            <b>Ricardo Maroquio</b><br>
+                            Rua Caminho Virtual, 101<br>
+                            Compulândia/PC<br>
+                            CEP 01.010-101
+                        </span>
+                    </label>
+                </div>
             </label>
-        </div>
-        
+        </div>     
     </div>
     <br>
     <h2 class="h2" style="color: white">Itens</h2>
@@ -153,10 +179,13 @@
                     </div>
                 </li>
             </div>
-            <div>
+            <div class="text-center">
                 <li class="list-group-item py-3">
                     <h4 class="text-dark" style="text-align: center">Valor Total: R$ 63,84</h4>
                 </li>
+                <br>
+                <a class="btn btn-lg btn-light btn-outline-danger" href="cartao">Voltar ao carrinho</a>
+                <input type="submit" value="Finalizar Compra" class="btn btn-lg btn-light btn-outline-danger"/>
             </div>
         </div>
     </ul>
