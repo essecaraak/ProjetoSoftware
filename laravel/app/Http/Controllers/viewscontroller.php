@@ -56,6 +56,9 @@ class viewscontroller extends Controller
     public function tela_novo_cartao(){
         return view('/cliente/novo_cartao');
     }
+    public function tela_fechamento_pedido(){
+        return view('/cliente/fechamento_pedido');
+    }
 
 
     //telas do atendente

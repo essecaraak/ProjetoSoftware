@@ -34,6 +34,7 @@ route::middleware([verificacliente::class])->group(function(){
                 Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto'])->name('carrinho-produto-insert');
             });
         });
+        Route::get('/fechamento_pedido', [viewscontroller::class, 'tela_fechamento_pedido'])->name('fechamento_pedido');
         
     
     });
@@ -84,7 +85,6 @@ route::middleware([verificaadministrador::class])->group(function(){
     
 
 });
-
 
 
 

@@ -27,3 +27,21 @@ body {
     width: 3%;
     height: 3%;
 }
+
+.tamanho-img {
+    width: 130px;
+    height: 130px;
+}
+
+.h2 {
+    background-color:rgba(0, 0, 0, 0.712);
+    color:white;
+    text-align: center;
+    padding: 10px;
+}
+
+.shadow-border {
+    box-shadow: -4px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+
