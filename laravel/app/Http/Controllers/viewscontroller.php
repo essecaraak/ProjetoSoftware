@@ -94,7 +94,11 @@ class viewscontroller extends Controller
         return view('/cliente/novo_endereco');
     }
     public function tela_cartao(){
-        return view('/cliente/cartao');
+        $data = DB::table('cartao')
+            ->where("fk_user_id",'=',session('user')->id)->get();
+        return view('/cliente/cartao',['cartoes'=>$data]);
+
+
     }
     public function tela_novo_cartao(){
         return view('/cliente/novo_cartao');

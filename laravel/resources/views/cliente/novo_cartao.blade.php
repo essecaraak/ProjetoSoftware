@@ -7,16 +7,16 @@
 <div class="container">
     <h1>Novo Cartão</h1>
     <hr>
-    <form class="mt-3" action="" method="post">
+    <form class="mt-3" action="{{route('cartao-create')}}" method="post">
         @csrf
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-floating mb-3 col-md-6">
-                    <input class="form-control border" type="text" placeholder=" " />
+                    <input class="form-control border" type="text" name="nometitular" placeholder=" " />
                     <label for="txtEmail">Nome completo do Titular</label>
                 </div>
                 <div class="form-floating col-sm-12 col-md-6">
-                    <input class="form-control border" type="number" placeholder=" " />
+                    <input class="form-control border" type="number" name="cvv" placeholder=" " />
                     <label for="txtTelefone">CVV</label>
                 </div>   
             <br>
@@ -24,13 +24,19 @@
             <div class="col-sm-12">
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <input class="form-control border" type="number" placeholder=" " />
+                        <input class="form-control border" name="numerocartao" type="number" placeholder=" " />
                         <label for="txtSenha">Número do Cartão</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <input class="form-control border" type="date" placeholder=" " />
+                        <input class="form-control border" name="apelido" type="text" placeholder=" " />
+                        <label for="txtSenha">apelido do Cartão</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input class="form-control border" type="month" name="datavencimento" placeholder=" " />
                         <label class="form-label" for="txtConfirmacaoSenha">Data de Vencimento</label>
                     </div>
                 </div>

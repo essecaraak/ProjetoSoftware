@@ -34,7 +34,7 @@
                                 <li class="nav-item"><a href="{{route('tela_cadastro')}}" class="nav-link text-white">Cadastre-se</a></li>
                                 <li class="nav-item"><a href="{{route('tela_login')}}" class="nav-link text-white">Login</a></li>
                             @elseif(session('user')->usertype == 'cliente')
-                                <li class="nav-item"><a href="{{route('cartao')}}" class="nav-link text-white">Área do cliente</a></li>
+                                <li class="nav-item"><a href="{{route('tela_cartao')}}" class="nav-link text-white">Área do cliente</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white">

@@ -28,13 +28,13 @@
             <div class="col-md-4">
                 <div class="form-floating mb-3">
                 Preço: 
-                <span class="form-control border text-center" id="preco" name="quantidade" placeholder=" ">R$ {{$produto->valor}}</span>
+                <span class="form-control border text-center" id="preco" name="quantidade" placeholder=" " >R$ {{$produto->valor}}</span>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-floating mb-3">
                 Tipo:
-                <span class="form-control border text-center" name="quantidade" placeholder=" "> {{$produto->tipo}}</span>
+                <span class="form-control border text-center" name="quantidade" placeholder=" " > {{$produto->tipo}}</span>
                 </div>
             </div>
             </div>
