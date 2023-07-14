@@ -37,7 +37,7 @@
                                 <li class="nav-item"><a href="{{route('tela_cartao')}}" class="nav-link text-white">Área do cliente</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link text-white">
+                                    <a href="{{route('carrinho-index')}}" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
                                             <use xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#cart3"></use>
                                         </svg>
@@ -48,7 +48,7 @@
                                 <li class="nav-item"><a href="#" class="nav-link text-white"> cupons </a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                             @elseif(session('user')->usertype == 'atendente')
-                                <li class="nav-item"><a href="#" class="nav-link text-white">Área do atendente</a></li>
+                                <li class="nav-item"><a href="{{route('atendente-index')}}" class="nav-link text-white">Área do atendente</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                             @endif
                                 

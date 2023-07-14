@@ -8,6 +8,7 @@ use App\Models\Compras;
 class CompraController extends Controller
 {
     const STATUS = [
+        'carrinho',
         'compra efetuada',
         'compra cancelada',
         'destinatario ausente',

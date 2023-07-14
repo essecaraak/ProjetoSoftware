@@ -26,14 +26,16 @@
             </td>
             <td>{{$compra->descricao}}</td>
             <td>
-                {{$compra->endereco->rua}} 
-                {{$compra->endereco->numero}}, 
-                {{$compra->endereco->bairro}}, 
-                {{$compra->endereco->cidade}} - 
-                {{$compra->endereco->estado}}
+                @if($compra->endereco)
+                    {{$compra->endereco->rua}} 
+                    {{$compra->endereco->numero}}, 
+                    {{$compra->endereco->bairro}}, 
+                    {{$compra->endereco->cidade}} - 
+                    {{$compra->endereco->estado}}
+                @endif
             </td>
             <td>
-                <form action="{{route('alterar_status_compra')}}" id="alterarStatus.{{$compra->id}}">
+                <form action="{{route('compra-alterar-status')}}" id="alterarStatus.{{$compra->id}}">
                     <input type="hidden" id="id_compra" name="id_compra" value="{{$compra->id}}" />
                     <select form="alterarStatus.{{$compra->id}}" class="novo_status" id="novo_status" name="novo_status" onchange="this.form.submit()">
                         <option selected>Selecione o novo status</option>
