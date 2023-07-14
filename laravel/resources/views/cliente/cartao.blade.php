@@ -64,7 +64,7 @@
                                             <label for="txtCEP"><b>Data de Vencimento:</b> <span></span></label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-danger">Excluir endereço</button>
+                                    <button type="submit" class="btn btn-danger">Excluir cartão</button>
                                     
                                 </div>
                             </div>
