@@ -16,8 +16,7 @@ class carrinhocontroller extends Controller
         $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
             ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
             ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
-            ->where('compra.status', '=', 'carrinho')
-            ->where('compra.fk_user_cliente_id', '=', Auth()->user()->id)
+            ->where('compra.id', '=', session('carrinho')->id)
             ->get();
 
         $total = $produtos->sum('valor');
@@ -29,9 +28,7 @@ class carrinhocontroller extends Controller
         if (empty($produtos)) {
             return redirect()->back()->with('mensagem_falha', 'Selecione ao menos um produto');
         }
-        $compra = Compras::where('fk_user_cliente_id', Auth()->user()->id)
-                          ->where('status', 'carrinho')
-                          ->first();
+        $compra = session('carrinho');
 
         if ($compra) {
             produto_compra::where('fk_compra_id', $compra->id)
@@ -40,9 +37,14 @@ class carrinhocontroller extends Controller
 
             $produtos = produto_compra::where('fk_compra_id', $compra->id)
                                         ->get();
-
+            
             $compra->status = 'finalizando';
             $compra->save();
+            $novocarrinho = new Compras();
+            $novocarrinho->status= 'carrinho';
+            $novocarrinho->fk_user_cliente_id= session('user')->id;
+            $novocarrinho->save();
+            Session()->put('carrinho',$novocarrinho);
         }
 
         return view('cliente\carrinho_finalizar',['produtos'=> $produtos, 'compra' => $compra]);
