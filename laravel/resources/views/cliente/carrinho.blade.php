@@ -38,7 +38,7 @@
                 </div>
             @endforeach
             <p>Cupom de desconto: <input type="text" name="cupom"></p>
-            <p>Total: R${{$total}}</p>
+            <p>Total: R${{session('carrinho')->valortotal}}</p>
             <button type="submit">Avançar</button>
         </form>
     </div>
