@@ -1,64 +1,92 @@
 @extends('layouts.main_login')
 
+@section('header')
+
 @section('content')
 <div class="container shadow-border" style="padding: 50px; background-color: white; border-radius: 5px; text-align:center">
     <h2 class="h2" style="color:white">Selecione o Endereço de Entrega</h2>
     <br>
-    <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
-    <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
-        <div class="mb-4 mx-2 flex-even">
-            <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="end1">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="end1">
-                <span>
-                    <b class="text-dark">Minha Casa</b><br>
-                    <hr>
-                    <b>Ricardo Maroquio</b><br>
-                    Rua Caminho Virtual, 101<br>
-                    Compulândia/PC<br>
-                    CEP 01.010-101
-                </span>
-            </label>
+    <div class="form-floating mb-3">
+        <select class="form-control" id="entrega" name="entrega" placeholder=" ">
+            <option value="" disabled selected>Selecione</option>
+            <option>Retirar no estabelecimento</option>
+            <option>Entregar em endereço selecionado</option>
+        </select>
+        <label for="entrega"><b>Tipo de entrega:</b></label>
+    </div> 
+    <div id="entregar_endereco" style="display: none;">
+        <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
+        <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
+            <div class="mb-4 mx-2 flex-even">
+                <input type="radio" class="btn-check" name="endereco"
+                    autocomplete="off" id="end1">
+                <label class="btn btn-outline-danger p-4 h-100 w-100" for="end1">
+                    <span>
+                        <b class="text-dark">Minha Casa</b><br>
+                        <hr>
+                        <b>Ricardo Maroquio</b><br>
+                        Rua Caminho Virtual, 101<br>
+                        Compulândia/PC<br>
+                        CEP 01.010-101
+                    </span>
+                </label>
+            </div>
+            <div class="mb-4 mx-2 flex-even">
+                <input type="radio" class="btn-check" name="endereco"
+                    autocomplete="off" id="end2">
+                <label class="btn btn-outline-danger p-4 h-100 w-100" for="end2">
+                    <span>
+                        <b class="text-dark">Meu Trabalho</b><br>
+                        <hr>
+                        <b>Ricardo Maroquio</b><br>
+                        Rua Caminho Virtual, 101<br>
+                        Compulândia/PC<br>
+                        CEP 01.010-101
+                    </span>
+                </label>
+            </div>
+            <div class="mb-4 mx-2 flex-even">
+                <input type="radio" class="btn-check" name="endereco"
+                    autocomplete="off" id="end3">
+                <label class="btn btn-outline-danger p-4 h-100 w-100" for="end3">
+                    <span>
+                        <b class="text-dark">Casa de Praia</b><br>
+                        <hr>
+                        <b>Ricardo Maroquio</b><br>
+                        Rua Caminho Virtual, 101<br>
+                        Compulândia/PC<br>
+                        CEP 01.010-101
+                    </span>
+                </label>
+            </div>
+            <div class="mb-4 mx-2 flex-even">
+                <input type="radio" class="btn-check" name="endereco"
+                    autocomplete="off" id="end4">
+                <label class="btn btn-outline-danger p-4 h-100 w-100" for="end4">
+                    <span>
+                        <b class="text-dark">Loja</b><br>
+                        <hr>
+                        <b>Ricardo Maroquio</b><br>
+                        Rua Caminho Virtual, 101<br>
+                        Compulândia/PC<br>
+                        CEP 01.010-101
+                    </span>
+                </label>
+            </div>
         </div>
+    </div>
+    <div id="retirar_estabelecimento" style="display:none">
         <div class="mb-4 mx-2 flex-even">
-            <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="end2">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="end2">
+            <input type="radio" class="btn-check" name="endereco"
+                autocomplete="off" id="loja">
+            <label class="btn btn-outline-danger p-4 h-100 w-100" for="loja">
                 <span>
-                    <b class="text-dark">Meu Trabalho</b><br>
+                    <b class="text-dark">Bem Doces - Retirar na Loja</b><br>
                     <hr>
-                    <b>Ricardo Maroquio</b><br>
-                    Rua Caminho Virtual, 101<br>
-                    Compulândia/PC<br>
-                    CEP 01.010-101
-                </span>
-            </label>
-        </div>
-        <div class="mb-4 mx-2 flex-even">
-            <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="end3">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="end3">
-                <span>
-                    <b class="text-dark">Casa de Praia</b><br>
-                    <hr>
-                    <b>Ricardo Maroquio</b><br>
-                    Rua Caminho Virtual, 101<br>
-                    Compulândia/PC<br>
-                    CEP 01.010-101
-                </span>
-            </label>
-        </div>
-        <div class="mb-4 mx-2 flex-even">
-            <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="end4">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="end4">
-                <span>
-                    <b class="text-dark">Loja</b><br>
-                    <hr>
-                    <b>Ricardo Maroquio</b><br>
-                    Rua Caminho Virtual, 101<br>
-                    Compulândia/PC<br>
-                    CEP 01.010-101
+                    <b>Vila Nova</b><br>
+                    Rua Osório Gomes de Brito, 94<br>
+                    Barra Mansa/RJ<br>
+                    CEP 27321-580
                 </span>
             </label>
         </div>
@@ -191,6 +219,5 @@
     </ul>
     <br>
 </div>
-
-
+<script src="/js/alterar_tela_entrega.js"></script>
 @endsection
