@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('header')
+
 @section('content')
 <div class="container shadow-border" style="padding: 50px; background-color: white; border-radius: 5px; text-align:center">
     <h2 class="h2" style="color:white">Selecione o Endereço de Entrega</h2>
@@ -119,6 +121,5 @@
     </ul>
     <br>
 </div>
-
-
+<script src="/js/alterar_tela_entrega.js"></script>
 @endsection
