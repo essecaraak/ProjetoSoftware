@@ -9,4 +9,23 @@ class Cartao extends Model
 {
     use HasFactory;
     protected $table = 'cartao';
+
+    protected $fillable = [
+        'numerocartao',
+        'cvv',
+        'datavencimento',
+        'nometitular',
+        'fk_user_id',
+        'apelido',
+        
+        
+    ];
+    
+   
+
+    protected $dates = ['datavencimento'];
+
+    protected $casts = [
+        'cvv' => 'hashed',
+    ];
 }

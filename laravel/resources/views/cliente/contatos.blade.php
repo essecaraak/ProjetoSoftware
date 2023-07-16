@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Nome do Cliente</h2>
+        <h2>{{session('user')->nome}}</h2>
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
@@ -17,7 +17,7 @@
                     <a href="pedidos" class="list-group-item list-group-item-action">
                         <i class="bi-truck fs-6"></i> Pedidos
                     </a>
-                    <a href="cartao" class="list-group-item list-group-item-action">
+                    <a href="{{route('tela_cartao')}}" class="list-group-item list-group-item-action">
                         <i class="bi bi-card-list"></i> Cartão
                     </a>
                     <a href="/" class="list-group-item list-group-item-action">

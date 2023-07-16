@@ -43,20 +43,31 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-5">
-            <form class="justify-content-center justify-content-md-start mb-3 mb-md-0">
+            <form  action="{{route('pesquisa_produto')}}" method="get" class="justify-content-center justify-content-md-start mb-3 mb-md-0">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" placeholder="Digite aqui o que procura">
+                    <input type="text" value="{{old('textobusca')}}" class="form-control" name="textobusca" placeholder="Digite aqui o que procura">
                     <button class="btn btn-danger">Buscar</button>
                 </div>
-            </form>
+            
         </div>
         <div class="col-12 col-md-7">
             <div class="d-flex flex-row-reverse justify-content-center justify-content-md-start">
-                <form class="d-inline-block">
-                    <select class="form-select form-select-sm">
+                
+                    <select class="d-inline-block" name="tipobusca" class="form-select form-select-sm">
+                        
+                    @if($tipobusca == 2)
+                        <option>Ordenar pelo menor preço</option>
+                        <option>Ordenar pelo maior preço</option>
+                        <option>Ordenar pelo nome</option>
+                    @elseif($tipobusca == 3)
+                        <option>Ordenar pelo maior preço</option>
+                        <option>Ordenar pelo nome</option>
+                        <option>Ordenar pelo menor preço</option>
+                    @else
                         <option>Ordenar pelo nome</option>
                         <option>Ordenar pelo menor preço</option>
                         <option>Ordenar pelo maior preço</option>
+                    @endif
                     </select>
                 </form>
                 
