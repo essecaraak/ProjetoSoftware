@@ -21,6 +21,7 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
     status2 - pedido saiu para entrega ao destinatário
     status2_ok - pedido foi marcado de saiu para entrega ao destinatário como pedido entregue
     status2_cancelado - pedido foi marcado de saiu para entregar ao destinatário para cancelado
+    mudança
 -->
 <div class="container">
     <div class="row gx-3">
