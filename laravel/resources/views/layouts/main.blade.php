@@ -15,7 +15,15 @@
     </head>
     <body>
         <div class="d-flex flex-column wrapper background">
+        @if(!session('user'))
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3">
+        @elseif(session('user')->usertype == 'cliente') 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3"> 
+        @elseif(session('user')->usertype == 'administrador')      
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom shadow-sm mb-3"> 
+        @elseif(session('user')->usertype == 'atendente')
+            <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3"> 
+        @endif
                 <div class="container">
                 <img class="logo" src="{{asset('/storage/imagensapp/logo.png')}}"></img>
                 <a class="navbar-brand" href="/"><strong>Bem Doces</strong></a>

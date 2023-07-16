@@ -7,13 +7,13 @@
     <form method="get" id="form" action="{{route('carrinho-finalizar')}}">
     <h2 class="h2" style="color:white">Selecione o Endereço de Entrega</h2>
     <br>
-    <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
+    <a href="{{route('novo_endereco')}}" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
     <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
     @foreach($enderecos as $endereco)
         <div class="mb-4 mx-2 flex-even">
             <input type="radio" class="btn-check" name="endereco" 
                 autocomplete="off" id="{{$endereco->id}}">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="end1">
+            <label class="btn btn-outline-danger p-4 h-100 w-100" for="{{$endereco->id}}">
                 <span>
                     <b class="text-dark">{{$endereco->apelido}}</b><br>
                     <hr>
@@ -70,8 +70,8 @@
                 @foreach($cartoes as $cartao)
                 <div class="mb-4 mx-2 flex-even">
                     <input type="radio" class="btn-check" name="pagamento" value="{{$cartao->id}}"
-                        autocomplete="off" id="cartao1">
-                    <label class="btn btn-outline-danger p-4 h-100 w-100" for="cartao1">
+                        autocomplete="off" id="{{$cartao->id}}">
+                    <label class="btn btn-outline-danger p-4 h-100 w-100" for="{{$cartao->id}}">
                         <span>
                             <b class="text-dark">Loja</b><br>
                             <hr>
