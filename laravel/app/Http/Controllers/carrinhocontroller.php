@@ -57,10 +57,9 @@ class carrinhocontroller extends Controller
     public function finalizar_pedido(Request $request){
         $produtos = $request->input('produtos');
         produto_compra::where('fk_compra_id', '=', session('carrinho')->id)
-        ->whereNotIn('fk_produto_id', $produtos)
+        ->whereIn('fk_produto_id', $produtos)
         ->delete();
         $produtosretirar = produto_compra::where('fk_compra_id', '=', session('carrinho')->id)
-        ->whereIn('fk_produto_id', $produtos)
         ->get();
 
         foreach($produtosretirar as $produto){

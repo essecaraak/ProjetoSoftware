@@ -29,15 +29,25 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
         </div>
         <div class="col-12 col-md-8">
             <div class="accordion" id="tipo4">
+                @foreach($compras as $compra)
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#pedido00001">
-                            <b>Pedido 00001 - <span>Gabriel Prisco</span> - <span style="color:red">Pedido cancelado</span></b>
-                            <span class="mx-1">(realizado em 11/10/2020)</span>
+                            data-bs-target="#{$compra->id}}">
+                            @if($compra->status == 'pedido recebido')
+                            <b>Pedido {{$compra->id}} - <span>{{$compra->nome}}</span> - <span style="color:blue">{{$compra->status}}</span></b>
+                            @elseif($compra->status == 'Pedido Cancelado')
+                            <b>Pedido {{$compra->id}} - <span>{{$compra->nome}}</span> - <span style="color:red">{{$compra->status}}</span></b>
+                            @elseif($compra->status == 'Pedido Entregue')
+                            <b>Pedido {{$compra->id}} - <span>{{$compra->nome}}</span> - <span style="color:green">{{$compra->status}}</span></b>
+                            @else
+                            <b>Pedido {{$compra->id}} - <span>{{$compra->nome}}</span> - <span style="color:orange">{{$compra->status}}</span></b>
+                            @endif
+                            <span class="mx-1">realizado em {{ date('d/m/y',strtotime($compra->hora_compra)) }}</span>
                         </button>
                     </h2>
-                    <div id="pedido00001" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                    <div id="{$compra->id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                        
                         <i class="fas fa-info-circle"></i>
                         <div class="accordion-body">
                             <table class="table">
@@ -48,286 +58,92 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                                         <th class="text-center">Qtde.</th>
                                         <th class="text-end">Subtotal</th>
                                     </tr>
+                               
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Abacate Manteiga</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Banana Prata</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mamão Papaya</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                </tbody>
+                                @foreach($produtos as $produtosachados)
+                                    @if($produtosachados->fk_compra_id == $compra->id)
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$produtosachados->nomeproduto}}</td>
+                                                <td class="text-end">R$ {{$produtosachados->valorproduto}}</td>
+                                                <td class="text-center">{{$produtosachados->quantidade}}</td>
+                                                <td class="text-end">R$ {{$produtosachados->valorproduto * $produtosachados->quantidade}}</td>
+                                            </tr>
+                                        </tbody>
+                                    @endif
+                                @endforeach
                                 <tfoot>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">26,91</td>
+                                        <td class="text-end">R$ {{$compra->valortotal}}</td>
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">7,50</td>
+                                        @if(is_null($compra->frete))
+                                        <td class="text-end"> R$ 0,00</td>
+                                        @else
+                                        <td class="text-end">R$ 7,50</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">34,41</td>
+                                        @if(is_null($compra->frete))
+                                        <td class="text-end">R$ {{$compra->valortotal}}</td>
+                                        @else
+                                        <td class="text-end">R$ {{$compra->valortotal + 7.50}}</td>
+                                        @endif
+                                        
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">Cartão 1x</td>
+                                        @if($compra->tipo_pagamento == 'dinheiro')
+                                        <td class="text-end">pagamento em dinheiro</td>
+                                        @elseif($compra->tipo_pagamento == 'pix')
+                                        <td class="text-end">pagamento em pix</td>
+                                        @else
+                                        <td class="text-end">pagamento em cartão</td>
+                                        @endif
                                     </tr>
                                 </tfoot>
                             </table>
-                            <b>Justificativa: </b><span>Cliente não recebeu o entregador</span>
+                            <form action="{{route('compra-alterar-status',[$carrinho->id])}}" method="get">
+                                <div class="form-floating mb-3 text-center">
+                                    @if(is_null($compra->frete))
+                                    <select class="form-control" id="status2" name="status2" placeholder=" " form="" onchange="this.form.submit()">
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option>Pedido aguardando busca pelo cliente</option>
+                                        <option>Pedido Entregue</option>
+                                        <option>Pedido Cancelado</option>
+                                    </select>
+                                    @else
+                                    <select class="form-control" id="status2" name="status2" placeholder=" ">
+                                        <option value="" disabled selected>Selecione</option>
+                                        <option><a>Pedido saiu para a entrega</a></option>
+                                        <option>Pedido Entregue</option>
+                                        <option>Pedido Cancelado</option>
+                                    </select>
+                                    @endif
+                                    <label for="status2"><b>Alterar Status:</b></label>
+                                    </div>
+                                <div id="status2_ok" style="display: none">
+                                    <div class="form-floating mb-3">
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao3" name="descricao3" placeholder=" "></textarea>
+                                        <label for="descricao3">Deixar anotação para o cliente (Opcional)</label>
+                                    </div>
+                                    <input type="submit" value="Confirmar que o pedido foi entregue" class="btn btn-lg btn-light btn-outline-success"/>
+                                </div>
+                                <div id="status2_cancelado" style="display: none">
+                                    <div class="form-floating mb-3">
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao4" name="descricao4" placeholder=" "></textarea>
+                                        <label for="descricao4">Informe o motivo:</label>
+                                    </div>
+                                    <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger"/>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="accordion" id="tipo1">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#pedido00002">
-                            <b>Pedido 00002 - <span>Matheus Oliveira</span> - <span style="color:blue">Pedido solicitado</span></b>
-                            <span class="mx-1">(realizado em 11/10/2020)</span>
-                        </button>
-                    </h2>
-                    <div id="pedido00002" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                        <i class="fas fa-info-circle"></i>
-                        <div class="accordion-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Produto</th>
-                                        <th class="text-end">R$ Unit.</th>
-                                        <th class="text-center">Qtde.</th>
-                                        <th class="text-end">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Abacate Manteiga</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Banana Prata</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mamão Papaya</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">26,91</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">7,50</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">34,41</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">Cartão 1x</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <div class="form-floating mb-3 text-center">
-                                <select class="form-control" id="status1" name="status1" placeholder=" ">
-                                    <option value="" disabled selected>Selecione</option>
-                                    <option>Marcar pedido - saiu para entrega ao destinatário</option>
-                                    <option>Cancelar pedido - status 1</option>
-                                </select>
-                                <label for="status1"><b>Alterar Status:</b></label>
-                                </div>
-                            <div id="status1_ok" style="display: none">
-                                <div class="form-floating mb-3">
-                                    <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao1" name="descricao1" placeholder=" "></textarea>
-                                    <label for="descricao1">Deixar anotação para o cliente (Opcional)</label>
-                                </div>
-                                <input type="submit" value="Confirmar que pedido saiu para entrega" class="btn btn-lg btn-light btn-outline-primary"/>
-                            </div>
-                            <div id="status1_cancelado" style="display: none">
-                                <div class="form-floating mb-3">
-                                    <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao2" name="descricao2" placeholder=" "></textarea>
-                                    <label for="descricao2">Informe o motivo:</label>
-                                </div>
-                                <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion" id="tipo2">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#pedido00003">
-                            <b>Pedido 00002 - <span>Matheus Oliveira</span> - <span style="color:orange">Pedido saiu para entrega</span></b>
-                            <span class="mx-1">(realizado em 11/10/2020)</span>
-                        </button>
-                    </h2>
-                    <div id="pedido00003" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                        <i class="fas fa-info-circle"></i>
-                        <div class="accordion-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Produto</th>
-                                        <th class="text-end">R$ Unit.</th>
-                                        <th class="text-center">Qtde.</th>
-                                        <th class="text-end">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Abacate Manteiga</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Banana Prata</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mamão Papaya</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">26,91</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">7,50</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">34,41</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">Cartão 1x</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <div class="form-floating mb-3 text-center">
-                                <select class="form-control" id="status2" name="status2" placeholder=" ">
-                                    <option value="" disabled selected>Selecione</option>
-                                    <option>Marcar como Pedido Entregue</option>
-                                    <option>Cancelar pedido - status 2</option>
-                                </select>
-                                <label for="status2"><b>Alterar Status:</b></label>
-                                </div>
-                            <div id="status2_ok" style="display: none">
-                                <div class="form-floating mb-3">
-                                    <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao3" name="descricao3" placeholder=" "></textarea>
-                                    <label for="descricao3">Deixar anotação para o cliente (Opcional)</label>
-                                </div>
-                                <input type="submit" value="Confirmar que o pedido foi entregue" class="btn btn-lg btn-light btn-outline-success"/>
-                            </div>
-                            <div id="status2_cancelado" style="display: none">
-                                <div class="form-floating mb-3">
-                                    <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao4" name="descricao4" placeholder=" "></textarea>
-                                    <label for="descricao4">Informe o motivo:</label>
-                                </div>
-                                <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion" id="tipo3">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#pedido00004">
-                            <b>Pedido 00002 - <span>Matheus Oliveira</span> - <span style="color:green">Pedido entregue</span></b>
-                            <span class="mx-1">(realizado em 11/10/2020)</span>
-                        </button>
-                    </h2>
-                    <div id="pedido00004" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                        <i class="fas fa-info-circle"></i>
-                        <div class="accordion-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Produto</th>
-                                        <th class="text-end">R$ Unit.</th>
-                                        <th class="text-center">Qtde.</th>
-                                        <th class="text-end">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Abacate Manteiga</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Banana Prata</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mamão Papaya</td>
-                                        <td class="text-end">2,99</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-end">8,97</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">26,91</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">7,50</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">34,41</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">Cartão 1x</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

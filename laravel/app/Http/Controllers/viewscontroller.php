@@ -113,18 +113,22 @@ class viewscontroller extends Controller
     //telas do atendente
 
     public function tela_atendente(){
-        $compras = Compras::select('compra.*','produto_compra.*','endereco.*','cartao.*','users.nome')
-            ->join('produto_compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
-            ->join('cartao', 'cartao.id', '=', 'compra.fk_cartao_id')
+        $compras = Compras::select('compra.*','users.nome')
             ->join('users', 'users.id', '=', 'compra.fk_user_cliente_id')
-            ->join('endereco', 'endereco.id', '=', 'compra.fk_endereco_id')
-            ->where('compra.status', '!=', 'compra finalizada')
-            ->where('compra.status', '!=', 'compra cancelada')
+            ->where('compra.status','!=','carrinho')
             ->orderBy('hora_compra')
             ->get()->reverse()->values();
             
-          
-        return view('/atendente/index',['compras'=>$compras]);
+        $produtos =produto_compra::select('produto_compra.*')
+            ->join('compra','produto_compra.fk_compra_id','=','compra.id')->get();
+            
+        $enderecos =Endereco::select('endereco.*')
+            ->join('compra','compra.fk_endereco_id','=','endereco.id')->get();
+            
+        $cartoes =cartao::select('cartao.*')
+            ->join('compra','compra.fk_cartao_id','=','cartao.id')->get();
+       
+        return view('/atendente/index',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes]);
     }
 
 

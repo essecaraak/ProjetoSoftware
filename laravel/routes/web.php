@@ -62,7 +62,7 @@ route::middleware([verificaatendente::class])->group(function(){
 
         route::prefix('compra')->group(function(){
 
-            Route::get('/alterar-status', [CompraController::class, 'AlterarStatus'])->name('compra-alterar-status');
+            Route::get('/alterar-status/{id}', [CompraController::class, 'AlterarStatus'])->name('compra-alterar-status');
         });
     });
 
