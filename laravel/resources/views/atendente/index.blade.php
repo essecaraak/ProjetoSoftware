@@ -107,7 +107,7 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                                     </tr>
                                 </tfoot>
                             </table>
-                            <form action="{{route('compra-alterar-status',[$carrinho->id])}}" method="get">
+                            <form action="{{route('compra-alterar-status',[$compra->id])}}" method="get">
                                 <div class="form-floating mb-3 text-center">
                                     @if(is_null($compra->frete))
                                     <select class="form-control" id="status2" name="status2" placeholder=" " form="" onchange="this.form.submit()">
