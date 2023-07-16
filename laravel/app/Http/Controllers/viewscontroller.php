@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cartao;
 use App\Models\Compras;
+use App\Models\Endereco;
 use App\Models\produto;
 use App\Models\produto_compra;
 use Illuminate\Http\Request;
@@ -111,12 +113,18 @@ class viewscontroller extends Controller
     //telas do atendente
 
     public function tela_atendente(){
-        $compras = Compras::query()
-            ->with(['comprador', 'atendente', 'cartao', 'endereco'])
-            ->where('status', '!=', 'compra finalizada')
-            ->where('status', '!=', 'compra cancelada')
-            ->get();
-        return view('/atendente/index')->with('compras', $compras);
+        $compras = Compras::select('compra.*','produto_compra.*','endereco.*','cartao.*','users.nome')
+            ->join('produto_compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->join('cartao', 'cartao.id', '=', 'compra.fk_cartao_id')
+            ->join('users', 'users.id', '=', 'compra.fk_user_cliente_id')
+            ->join('endereco', 'endereco.id', '=', 'compra.fk_endereco_id')
+            ->where('compra.status', '!=', 'compra finalizada')
+            ->where('compra.status', '!=', 'compra cancelada')
+            ->orderBy('hora_compra')
+            ->get()->reverse()->values();
+            
+          
+        return view('/atendente/index',['compras'=>$compras]);
     }
 
 
