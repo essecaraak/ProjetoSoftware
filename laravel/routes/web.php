@@ -36,12 +36,13 @@ route::middleware([verificacliente::class])->group(function(){
         Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
         route::prefix('carrinho')->group(function(){
             Route::get('/', [carrinhocontroller::class, 'index'])->name('carrinho-index');
-            Route::get('/processar', [carrinhocontroller::class, 'processar'])->name('carrinho-processar');
+            Route::get('/processar', [carrinhocontroller::class, 'processar_pedido'])->name('carrinho-processar');
+            Route::get('/finalizar}', [carrinhocontroller::class, 'finalizar_pedido'])->name('carrinho-finalizar');
             route::prefix('produto')->group(function(){
                 Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto'])->name('carrinho-produto-insert');
             });
         });
-        Route::get('/fechamento_pedido', [viewscontroller::class, 'tela_fechamento_pedido'])->name('fechamento_pedido');
+        
         
     
     });

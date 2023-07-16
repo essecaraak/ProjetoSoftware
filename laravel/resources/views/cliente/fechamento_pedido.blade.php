@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container shadow-border" style="padding: 50px; background-color: white; border-radius: 5px; text-align:center">
+    <form method="get" id="form" action="{{route('carrinho-finalizar')}}">
     <h2 class="h2" style="color:white">Selecione o Endereço de Entrega</h2>
     <br>
     <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
@@ -11,7 +12,7 @@
     @foreach($enderecos as $endereco)
         <div class="mb-4 mx-2 flex-even">
             <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="{{Endereco->id}}">
+                autocomplete="off" id="{{$endereco->id}}">
             <label class="btn btn-outline-danger p-4 h-100 w-100" for="end1">
                 <span>
                     <b class="text-dark">{{$endereco->apelido}}</b><br>
@@ -85,10 +86,11 @@
         </div>     
     </div>
     <br>
+    </form>
     <h2 class="h2" style="color: white">Itens</h2>
     <ul class="list-group mb-3"> 
         <div class="row g-3">
-        @foreach($produtos as $produto)
+        @foreach($produtosmostrar as $produto)
             <div class="col-md-6">
                 <li class="list-group-item py-3">
                     <div class="row">
@@ -100,6 +102,7 @@
                             <h4 class="text-danger">{{$produto->nome}}</a></b></h4>
                             <h5>
                                 <b>
+                                    <input form="form" hidden name="produtos[]" value="{{$produto->id}}">
                                     {{$produto->quantidade}} unidade(s) <br>
                                     R$ {{$produto->valorproduto}}
                                 </b>
@@ -115,11 +118,13 @@
                 </li>
                 <br>
                 <a class="btn btn-lg btn-light btn-outline-danger" href="{{route('carrinho-index')}}">Voltar ao carrinho</a>
-                <input type="submit" value="Finalizar Compra" class="btn btn-lg btn-light btn-outline-danger"/>
+                <input type="submit" form="form" value="Finalizar Compra" class="btn btn-lg btn-light btn-outline-danger"/>
             </div>
         </div>
+
     </ul>
     <br>
+    
 </div>
 <script src="/js/alterar_tela_entrega.js"></script>
 @endsection
