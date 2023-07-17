@@ -128,21 +128,21 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                                     </div>
                                 <div id="status_entregue" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d1{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
                                     <input type="submit" value="Confirmar pedido " class="btn btn-lg btn-light btn-outline-success"/>
                                 </div>
                                 <div id="status_estabelecimento" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d2{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
                                     <input type="submit" value="Confirmar alteração de status" class="btn btn-lg btn-light btn-outline-warning"/>
                                 </div>
                                 <div id="status_cancelado" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d3{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Informe o motivo:</label>
                                     </div>
                                     <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger">

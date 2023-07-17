@@ -29,8 +29,13 @@ class CompraController extends Controller
         }else if($novostatus=='Pedido Cancelado'){
             $compra->hora_finalizacao =Carbon::now()->toDateTimeString();
         }
-        if(!is_null($request->descricao4)){
-            $compra->descricao= $request->$id;
+        
+        if(!is_null($request->input('d1'.$id))){
+            $compra->descricao= $request->input('d1'.$id);
+        }elseif(!is_null($request->input('d2'.$id))){
+            $compra->descricao= $request->input('d2'.$id);
+        }elseif(!is_null($request->input('d3'.$id))){
+            $compra->descricao= $request->input('d3'.$id);
         }
         
         $compra->status=$novostatus;
