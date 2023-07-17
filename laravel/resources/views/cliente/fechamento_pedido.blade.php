@@ -5,29 +5,55 @@
 @section('content')
 <div class="container shadow-border" style="padding: 50px; background-color: white; border-radius: 5px; text-align:center">
     <form method="get" id="form" action="{{route('carrinho-finalizar')}}">
-    <h2 class="h2" style="color:white">Selecione o Endereço de Entrega</h2>
+    <h2 class="h2" style="color:white; background-color: #464242">Selecione o Endereço de Entrega</h2>
     <br>
-    <a href="{{route('novo_endereco')}}" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
-    <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
-    @foreach($enderecos as $endereco)
+    <div class="form-floating mb-3">
+        <select class="form-control" id="entrega" name="entrega" placeholder=" ">
+            <option value="" disabled selected>Selecione</option>
+            <option>Retirar no estabelecimento</option>
+            <option>Entregar em endereço selecionado</option>
+        </select>
+        <label for="entrega"><b>Tipo de entrega:</b></label>
+    </div> 
+    <div style="display: none" id="entregar_endereco">
+        <a href="{{route('novo_endereco')}}" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo endereço</a>
+        <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
+        @foreach($enderecos as $endereco)
+            <div class="mb-4 mx-2 flex-even">
+                <input type="radio" class="btn-check" name="endereco"
+                    autocomplete="off" id="{{$endereco->id}}">
+                <label class="btn btn-outline-danger p-4 h-100 w-100" for="{{$endereco->id}}">
+                    <span>
+                        <b class="text-dark">{{$endereco->apelido}}</b><br>
+                        <hr>
+                        <b>{{session('user')->nome}}</b><br>
+                        {{$endereco->rua}} -{{$endereco->numero}},{{$endereco->bairro}}<br>
+                        {{$endereco->cidade}}/{{$endereco->estado}}<br>
+                        CEP {{$endereco->cep}}
+                    </span>
+                </label>
+            </div>
+        @endforeach
+        </div>
+    </div>
+    <div id="retirar_estabelecimento" style="display:none">
         <div class="mb-4 mx-2 flex-even">
-            <input type="radio" class="btn-check" name="endereco" 
-                autocomplete="off" id="{{$endereco->id}}">
-            <label class="btn btn-outline-danger p-4 h-100 w-100" for="{{$endereco->id}}">
+            <input type="radio" class="btn-check" value="semfrete" name="endereco"
+                autocomplete="off" id="loja">
+            <label class="btn btn-outline-danger p-4 h-100 w-100" for="loja">
                 <span>
-                    <b class="text-dark">{{$endereco->apelido}}</b><br>
+                    <b class="text-dark">Bem Doces - Retirar na Loja</b><br>
                     <hr>
-                    <b>{{session('user')->nome}}</b><br>
-                    {{$endereco->rua}} -{{$endereco->numero}},{{$endereco->bairro}}<br>
-                    {{$endereco->cidade}}/{{$endereco->estado}}<br>
-                    CEP {{$endereco->cep}}
+                    <b>Vila Nova</b><br>
+                    Rua Osório Gomes de Brito, 94<br>
+                    Barra Mansa/RJ<br>
+                    CEP 27321-580
                 </span>
             </label>
         </div>
-    @endforeach
     </div>
     <br>
-    <h2 class="h2" style="color:white">Selecione a Forma de Pagamento</h2>
+    <h2 class="h2" style="color:white; background-color: #464242">Selecione a Forma de Pagamento</h2>
     <br>
     <a href="/fechamento_pagamento.html" class="btn btn-danger btn-lg ms-2 mb-4">Adicionar novo cartão</a>
     <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" >
@@ -87,7 +113,7 @@
     </div>
     <br>
     </form>
-    <h2 class="h2" style="color: white">Itens</h2>
+    <h2 class="h2" style="color:white; background-color: #464242">Itens</h2>
     <ul class="list-group mb-3"> 
         <div class="row g-3">
         @foreach($produtosmostrar as $produto)

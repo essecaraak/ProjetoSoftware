@@ -116,6 +116,8 @@ class viewscontroller extends Controller
         $compras = Compras::select('compra.*','users.nome')
             ->join('users', 'users.id', '=', 'compra.fk_user_cliente_id')
             ->where('compra.status','!=','carrinho')
+            ->where('compra.status','!=','Pedido Entregue')
+            ->where('compra.status','!=','Pedido Cancelado')
             ->orderBy('hora_compra')
             ->get()->reverse()->values();
             

@@ -83,10 +83,12 @@ class carrinhocontroller extends Controller
             return redirect()->back()->with('mensagem_falha','selecione um método de pagamento');
         }
 
-        if(is_null($request->endereco)){
+        if($request->endereco =='semfrete'){
             session('carrinho')->frete= 0.00;
             session('carrinho')->status= "pedido recebido";
             
+        }else if(is_null($request->endereco)){
+            return redirect()->back()->with('mensagem_falha',"escolha um método de entrega");
         }else{
             return('entrega');
         }

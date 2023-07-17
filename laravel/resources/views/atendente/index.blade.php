@@ -119,7 +119,7 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                                     @else
                                     <select class="form-control" id="status2" name="status2" placeholder=" ">
                                         <option value="" disabled selected>Selecione</option>
-                                        <option><a>Pedido saiu para a entrega</a></option>
+                                        <option>Pedido saiu para a entrega</option>
                                         <option>Pedido Entregue</option>
                                         <option>Pedido Cancelado</option>
                                     </select>

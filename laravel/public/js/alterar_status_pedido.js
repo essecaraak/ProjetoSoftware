@@ -1,4 +1,4 @@
-var tipoSelect1 = document.getElementById("status1");
+var tipoSelect1 = document.getElementById("status2");
 var status1_cancelado = document.getElementById("status1_cancelado");
 var status1_ok = document.getElementById("status1_ok");
 
