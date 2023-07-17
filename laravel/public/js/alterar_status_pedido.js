@@ -1,30 +1,20 @@
-var tipoSelect = document.getElementById("status");
-var status_cancelado = document.getElementById("status_cancelado");
-var status_entregue = document.getElementById("status_entregue");
-var status_estabelecimento = document.getElementById("status_estabelecimento");
+document.addEventListener("DOMContentLoaded", function() {
+    var statusSelects = document.querySelectorAll(".status");
 
-tipoSelect.addEventListener("change", function() {
-    if (tipoSelect.value === "Pedido Entregue") {
-        status_entregue.style.display = "block";
-    }
+    statusSelects.forEach(function(select) {
+        select.addEventListener("change", function() {
+            var selectedOption = this.value;
+            var detailsToShow = this.options[this.selectedIndex].dataset.show;
 
-    else {
-        status_entregue.style.display = "none";
-    }
+            var allDetails = document.querySelectorAll(".status-details");
+            allDetails.forEach(function(detail) {
+                detail.style.display = "none";
+            });
 
-    if (tipoSelect.value === "Pedido aguardando busca pelo cliente" || tipoSelect.value === "Pedido saiu para a entrega" ) {
-        status_estabelecimento.style.display = "block";
-    }
-
-    else {
-        status_estabelecimento.style.display = "none";
-    }
-
-    if (tipoSelect.value === "Pedido Cancelado") {
-        status_cancelado.style.display = "block";
-    }  
-    
-    else {
-        status_cancelado.style.display = "none";
-    }
+            var detailsToShowElements = document.querySelectorAll(detailsToShow);
+            detailsToShowElements.forEach(function(detail) {
+                detail.style.display = "block";
+            });
+        });
+    });
 });
