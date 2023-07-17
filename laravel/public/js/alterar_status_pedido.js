@@ -1,15 +1,13 @@
 var tipoSelect1 = document.getElementById("status2");
-var status1_cancelado = document.getElementById("status1_cancelado");
-var status1_ok = document.getElementById("status1_ok");
+var status1_cancelado = document.getElementById("status2_cancelado");
+var status1_ok = document.getElementById("status2_ok");
 
 tipoSelect1.addEventListener("change", function() {
     if (tipoSelect1.value === "Aguardando busca pelo cliente") {
-        status1_cancelado.style.display = "block";
-        status1_ok.style.display = "none";
+        
         this.form.submit();
     } else if (tipoSelect1.value === "Pedido saiu para a entrega") {
-        status1_cancelado.style.display = "none";
-        status1_ok.style.display = "block";
+    
         this.form.submit();
     } else {
         status1_cancelado.style.display = "none";
