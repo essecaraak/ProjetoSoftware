@@ -87,7 +87,20 @@ class viewscontroller extends Controller
         return view('/cliente/contatos');
     }
     public function tela_pedidos(){
-        return view('/cliente/pedidos');
+        $compras = Compras::where('fk_user_cliente_id' , '=', session('user')->id)
+            ->where('status','!=','carrinho')
+            ->orderBy('hora_compra')
+            ->get()->reverse()->values();
+            
+        $produtos =produto_compra::select('produto_compra.*')
+            ->join('compra','produto_compra.fk_compra_id','=','compra.id')->get();
+            
+        $enderecos =Endereco::select('endereco.*')
+            ->join('compra','compra.fk_endereco_id','=','endereco.id')->get();
+            
+        $cartoes =cartao::select('cartao.*')
+            ->join('compra','compra.fk_cartao_id','=','cartao.id')->get();
+        return view('/cliente/pedidos',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes] );
     }
     public function tela_endereco(){
         return view('/cliente/endereco');

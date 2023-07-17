@@ -1,33 +1,30 @@
-var tipoSelect1 = document.getElementById("status2");
-var status1_cancelado = document.getElementById("status2_cancelado");
-var status1_ok = document.getElementById("status2_ok");
+var tipoSelect = document.getElementById("status");
+var status_cancelado = document.getElementById("status_cancelado");
+var status_entregue = document.getElementById("status_entregue");
+var status_estabelecimento = document.getElementById("status_estabelecimento");
 
-tipoSelect1.addEventListener("change", function() {
-    if (tipoSelect1.value === "Aguardando busca pelo cliente") {
-        
-        this.form.submit();
-    } else if (tipoSelect1.value === "Pedido saiu para a entrega") {
-    
-        this.form.submit();
-    } else {
-        status1_cancelado.style.display = "none";
-        status1_ok.style.display = "none";
+tipoSelect.addEventListener("change", function() {
+    if (tipoSelect.value === "Pedido Entregue") {
+        status_entregue.style.display = "block";
     }
-});
 
-var tipoSelect2 = document.getElementById("status2");
-var status2_cancelado = document.getElementById("status2_cancelado");
-var status2_ok = document.getElementById("status2_ok");
+    else {
+        status_entregue.style.display = "none";
+    }
 
-tipoSelect2.addEventListener("change", function() {
-    if (tipoSelect2.value === "pedido cancelado") {
-        status2_cancelado.style.display = "block";
-        status2_ok.style.display = "none";
-    } else if (tipoSelect2.value === "Pedido Entregue") {
-        status2_cancelado.style.display = "none";
-        status2_ok.style.display = "block";
-    } else {
-        status2_cancelado.style.display = "none";
-        status2_ok.style.display = "none";
+    if (tipoSelect.value === "Pedido aguardando busca pelo cliente" || tipoSelect.value === "Pedido saiu para a entrega" ) {
+        status_estabelecimento.style.display = "block";
+    }
+
+    else {
+        status_estabelecimento.style.display = "none";
+    }
+
+    if (tipoSelect.value === "Pedido Cancelado") {
+        status_cancelado.style.display = "block";
+    }  
+    
+    else {
+        status_cancelado.style.display = "none";
     }
 });

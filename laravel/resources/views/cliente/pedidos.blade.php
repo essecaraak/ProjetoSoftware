@@ -28,15 +28,28 @@
             </div>
             <div class="col-8">
                 <div class="accordion" id="divPedidos">
+                    @foreach($compras as $compra)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pedido000010">
-                                <b>Pedido 000010</b>
-                                <span class="mx-1">(realizado em 11/10/2020)</span>
+                                data-bs-target="#pedido{{$compra->id}}">
+                                @if($compra->status == 'pedido recebido')
+                                <b>Pedido {{$compra->id}} - <span style="color:blue">{{$compra->status}}</span></b>
+                                @elseif($compra->status == 'Pedido Cancelado')
+                                <b>Pedido {{$compra->id}} - <span style="color:red">{{$compra->status}}</span></b>
+                                @elseif($compra->status == 'Pedido Entregue')
+                                <b>Pedido {{$compra->id}} - <span style="color:green">{{$compra->status}}</span></b>
+                                @else
+                                <b>Pedido {{$compra->id}} - <span style="color:orange">{{$compra->status}}</span></b>
+                                @endif
+                            @if($compra->status == 'Pedido Entregue' or $compra->status == 'Pedido Cancelado' )
+                            <span class="mx-1">realizado em {{ date('d/m/y',strtotime($compra->hora_compra)) }} - Encerrado em {{ date('d/m/y',strtotime($compra->hora_finalizacao)) }} </span>
+                            @else
+                            <span class="mx-1">realizado em {{ date('d/m/y',strtotime($compra->hora_compra)) }}</span>
+                            @endif
                             </button>
                         </h2>
-                        <div id="pedido000010" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                        <div id="pedido{{$compra->id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                             <div class="accordion-body">
                                 <table class="table">
                                     <thead>
@@ -47,292 +60,56 @@
                                             <th class="text-end">Subtotal</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Abacate Manteiga</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banana Prata</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mamão Papaya</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                    </tbody>
+                                    @foreach($produtos as $produtosachados)
+                                    @if($produtosachados->fk_compra_id == $compra->id)
+                                        <tbody>
+                                            <tr>
+                                                <td>{{$produtosachados->nomeproduto}}</td>
+                                                <td class="text-end">R$ {{$produtosachados->valorproduto}}</td>
+                                                <td class="text-center">{{$produtosachados->quantidade}}</td>
+                                                <td class="text-end">R$ {{$produtosachados->valorproduto * $produtosachados->quantidade}}</td>
+                                            </tr>
+                                        </tbody>
+                                    @endif
+                                    @endforeach
                                     <tfoot>
                                         <tr>
                                             <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                            <td class="text-end">26,91</td>
+                                            <td class="text-end">R$ {{$compra->valortotal}}</td>
                                         </tr>
                                         <tr>
                                             <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            <td class="text-end">7,50</td>
+                                            @if(is_null($compra->frete))
+                                            <td class="text-end"> R$ 0,00</td>
+                                            @else
+                                            <td class="text-end">R$ 7,50</td>
+                                            @endif
                                         </tr>
                                         <tr>
                                             <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            <td class="text-end">34,41</td>
+                                            @if(is_null($compra->frete))
+                                            <td class="text-end">R$ {{$compra->valortotal}}</td>
+                                            @else
+                                            <td class="text-end">R$ {{$compra->valortotal + 7.50}}</td>
+                                            @endif
+                                            
                                         </tr>
                                         <tr>
                                             <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                            <td class="text-end">Crédito VISA 1x</td>
+                                            @if($compra->tipo_pagamento == 'dinheiro')
+                                            <td class="text-end">pagamento em dinheiro</td>
+                                            @elseif($compra->tipo_pagamento == 'pix')
+                                            <td class="text-end">pagamento em pix</td>
+                                            @else
+                                            <td class="text-end">pagamento em cartão</td>
+                                            @endif
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pedido000009">
-                                <b>Pedido 000009</b>
-                                <span class="mx-1">(realizado em 11/10/2020)</span>
-                            </button>
-                        </h2>
-                        <div id="pedido000009" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                            <div class="accordion-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th class="text-end">R$ Unit.</th>
-                                            <th class="text-center">Qtde.</th>
-                                            <th class="text-end">Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Abacate Manteiga</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banana Prata</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mamão Papaya</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                            <td class="text-end">26,91</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            <td class="text-end">7,50</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            <td class="text-end">34,41</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                            <td class="text-end">Crédito VISA 1x</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pedido000008">
-                                <b>Pedido 000008</b>
-                                <span class="mx-1">(realizado em 11/10/2020)</span>
-                            </button>
-                        </h2>
-                        <div id="pedido000008" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                            <div class="accordion-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th class="text-end">R$ Unit.</th>
-                                            <th class="text-center">Qtde.</th>
-                                            <th class="text-end">Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Abacate Manteiga</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banana Prata</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mamão Papaya</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                            <td class="text-end">26,91</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            <td class="text-end">7,50</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            <td class="text-end">34,41</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                            <td class="text-end">Crédito VISA 1x</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pedido000007">
-                                <b>Pedido 000007</b>
-                                <span class="mx-1">(realizado em 11/10/2020)</span>
-                            </button>
-                        </h2>
-                        <div id="pedido000007" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                            <div class="accordion-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th class="text-end">R$ Unit.</th>
-                                            <th class="text-center">Qtde.</th>
-                                            <th class="text-end">Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Abacate Manteiga</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banana Prata</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mamão Papaya</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                            <td class="text-end">26,91</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            <td class="text-end">7,50</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            <td class="text-end">34,41</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                            <td class="text-end">Crédito VISA 1x</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#pedido000006">
-                                <b>Pedido 000006</b>
-                                <span class="mx-1">(realizado em 11/10/2020)</span>
-                            </button>
-                        </h2>
-                        <div id="pedido000006" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
-                            <div class="accordion-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th class="text-end">R$ Unit.</th>
-                                            <th class="text-center">Qtde.</th>
-                                            <th class="text-end">Subtotal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Abacate Manteiga</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Banana Prata</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Mamão Papaya</td>
-                                            <td class="text-end">2,99</td>
-                                            <td class="text-center">3</td>
-                                            <td class="text-end">8,97</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                            <td class="text-end">26,91</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            <td class="text-end">7,50</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            <td class="text-end">34,41</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                            <td class="text-end">Crédito VISA 1x</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

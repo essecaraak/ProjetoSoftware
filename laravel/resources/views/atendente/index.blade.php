@@ -34,7 +34,7 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#{$compra->id}}">
+                            data-bs-target="#pedido{{$compra->id}}">
                             @if($compra->status == 'pedido recebido')
                             <b>Pedido {{$compra->id}} - <span>{{$compra->nome}}</span> - <span style="color:blue">{{$compra->status}}</span></b>
                             @elseif($compra->status == 'Pedido Cancelado')
@@ -47,7 +47,7 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                             <span class="mx-1">realizado em {{ date('d/m/y',strtotime($compra->hora_compra)) }}</span>
                         </button>
                     </h2>
-                    <div id="{$compra->id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                    <div id="pedido{{$compra->id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                         
                         <i class="fas fa-info-circle"></i>
                         <div class="accordion-body">
@@ -110,35 +110,42 @@ essas mudanças no JavaScript são controladas por meio do id do select, que é 
                             <form action="{{route('compra-alterar-status',[$compra->id])}}" method="get">
                                 <div class="form-floating mb-3 text-center">
                                     @if(is_null($compra->frete))
-                                    <select class="form-control" id="status2" name="status2" placeholder=" " >
+                                    <select class="form-control" id="status" name="status" placeholder=" ">
                                         <option value="" disabled selected>Selecione</option>
                                         <option>Pedido aguardando busca pelo cliente</option>
                                         <option>Pedido Entregue</option>
                                         <option>Pedido Cancelado</option>
                                     </select>
                                     @else
-                                    <select class="form-control" id="status2" name="status2" placeholder=" ">
-                                        <option value="" disabled selected>Selecione</option>
+                                    <select class="form-control" id="status" name="status" placeholder=" ">
+                                        <option value=""  disabled selected>Selecione</option>
                                         <option>Pedido saiu para a entrega</option>
                                         <option>Pedido Entregue</option>
                                         <option>Pedido Cancelado</option>
                                     </select>
                                     @endif
-                                    <label for="status2"><b>Alterar Status:</b></label>
+                                    <label for="status"><b>Alterar Status:</b></label>
                                     </div>
-                                <div id="status2_ok" style="display: none">
+                                <div id="status_entregue" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao3" name="descricao3" placeholder=" "></textarea>
-                                        <label for="descricao3">Deixar anotação para o cliente (Opcional)</label>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
-                                    <input type="submit" value="Confirmar que o pedido foi entregue" class="btn btn-lg btn-light btn-outline-success"/>
+                                    <input type="submit" value="Confirmar pedido " class="btn btn-lg btn-light btn-outline-success"/>
                                 </div>
-                                <div id="status2_cancelado" style="display: none">
+                                <div id="status_estabelecimento" style="display: none">
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="descricao4" name="descricao4" placeholder=" "></textarea>
-                                        <label for="descricao4">Informe o motivo:</label>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
-                                    <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger"/>
+                                    <input type="submit" value="Confirmar alteração de status" class="btn btn-lg btn-light btn-outline-warning"/>
+                                </div>
+                                <div id="status_cancelado" style="display: none">
+                                    <div class="form-floating mb-3">
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="{{$compra->id}}" placeholder=" "></textarea>
+                                        <label for="{{$compra->id}}">Informe o motivo:</label>
+                                    </div>
+                                    <input type="submit" value="Cancelar pedido" class="btn btn-lg btn-light btn-outline-danger">
                                 </div>
                             </form>
                         </div>
