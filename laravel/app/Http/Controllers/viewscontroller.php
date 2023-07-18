@@ -162,3 +162,4 @@ class viewscontroller extends Controller
         return view('/administrador/novo_produto');
     }
 }
+//teste
