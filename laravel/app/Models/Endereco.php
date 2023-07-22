@@ -21,5 +21,9 @@ class Endereco extends Model
         
         
     ];
+    protected $attributes = [
+        
+        'estado'=>' ',
+    ];
     
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     carrinhocontroller,
     cartaocontroller,
     CompraController,
+    enderecocontroller,
     produtoscontroller
 };
 use App\Http\Middleware\verificaadministrador;
@@ -26,13 +27,21 @@ route::middleware([verificacliente::class])->group(function(){
         Route::get('/pedidos', [viewscontroller::class, 'tela_pedidos'])->name('pedidos');
         Route::get('/endereco', [viewscontroller::class, 'tela_endereco'])->name('endereco');
         Route::get('/novo_endereco', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
+        route::prefix('endereco')->group(function(){
+            Route::get('/novo', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
+            Route::get('/', [viewscontroller::class, 'tela_endereco'])->name('tela_endereco');
+            Route::post('/create', [enderecocontroller::class, 'endereco_create'])->name('endereco-create');
+            Route::get('/delete/{id}', [enderecocontroller::class, 'endereco_delete'])->name('endereco-delete');
+            Route::get('/update/{id}', [enderecocontroller::class, 'endereco_update'])->name('endereco-update');
+        });
         route::prefix('cartao')->group(function(){
+            Route::get('/novo', [viewscontroller::class, 'tela_novo_cartao'])->name('novo_cartao');
             Route::get('/', [viewscontroller::class, 'tela_cartao'])->name('tela_cartao');
             Route::post('/create', [cartaocontroller::class, 'cartao_create'])->name('cartao-create');
             Route::get('/delete/{id}', [cartaocontroller::class, 'cartao_delete'])->name('cartao-delete');
         });
         
-        Route::get('/novo_cartao', [viewscontroller::class, 'tela_novo_cartao'])->name('novo_cartao');
+        
         Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
         route::prefix('carrinho')->group(function(){
             Route::get('/', [carrinhocontroller::class, 'index'])->name('carrinho-index');

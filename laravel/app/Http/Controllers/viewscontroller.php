@@ -103,7 +103,9 @@ class viewscontroller extends Controller
         return view('/cliente/pedidos',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes] );
     }
     public function tela_endereco(){
-        return view('/cliente/endereco');
+        $data = DB::table('endereco')
+            ->where("fk_user_id",'=',session('user')->id)->get();
+        return view('/cliente/endereco',['enderecos'=>$data]);
     }
     public function tela_novo_endereco(){
         return view('/cliente/novo_endereco');
@@ -162,4 +164,3 @@ class viewscontroller extends Controller
         return view('/administrador/novo_produto');
     }
 }
-//teste
