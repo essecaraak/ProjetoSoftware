@@ -32,8 +32,8 @@ class cartaocontroller extends Controller
     public function cartao_delete($id){
         
         $cartao = Cartao::findOrFail($id);
-        $cartao->delete();
-
+        $cartao->deletado='s';
+        $cartao->save();
         return redirect()->back()->with("mensagem_sucesso","produto deletado com sucesso");
         
     }

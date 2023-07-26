@@ -17,10 +17,13 @@ class produto extends Model
         'valor',
         'imagem',
         'quantidade',
+        'deletado',
         
     ];
 
     protected $attributes = [
-        'descricao' => ' ',
+        'descricao' => ' ', 
+        'deletado'=>'',
+        
     ];
 }

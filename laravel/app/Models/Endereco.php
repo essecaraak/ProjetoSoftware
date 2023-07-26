@@ -18,12 +18,13 @@ class Endereco extends Model
         'bairro',
         'rua',
         'apelido',
-        
+        'deletado',
         
     ];
     protected $attributes = [
         
         'estado'=>' ',
+        'deletado'=>'',
     ];
     
 }

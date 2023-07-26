@@ -68,7 +68,8 @@ class produtoscontroller extends Controller
         if(File::exists($produto->imagem)){
             File::delete($produto->imagem);
         }
-        $produto->delete();
+        $produto->deletado='s';
+        $produto->save();
        return redirect()->back()->with("mensagem_sucesso","produto deletado com sucesso");
     }
 }

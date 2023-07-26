@@ -27,6 +27,7 @@ class viewscontroller extends Controller
     public function tela_index(){
         $produtos = DB::Table('produto')
         ->select('*')
+        ->where('deletado','!=','s')
         ->orderBy('nome')->get();
         return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
     }
@@ -39,11 +40,13 @@ class viewscontroller extends Controller
             if($request->tipobusca =='Ordenar pelo menor preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
+                    ->where('deletado','!=','s')
                     ->orderBy('valor')->get();
                 return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
             }else if($request->tipobusca =='Ordenar pelo maior preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
+                    ->where('deletado','!=','s')
                     ->orderBy('valor')->get()->reverse()->values();
                 return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
             }else{
@@ -53,18 +56,21 @@ class viewscontroller extends Controller
             if($request->tipobusca =='Ordenar pelo menor preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
+                    ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('valor')->get();
                 return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
             }else if($request->tipobusca =='Ordenar pelo maior preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
+                    ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('valor')->get()->reverse()->values();
                 return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
             }else{
                 $produtos = DB::Table('produto')
                     ->select('*')
+                    ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('nome')->get();
                 return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
@@ -104,6 +110,7 @@ class viewscontroller extends Controller
     }
     public function tela_endereco(){
         $data = DB::table('endereco')
+            ->where('deletado','!=','s')
             ->where("fk_user_id",'=',session('user')->id)->get();
         return view('/cliente/endereco',['enderecos'=>$data]);
     }
@@ -112,6 +119,7 @@ class viewscontroller extends Controller
     }
     public function tela_cartao(){
         $data = DB::table('cartao')
+            ->where('deletado','!=','s')
             ->where("fk_user_id",'=',session('user')->id)->get();
         return view('/cliente/cartao',['cartoes'=>$data]);
 
@@ -153,7 +161,10 @@ class viewscontroller extends Controller
     //telas do administrador
 
     public function tela_administrador(){
-        $produtos = produto::all();
+        $produtos = DB::Table('produto')
+        ->select('*')
+        ->where('deletado','!=','s')
+        ->get();
 
         return view('/administrador/gerenciar_produtos',['produtos'=>$produtos]);
     }

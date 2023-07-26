@@ -31,8 +31,8 @@ class enderecocontroller extends Controller
     public function endereco_delete($id){
         
         $endereco = endereco::findOrFail($id);
-        $endereco->delete();
-
+        $endereco->deletado='s';
+        $endereco->save();
         return redirect()->back()->with("mensagem_sucesso","produto deletado com sucesso");
         
     }

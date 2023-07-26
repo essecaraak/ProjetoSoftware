@@ -17,12 +17,17 @@ class Cartao extends Model
         'nometitular',
         'fk_user_id',
         'apelido',
+        'deletado',
         
         
     ];
     
    
-
+    protected $attributes = [
+        
+        
+        'deletado'=>'',
+    ];
     protected $dates = ['datavencimento'];
 
     protected $casts = [
