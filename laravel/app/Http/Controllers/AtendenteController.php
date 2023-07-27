@@ -8,8 +8,7 @@ use App\Models\Compras;
 class AtendenteController extends Controller
 {
     public function Index(){
-        $compras = Compras::query()
-            ->with(['comprador', 'atendente', 'cartao', 'endereco'])
+        $compras = Compras::select('*')
             ->where('status', '!=', 'compra finalizada')
             ->where('status', '!=', 'compra cancelada')
             ->get();
