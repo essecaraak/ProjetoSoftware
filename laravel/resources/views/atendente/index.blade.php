@@ -57,14 +57,25 @@
                                             <th class="text-end" colspan="3">Valor dos Produtos:</th>
                                             <td class="text-end">R$ {{$compra->valortotal}}</td>
                                         </tr>
+                                        @if(is_null($compra->endereco))
                                         <tr>
                                             <th class="text-end" colspan="3">Valor do Frete:</th>
-                                            @if(is_null($compra->frete))
-                                                <td class="text-end"> R$ 0,00</td>
-                                            @else
-                                                <td class="text-end">R$ 7,50</td>
-                                            @endif
+                                                <td class="text-end"> R$ 0,00</td>                                          
                                         </tr>
+                                        @else
+                                        <tr>
+                                            <th class="text-end" colspan="3">Valor do Frete:</th>
+                                                <td class="text-end"> R$ {{$compra->frete}}</td>
+                                        </tr>
+                                        <tr>
+                                            @foreach($enderecos as $endereco)
+                                                @if($compra->id== $endereco->compraid)
+                                                    <th class="text-end" colspan="3">Endereço:</th>
+                                                    <td class="text-end">Rua {{$endereco->rua}} {{$endereco->numero}}, {{$endereco->bairro}}</td>
+                                                @endif
+                                            @endforeach
+                                        </tr>
+                                        @endif
                                         <tr>
                                             <th class="text-end" colspan="3">Valor a Pagar:</th>
                                             @if(is_null($compra->frete))

@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-around flex-wrap border rounded-top pt-4 px-3" style="background-color:white">
         @foreach($enderecos as $endereco)
             <div class="mb-4 mx-2 flex-even">
-                <input type="radio" class="btn-check" name="endereco"
+                <input type="radio" class="btn-check" value="{{$endereco->id}}" name="endereco"
                     autocomplete="off" id="{{$endereco->id}}">
                 <label class="btn btn-outline-danger p-4 h-100 w-100" for="{{$endereco->id}}">
                     <span>

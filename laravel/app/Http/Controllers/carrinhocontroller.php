@@ -49,8 +49,10 @@ class carrinhocontroller extends Controller
             $valortotal+=$produto->valorproduto *$produto->quantidade;
         }
         session('carrinho')->valortotal = $valortotal;
-        $cartoes = Cartao::where('fk_user_id','=',session('user')->id)->get(); 
-        $enderecos = Endereco::where('fk_user_id','=',session('user')->id)->get();   
+        $cartoes = Cartao::where('fk_user_id','=',session('user')->id)
+                        ->where('deletado','!=','s')->get(); 
+        $enderecos = Endereco::where('fk_user_id','=',session('user')->id)
+                        ->where('deletado','!=','s')->get();   
         return view('cliente\fechamento_pedido',['produtosmostrar'=>$produtos2,'produtos'=> $produtos, 'cartoes'=> $cartoes,'enderecos'=>$enderecos]);
     }
 
@@ -85,16 +87,17 @@ class carrinhocontroller extends Controller
 
         if($request->endereco =='semfrete'){
             session('carrinho')->frete= 0.00;
-            session('carrinho')->status= "pedido recebido";
             
         }else if(is_null($request->endereco)){
             return redirect()->back()->with('mensagem_falha',"escolha um método de entrega");
         }else{
-            return('entrega');
+            session('carrinho')->frete= 7.00;
+            session('carrinho')->fk_endereco_id=$request->endereco;
         }
         $carrinho= Compras::findOrFail(session('carrinho')->id);
-        $carrinho->status=session('carrinho')->status;
+        $carrinho->status="pedido recebido";
         $carrinho->descricao=session('carrinho')->descricao;
+        $carrinho->frete=session('carrinho')->frete;
         $carrinho->fk_user_atendente_id=session('carrinho')->fk_user_atendente_id;
         $carrinho->fk_cartao_id=session('carrinho')->fk_cartao_id;
         $carrinho->fk_endereco_id=session('carrinho')->fk_endereco_id;
