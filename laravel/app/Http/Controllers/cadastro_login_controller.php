@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\cadastrorequest;
 use App\Http\Requests\loginrequest;
+use App\Http\Requests\updatedadosrequest;
 use App\Models\Compras;
 use App\Models\User;
 use Hamcrest\Core\IsNull;
@@ -73,6 +74,31 @@ class cadastro_login_controller extends Controller
         Auth::logout();
         session()->pull('user');
         return redirect()->route('index');
+
+    }
+    public function dados_update(updatedadosrequest $request){
+        $user =user::findOrFail(session('user')->id);
+        if(!is_null($request->email)){
+            $user->email=$request->email;
+        }
+        if(!is_null($request->telefone)){
+            if($request->telefone!=$user->telefone){
+                $user->telefone=$request->telefone;
+            }else{
+                return redirect()->back()->with('mensagem_falha','o telefone deve ser diferente do atual');
+            }
+        }
+        if(!is_null($request->confirma_senha)){
+            if(!password_verify($request->confirma_senha,$user->senha)){
+                $user->senha= Hash::make($request->senha);
+            }else{
+                return redirect()->back()->with('mensagem_falha','a senha deve ser diferente da atual');
+            }
+            
+        }
+        $user->save();
+        session()->put('user',$user);
+        return redirect()->back()->with('mensagem_sucesso','dados alterados com sucesso');
 
     }
 }

@@ -8,8 +8,8 @@
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
-                    <a href="contatos" class="list-group-item list-group-item-action">
-                        <i class="bi-mailbox fs-6"></i> Contatos
+                    <a href="{{route('atualizar-dados')}}" class="list-group-item list-group-item-action">
+                        <i class="bi-mailbox fs-6"></i> Dados cadastrais
                     </a>
                     <a href="endereco" class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi-house-door fs-6"></i> Endereço

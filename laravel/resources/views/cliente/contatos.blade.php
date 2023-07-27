@@ -8,8 +8,8 @@
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
-                    <a href="contatos" class="list-group-item list-group-item-action bg-danger text-light">
-                        <i class="bi-mailbox fs-6"></i> Contatos
+                    <a href="{{route('atualizar-dados')}}" class="list-group-item list-group-item-action bg-danger text-light">
+                        <i class="bi-mailbox fs-6"></i> Dados cadastrais
                     </a>
                     <a href="endereco" class="list-group-item list-group-item-action">
                         <i class="bi-house-door fs-6"></i> Endereço
@@ -26,16 +26,24 @@
                 </div>
             </div>
             <div class="col-8">
-                <form action="">
+                <form action="{{route('dados-update')}}" method="get">
                     <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="email" id="txtEmail" placeholder=" " autofocus/>
+                        <input class="form-control" type="email" id="txtEmail" name="email" value="{{session('user')->email}}" placeholder=" " autofocus/>
                         <label for="txtEmail">E-mail</label>
                     </div>
                     <div class="form-floating mb-3 col-md-8">
-                        <input class="form-control" type="text" id="txtTelefone" placeholder=" " />
+                        <input class="form-control" type="text" id="txtTelefone" name="telefone" value="{{session('user')->telefone}}" placeholder=" " />
                         <label for="txtTelefone">Telefone</label>
                     </div> 
-                    <button type="button" class="btn btn-danger">Salvar alterações</button>                           
+                    <div class="form-floating mb-3 col-md-8">
+                        <input class="form-control border" type="password" name="senha" value="{{old('senha')}}" id="txtSenha" placeholder=" " />
+                        <label for="txtSenha">Nova senha</label>
+                    </div>
+                    <div class="form-floating mb-3 col-md-8">
+                        <input class="form-control border" type="password" name="confirma_senha" value="{{old('confirma_senha')}}" id="txtConfirmacaoSenha" placeholder=" " />
+                        <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Salvar alterações</button>                           
                 </form>
             </div>
         </div>

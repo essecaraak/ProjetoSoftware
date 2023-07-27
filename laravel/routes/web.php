@@ -23,10 +23,12 @@ route::middleware([verificacliente::class])->group(function(){
     //Cliente
     route::prefix('cliente')->group(function(){
 
-        Route::get('/contatos', [viewscontroller::class, 'tela_contatos'])->name('contatos');
+        
         Route::get('/pedidos', [viewscontroller::class, 'tela_pedidos'])->name('pedidos');
-        Route::get('/endereco', [viewscontroller::class, 'tela_endereco'])->name('endereco');
-        Route::get('/novo_endereco', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
+        route::prefix('atualizar_dados')->group(function(){
+            Route::get('/', [viewscontroller::class, 'tela_contatos'])->name('atualizar-dados');
+            Route::get('/update', [cadastro_login_controller::class, 'dados_update'])->name('dados-update');
+        });
         route::prefix('endereco')->group(function(){
             Route::get('/novo', [viewscontroller::class, 'tela_novo_endereco'])->name('novo_endereco');
             Route::get('/', [viewscontroller::class, 'tela_endereco'])->name('tela_endereco');
@@ -40,7 +42,6 @@ route::middleware([verificacliente::class])->group(function(){
             Route::post('/create', [cartaocontroller::class, 'cartao_create'])->name('cartao-create');
             Route::get('/delete/{id}', [cartaocontroller::class, 'cartao_delete'])->name('cartao-delete');
         });
-        
         
         Route::get('/produto/{id}', [viewscontroller::class, 'tela_visualizar_produto'])->name('visualizar-produto');
         route::prefix('carrinho')->group(function(){
