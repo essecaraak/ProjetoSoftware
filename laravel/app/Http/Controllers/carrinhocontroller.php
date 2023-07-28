@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\editprodutocarrinhorequest;
+use App\Http\Requests\editprodutorequest;
 use App\Models\Cartao;
 use App\Models\Compras;
 use App\Models\Endereco;
@@ -17,18 +19,51 @@ use function PHPUnit\Framework\isNull;
 class carrinhocontroller extends Controller
 {
 
-    public function index(Request $request) {
+    public function index() {
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
+            ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
+            ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->where('compra.id', '=', session('carrinho')->id)
+            ->get();
+        
+        $msg='';
+        foreach($produtos as $produto){
+            if($produto->quantidade_carrinho>$produto->quantidade){
+                $procom= produto_compra::where('fk_produto_id',$produto->id)
+                ->where('fk_compra_id','=',session('carrinho')->id)
+                ->first();
+                $procom->quantidade=$produto->quantidade;
+                $procom->save();
+                $msg='infelizmente o estoque foi alterado,produtos podem ter sido diminuidos ou apagados';
+                session()->flash("mensagem_falha",$msg);
+            }
+            if($produto->quantidade==0){
+                produto_compra::where('fk_produto_id',$produto->id)
+                ->where('fk_compra_id','=',session('carrinho')->id)
+                ->first()
+                ->delete();
+                $msg='infelizmente o estoque foi alterado, produtos podem ter sido diminuidos ou apagados';
+                session()->flash("mensagem_falha",$msg);
+            }
+        }
         $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
             ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
             ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
             ->where('compra.id', '=', session('carrinho')->id)
             ->get();
         $valortotal=0;
-        foreach($produtos as $produto){
+        foreach($produtos as $produto){    
             $valortotal+=$produto->valor *$produto->quantidade_carrinho;
         }
         session('carrinho')->valortotal = $valortotal;
-        return view('cliente\carrinho',['produtos'=> $produtos]);
+        
+        if($msg!=''){
+            return view('cliente\carrinho',['produtos'=> $produtos]);
+        }else{
+           
+            return view('cliente\carrinho',['produtos'=> $produtos]);
+        }
+        
     }
 
     public function processar_pedido(Request $request) {
@@ -127,6 +162,39 @@ class carrinhocontroller extends Controller
         $procom->fk_compra_id = session('carrinho')->id;
         $procom->save();
         return redirect()->back()->with('mensagem_sucesso','produto adicionado com sucesso');
+    }
+    public function deletar_produto($id){
+        $procom= produto_compra::where('fk_produto_id',$id)
+            ->where('fk_compra_id','=',session('carrinho')->id)
+            ->first();
+        $procom->delete();
+        return redirect()->back()->with('mensagem_sucesso','produto deletado com sucesso');
+        
+    }
+    public function editar_produto(editprodutocarrinhorequest $request, $id){
+        $produto= produto::where('id',$id)->first();
+        $procom= produto_compra::where('fk_produto_id',$id)
+            ->where('fk_compra_id','=',session('carrinho')->id)
+            ->first();
+
+        if($request->quantidade==0){
+            $procom->delete();
+            return redirect()->back()->with('mensagem_sucesso','produto deletado com sucesso');
+        }
+        if($produto->quantidade==0){
+            $procom->delete();
+            return redirect()->back()->with('mensagem_falha','infelizmente o estoque acabou durante o processamento');
+        }
+        if($request->quantidade<=$produto->quantidade){
+            $procom->quantidade=$request->quantidade;
+            
+            $procom->save();
+            return redirect()->back()->with('mensagem_sucesso','quantidade alterada com sucesso');
+        }else{ 
+            $procom->quantidade=$produto->quantidade;
+            $procom->save();
+            return redirect()->back()->with('mensagem_falha','infelizmente o estoque diminuiu durante o processamento');
+        }
     }
 
     

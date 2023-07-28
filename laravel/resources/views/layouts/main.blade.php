@@ -85,7 +85,12 @@
                 <div class="error">
                     <p>{{session('mensagem_falha')}}</p>
                 </div>
+            @elseif(isset($mensagem_falha))
+            <div class="error">
+                <p>{{$mensagem_falha}}</p>
+            </div>
             @endif
+            
 
         <main class="flex-fill">
             @yield('content')
