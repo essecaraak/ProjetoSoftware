@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         
-        Schema::table('cupom', function (Blueprint $table) {
+       /* Schema::table('cupom', function (Blueprint $table) {
             
             $table->dropColumn('regras');
             
-        });
+        });*/
 
         Schema::create('cupom_produto', function (Blueprint $table) {
             $table->id();
