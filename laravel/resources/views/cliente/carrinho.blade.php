@@ -5,45 +5,56 @@
 @section('title', 'Bem Doces')
 
 @section('content')
-<div class="container">
-
-    <div class="row g-3">
-        <form action="{{route('carrinho-processar')}}" method="get">
-            @foreach($produtos as $produto)
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex flex-column">
-                    <div class="card text-center bg-light d-flex flex-column" style="flex-grow: 1;">
-                        <a href="#" class="position-absolute end-0 p-2 text-danger">
-                            <i class="bi-suit-heart" style="font-size: 24px; line-height: 24px;"></i>
+    <div class="container">
+        <h1>Carrinho de Compras</h1>
+        <ul class="list-group mb-3">
+            <li class="list-group-item py-3">
+                <div class="row g-3">
+                    <div class="col-4 col-md-3 col-lg-2">
+                        <a href="#">
+                            <img src="/img/produtos/000008.jpg" class="img-thumbnail">
                         </a>
-                        <a href="{{route('visualizar-produto',[$produto->id])}}">
-                            <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="card-img-top">
-                        </a>
-                        <div class="card-header">
-                            R$ {{$produto->valor}}
+                    </div>
+                    <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
+                        <h4>
+                            <b><a href="#" class="text-decoration-none text-danger">
+                                    Produto</a></b>
+                        </h4>
+                        <h5>
+                            Descrição do Produto
+                        </h5>
+                    </div>
+                    <div
+                        class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-center border-dark" value="4">
+                            <button class="btn btn-outline-success btn-sm" type="button">
+                                <i class="bi bi-bag-check" style="font-size: 16px; line-height: 16px;"></i>
+                            </button>
+                            <button class="btn btn-outline-danger border-dark btn-sm" type="button">
+                                <i class="bi-trash" style="font-size: 16px; line-height: 16px;"></i>
+                            </button>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{$produto->nome}}</h5>
-                        </div>
-                        <div class="card-footer">
-                            <input type="checkbox" name="produtos[]" value="{{$produto->id}}"/>
-                            <small class="text-success">
-                                @if($produto->quantidade==1)
-                                    {{$produto->quantidade_carrinho}} unidade no carrinho
-                                @else
-                                    {{$produto->quantidade_carrinho}} unidades no carrinho
-                                @endif
-                            </small>
+                        <div class="text-end mt-2">
+                            <small class="text-secondary">Valor Item: R$ 3,99</small><br>
+                            <span class="text-dark">Valor Total: R$ 15,96</span>
                         </div>
                     </div>
                 </div>
-            @endforeach
-            <p>Cupom de desconto: <input type="text" name="cupom"></p>
-            <p>Total: R${{session('carrinho')->valortotal}}</p>
-            <button type="submit">Avançar</button>
-        </form>
+            </li>
+            <li class="list-group-item py-3">
+                <div class="text-end">
+                    <span class="d-block text-center">Adicionar Cupom: <input><br></span>
+                    <h4 class="text-dark mb-3">
+                        Valor Total: R$ 63,84
+                    </h4>
+                    <a href="/index.html" class="btn btn-outline-success btn-lg">
+                        Continuar Comprando                            
+                    </a>
+                    <a href="/fechamento_itens.html" class="btn btn-danger btn-lg ms-2 mt-xs-3">Fechar Compra</a>
+                </div>
+            </li>
+        </ul>
     </div>
-    <hr class="mt-3">
 
-    
-</div>
 @endsection
