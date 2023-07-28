@@ -26,16 +26,7 @@ return new class extends Migration
             $table->foreign("fk_produto_id")->references("id")->on("produto")->nullOnDelete();
             $table->timestamps();
         });
-        Schema::table('cupom_produto', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger("fk_produto_id")->references("id")->on("produto")->nullOnDelete()->change();
-        });
-
-        Schema::table('produto_compra', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('fk_produto_id')->references("id")->on("produto")->nullable()->nullOnDelete()->change();
-            
-        });
+        
     }
 
     /**
