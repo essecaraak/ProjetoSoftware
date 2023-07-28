@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('endereco', function (Blueprint $table) {
             
             $table->string("apelido",200);
+            
         });
     }
 
