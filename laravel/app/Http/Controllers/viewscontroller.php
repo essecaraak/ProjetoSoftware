@@ -101,10 +101,10 @@ class viewscontroller extends Controller
         $produtos =produto_compra::select('produto_compra.*')
             ->join('compra','produto_compra.fk_compra_id','=','compra.id')->get();
             
-        $enderecos =Endereco::select('endereco.*')
+        $enderecos =Endereco::select('endereco.*','compra.id as compraid')
             ->join('compra','compra.fk_endereco_id','=','endereco.id')->get();
             
-        $cartoes =cartao::select('cartao.*')
+        $cartoes =cartao::select('cartao.*','compra.id as compraid')
             ->join('compra','compra.fk_cartao_id','=','cartao.id')->get();
         return view('/cliente/pedidos',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes] );
     }
@@ -140,7 +140,7 @@ class viewscontroller extends Controller
             ->join('users', 'users.id', '=', 'compra.fk_user_cliente_id')
             ->where('compra.status','!=','carrinho')
             ->where('compra.status','!=','Pedido Entregue')
-            ->where('compra.status','!=','Pedido Cancelado')
+            ->where('compra.status','!=','Pedido Cancelado') 
             ->orderBy('hora_compra')
             ->get()->reverse()->values();
             

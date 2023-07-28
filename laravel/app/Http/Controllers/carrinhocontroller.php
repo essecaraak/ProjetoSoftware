@@ -78,9 +78,11 @@ class carrinhocontroller extends Controller
             session('carrinho')->tipo_pagamento= 'dinheiro';
         
         }else if($request->pagamento == 'pix'){
-            return('pagamento pelo pix');
+            session('carrinho')->troco= 0;
+            session('carrinho')->tipo_pagamento= 'pix';
         }else if(!is_null($request->pagamento)){
-            return('pagamento em cartão');
+            session('carrinho')->tipo_pagamento= 'cartao';
+            session('carrinho')->fk_cartao_id=$request->pagamento;
         }else{
             return redirect()->back()->with('mensagem_falha','selecione um método de pagamento');
         }

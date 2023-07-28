@@ -83,7 +83,7 @@
                 </h3>
                 <hr>
                 <h4>Telefone: <b>24999911641</b></h4>
-                <span>Por favor enviar o comprovante para o telefone da chave PIX e mostrar o comprovante para o entregador</span>
+                <span>Por favor enviar o comprovante para o telefone da chave PIX, seu pedido será liberado depois do pagamento</span>
             </label>
         </div>
         <div class="mb-4 mx-2 flex-even col-md-4">
