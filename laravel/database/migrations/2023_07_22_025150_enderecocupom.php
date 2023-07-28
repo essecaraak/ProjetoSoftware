@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::table('cupom', function (Blueprint $table) {
             
             $table->dropColumn('regras');
-            $table->string('descricao', 1000);
+            
         });
 
         Schema::create('cupom_produto', function (Blueprint $table) {

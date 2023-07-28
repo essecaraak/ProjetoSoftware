@@ -50,6 +50,8 @@ route::middleware([verificacliente::class])->group(function(){
             Route::get('/finalizar}', [carrinhocontroller::class, 'finalizar_pedido'])->name('carrinho-finalizar');
             route::prefix('produto')->group(function(){
                 Route::get('/insert/{id}', [carrinhocontroller::class, 'inserir_produto'])->name('carrinho-produto-insert');
+                Route::get('/update/{id}', [carrinhocontroller::class, 'editar_produto'])->name('carrinho-produto-update');
+                Route::get('/delete/{id}', [carrinhocontroller::class, 'deletar_produto'])->name('carrinho-produto-delete');
             });
         });
         
