@@ -12,7 +12,7 @@
                 <div class="row g-3">
                     <div class="col-4 col-md-3 col-lg-2">
                         <a href="#">
-                            <img src="/img/produtos/000008.jpg" class="img-thumbnail">
+                            <img src="{{asset('/storage/img/produtos/banana.jpg')}}" class="img-thumbnail">
                         </a>
                     </div>
                     <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
@@ -20,9 +20,7 @@
                             <b><a href="#" class="text-decoration-none text-danger">
                                     Produto</a></b>
                         </h4>
-                        <h5>
-                            Descrição do Produto
-                        </h5>
+                        
                     </div>
                     <div
                         class="col-6 offset-6 col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
