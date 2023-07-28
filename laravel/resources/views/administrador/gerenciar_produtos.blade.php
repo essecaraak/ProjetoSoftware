@@ -28,7 +28,7 @@
                 <br>
                 <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger" style="margin-bottom: 30px;">Adicionar novo produto</button></a>
                 @foreach($produtos as $produto)
-                <form action="{{route('produto-update',[$produto->id])}}" method="get">
+                <form  action="{{route('produto-update',[$produto->id])}}"  method="get">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -57,11 +57,7 @@
                                                 <input class="form-control" name="quantidade" value="{{$produto->quantidade}}" type="number" id="txtNumero" placeholder=" " />
                                                 <label for="txtNumero">Quantidade: <span></span></label>
                                             </div>
-                                            <div class="form-floating mb-3 col-md-3 espacamento">
-                                                <!--<image src="{{asset('/storage/img/produtos/'.$produto->imagem)}}"/>-->
-                                                <input class="form-control" type="file"  accept="image/png,image/jpeg" id="imagemInput" name="imagem" placeholder=" " />
-                                                <label for="imagemInput">Imagem:</label>
-                                            </div>
+                                            
                                             <div class="form-floating mb-3 col-md-3 espacamento">
                                                 <select class="form-control"value="{{$produto->tipo}}" name="tipo" id="tipo" placeholder=" ">
                                                 @if($produto->tipo == 'Embalagens e Descartáveis' )

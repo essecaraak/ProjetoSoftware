@@ -45,17 +45,7 @@ class produtoscontroller extends Controller
         if(!is_null($request->descricao)){
             $produto->descricao = $request->descricao;
         }
-       
-        if($request->hasFile('imagem')){ 
-            $filename =$request->file('imagem')->getClientOriginalName();
-            if($request->file('imagem')->isValid()){
-                $path =$request->file('imagem')->storeAs('public/img/produtos',$filename);
-                
-                $produto->imagem = $filename;
-            }else{
-                return redirect()->back()->with("mensagem_sucesso","Erro com a imagem");
-            }
-       }
+    
         $produto->quantidade = $request->quantidade;
         $produto->valor = $request->valor;
         $produto->save();
