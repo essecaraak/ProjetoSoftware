@@ -20,7 +20,7 @@
         @elseif(session('user')->usertype == 'cliente') 
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3"> 
         @elseif(session('user')->usertype == 'administrador')      
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom shadow-sm mb-3"> 
+            <nav class="navbar navbar-expand-lg navbar-dark border-bottom shadow-sm mb-3" style="background-color: rgb(146, 129, 248)"> 
         @elseif(session('user')->usertype == 'atendente')
             <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3"> 
         @endif
@@ -92,7 +92,7 @@
             @endif
             
 
-        <main class="flex-fill">
+        <main class="flex-fill content-wrapper container body-content" style="min-height: 75vh;">
             @yield('content')
         </main>
 

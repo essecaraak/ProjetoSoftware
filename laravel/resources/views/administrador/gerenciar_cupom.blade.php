@@ -36,7 +36,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="usosRestantes" placeholder=" "></input>
+                                                <input class="form-control" id="usosRestantes" placeholder=" " disabled></input>
                                                 <label for="usosRestantes">Usos restantes: <span></span></label>
                                             </div>
                                         </div>

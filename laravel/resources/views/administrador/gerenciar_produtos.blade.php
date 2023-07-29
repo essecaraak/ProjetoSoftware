@@ -5,11 +5,12 @@
 @section('content')
     <div class="container">
         <h1>Área do Administrador</h1>
+        <br>
         <div class="row gx-3">
             <div class="col-6">
                 <div class="list-group">
                     <div class="d-flex align-items-center">
-                        <a href="" class="list-group-item list-group-item-action bg-danger text-light">
+                        <a href="" class="list-group-item list-group-item-action text-light" style="background-color: rgb(146, 129, 248)">
                             <i class="bi bi-cash-stack fs-6"></i> Gerenciar Produtos
                         </a>
                     </div>
@@ -26,7 +27,7 @@
             </div>         
             <div>
                 <br>
-                <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger" style="margin-bottom: 30px;">Adicionar novo produto</button></a>
+                <a href="{{route('novo-produto-index')}}" class="margem d-inline-block"><button type="button" class="btn btn-primary" style="margin-bottom: 30px;">Adicionar novo produto</button></a>
                 @foreach($produtos as $produto)
                 <form  action="{{route('produto-update',[$produto->id])}}"  method="get">
                     <div class="accordion" id="divPedidos">

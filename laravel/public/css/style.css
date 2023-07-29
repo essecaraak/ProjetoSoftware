@@ -1,10 +1,15 @@
 body {
     min-width: 372px;
+    height: 100%;
 }
 
 .show-footer {
     display: block !important;
 }
+* {
+  margin: 0;
+}
+
 
 .espacamento {
     margin-left: 10px;
@@ -22,6 +27,8 @@ body {
 
 .footer {
     background-color: rgba(0, 0, 0, 0.712);
+    bottom: 0;
+    position: relative;
 }
 
 .logo {
@@ -56,3 +63,4 @@ body {
 .form-check-label {
     color: #000; /* Defina a cor do texto desejada para quando o checkbox não estiver selecionado */
 }
+
