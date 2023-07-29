@@ -7,20 +7,20 @@
         <h2>{{session('user')->nome}}</h2>
         <div class="row gx-3">
             <div class="col-4">
-                <div class="list-group">
+            <div class="list-group">
                     <a href="{{route('atualizar-dados')}}" class="list-group-item list-group-item-action">
                         <i class="bi-mailbox fs-6"></i> Dados cadastrais
                     </a>
-                    <a href="endereco" class="list-group-item list-group-item-action bg-danger text-light">
+                    <a href="{{route('novo_endereco')}}" class="list-group-item list-group-item-action">
                         <i class="bi-house-door fs-6"></i> Endereço
                     </a>
-                    <a href="pedidos" class="list-group-item list-group-item-action">
+                    <a href="{{route('pedidos')}}" class="list-group-item list-group-item-action">
                         <i class="bi-truck fs-6"></i> Pedidos
                     </a>
-                    <a href="{{route('tela_cartao')}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('tela_cartao')}}" class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi bi-card-list"></i> Cartão
                     </a>
-                    <a href="/" class="list-group-item list-group-item-action">
+                    <a href="{{route('index')}}" class="list-group-item list-group-item-action">
                         <i class="bi-door-open fs-6"></i> Sair
                     </a>
                 </div>
