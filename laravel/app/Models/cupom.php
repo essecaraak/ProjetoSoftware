@@ -17,15 +17,16 @@ class cupom extends Model
         'numporpessoa',
         'tipo1',
         'tipo2',
-        'tipo2',
+        'tipo3',
         
         
     ];
     protected $attributes = [
         
-        'tipo1'=>' ',
-        'tipo2'=>' ',
-        'tipo3'=>' ',
+        'tipo1'=>'',
+        'tipo2'=>'',
+        'tipo3'=>'',
+        'descricao'=>' ',
         'deletado'=>'',
     ];
 }

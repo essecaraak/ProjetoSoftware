@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class cupom_produto extends Model
 {
     use HasFactory;
+    protected $table = 'cupom_produto';
     protected $fillable = [
         'fk_produto_id',
         'fk_cupom_id',
+        'deletado',
+    ];
+    protected $attributes = [
         
-
+        
+        'deletado'=>'',
     ];
 }

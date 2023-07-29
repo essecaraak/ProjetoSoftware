@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     carrinhocontroller,
     cartaocontroller,
     CompraController,
+    cupomcontroller,
     enderecocontroller,
     produtoscontroller
 };
@@ -91,19 +92,22 @@ route::middleware([verificaadministrador::class])->group(function(){
         Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
         Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
         Route::get('/gerenciar_cupom', [viewscontroller::class, 'tela_gerenciar_cupom'])->name('gerenciar-cupom');
-        Route::get('/novo_cupom', [viewscontroller::class, 'tela_novo_cupom'])->name('novo-cupom');
-        
-        route::prefix('produto')->group(function(){
+        route::prefix('cupom')->group(function(){
             
+            Route::get('/novo', [viewscontroller::class, 'tela_novo_cupom'])->name('novo-cupom');
+            Route::post('/create', [cupomcontroller::class, 'cupom_create'])->name('cupom-create');
+            Route::get('/update/{id}', [cupomcontroller::class, 'cupom_update'])->name('cupom-update');
+            Route::get('/delete/{id}', [cupomcontroller::class, 'cupom_delete'])->name('cupom-delete');
+        });
+        route::prefix('produto')->group(function(){
+
+            Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
+            Route::post('/create', [produtoscontroller::class, 'produtos_create'])->name('novo-produto-create');
             Route::get('/update/{id}', [produtoscontroller::class, 'produtos_update'])->name('produto-update');
             Route::get('/delete/{id}', [produtoscontroller::class, 'produtos_delete'])->name('produto-delete');
         });
         
-        route::prefix('novo_produto')->group(function(){
-
-            Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
-            Route::post('/create', [produtoscontroller::class, 'produtos_create'])->name('novo-produto-create');
-        });
+        
 
     });
     
