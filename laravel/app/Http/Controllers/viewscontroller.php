@@ -171,7 +171,17 @@ class viewscontroller extends Controller
     public function tela_gerenciar_feed(){
         return view('/administrador/gerenciar_feed');
     }
+
+    public function tela_gerenciar_cupom(){
+        return view('/administrador/gerenciar_cupom');
+    }
+
     public function novo_produto(){
         return view('/administrador/novo_produto');
     }
+
+    public function tela_novo_cupom(){
+        return view('/administrador/novo_cupom');
+    }
+
 }

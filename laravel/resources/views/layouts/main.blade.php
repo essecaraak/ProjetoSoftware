@@ -53,7 +53,7 @@
                                 </li>
                             @elseif(session('user')->usertype == 'administrador')
                                 <li class="nav-item"><a href="{{route('administrador-index')}}" class="nav-link text-white">Área do administrador</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link text-white"> cupons </a></li>
+                                <li class="nav-item"><a href="gerenciar_cupom" class="nav-link text-white"> cupons </a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
                             @elseif(session('user')->usertype == 'atendente')
                                 <li class="nav-item"><a href="{{route('atendente-index')}}" class="nav-link text-white">Área do atendente</a></li>
