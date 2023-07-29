@@ -7,7 +7,7 @@
         <h1>Área do Administrador</h1>
         <div class="row gx-3">           
             <div>
-                <a href="novo_produto" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo cupom</button></a><br><br>
+                <a href="{{route('novo-cupom')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo cupom</button></a><br><br>
                 <form action="">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
