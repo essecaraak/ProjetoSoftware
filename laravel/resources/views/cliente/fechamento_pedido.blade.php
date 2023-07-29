@@ -116,7 +116,7 @@
     <h2 class="h2" style="color:white; background-color: #464242">Itens</h2>
     <ul class="list-group mb-3"> 
         <div class="row g-3">
-        @foreach($produtosmostrar as $produto)
+        @foreach($produtos as $produto)
             <div class="col-md-6">
                 <li class="list-group-item py-3">
                     <div class="row">
@@ -129,7 +129,7 @@
                             <h5>
                                 <b>
                                     <input form="form" hidden name="produtos[]" value="{{$produto->id}}">
-                                    {{$produto->quantidade}} unidade(s) <br>
+                                    {{$produto->quantidade_carrinho}} unidade(s) <br>
                                     R$ {{$produto->valorproduto}}
                                 </b>
                             </h5>
