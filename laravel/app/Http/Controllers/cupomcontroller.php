@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\cupomrequest;
 use App\Models\cupom;
 use App\Models\cupom_produto;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use function PHPUnit\Framework\isNull;
 
 class cupomcontroller extends Controller
 {
-    public function cupom_create(request $request){
+    public function cupom_create(cupomrequest $request){
         $selects=0;
         $cupom =new  cupom();
         $cupom->desconto=$request->desconto;
