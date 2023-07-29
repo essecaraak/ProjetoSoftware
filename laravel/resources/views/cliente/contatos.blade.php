@@ -4,7 +4,8 @@
 
 @section('content')
     <div class="container">
-        <h2>{{session('user')->nome}}</h2>
+        <h2 class="border p-3" style="background-color: white;">Bem vindo(a), {{session('user')->nome}}</h2>
+        <br>
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
@@ -27,23 +28,23 @@
             </div>
             <div class="col-8">
                 <form action="{{route('dados-update')}}" method="get">
-                    <div class="form-floating mb-3 col-md-8">
+                    <div class="form-floating mb-3 col-md-16">
                         <input class="form-control" type="email" id="txtEmail" name="email" value="{{session('user')->email}}" placeholder=" " autofocus/>
                         <label for="txtEmail">E-mail</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-8">
+                    <div class="form-floating mb-3 col-md-16">
                         <input class="form-control" type="text" id="txtTelefone" name="telefone" value="{{session('user')->telefone}}" placeholder=" " />
                         <label for="txtTelefone">Telefone</label>
                     </div> 
-                    <div class="form-floating mb-3 col-md-8">
+                    <div class="form-floating mb-3 col-md-16">
                         <input class="form-control border" type="password" name="senha" value="{{old('senha')}}" id="txtSenha" placeholder=" " />
                         <label for="txtSenha">Nova senha</label>
                     </div>
-                    <div class="form-floating mb-3 col-md-8">
+                    <div class="form-floating mb-3 col-md-16">
                         <input class="form-control border" type="password" name="confirma_senha" value="{{old('confirma_senha')}}" id="txtConfirmacaoSenha" placeholder=" " />
-                        <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Salvar alterações</button>                           
+                        <label class="form-label" for="txtConfirmacaoSenha">Confirmação da Senha</label><br>
+                        <button type="submit" class="btn btn-danger">Salvar alterações</button>
+                    </div>                           
                 </form>
             </div>
         </div>

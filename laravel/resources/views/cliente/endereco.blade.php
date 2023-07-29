@@ -4,7 +4,8 @@
 
 @section('content')
     <div class="container">
-        <h2>{{session('user')->nome}}</h2>
+        <h2 class="border p-3" style="background-color: white;">Bem vindo(a), {{session('user')->nome}}</h2>
+        <br>
         <div class="row gx-3">
             <div class="col-4">
                 <div class="list-group">
