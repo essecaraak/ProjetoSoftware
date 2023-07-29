@@ -6,12 +6,12 @@
     <div class="container">
         <h1>Novo Cupom</h1>
         <hr>
-        <form class="mt-3" enctype="multipart/form-data" action="{{route('novo-produto-create')}}" method="post">
+        <form class="mt-3"  action="{{route('cupom-create')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-floating mb-3">
-                        <input class="form-control border" type="text" name="nome" placeholder=" " />
+                        <input class="form-control border" type="text" maxlength="255" name="codigo" placeholder=" " />
                         <label for="nome">Código do cupom</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -21,32 +21,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" type="number" step="any" name="valor" placeholder=" " />
-                                <label for="txtCEP">Valor promocional:<span></span></label>
+                                <input class="form-control" type="number" step="any" name="desconto" max="100" placeholder=" " />
+                                <label for="txtCEP">Porcentagem de desconto:<span></span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control border" type="number" name="quantidade" placeholder=" " />
-                                <label class="form-label" for="quantidade">Quantidade de uso:</label>
+                                <input class="form-control border" type="number" name="numporpessoa" placeholder=" " />
+                                <label class="form-label" for="quantidade">Quantidade de usos por cliente:</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-12 mb-3"> 
                             <div class="border p-3" style="background-color: white">
-                                <button type="button" class="btn btn-light custom-cursor-pointer" id="mostrarProdutos1">Aplicáveis ao tipo</button>
+                                <button type="button" class="btn btn-light custom-cursor-pointer" id="mostrarProdutos1">Aplicáveis aos tipos</button>
                                 <div id="listaProdutos1" style="display: none;">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="produto" value="produto2" id="produto2" />
+                                        <input type="checkbox" class="form-check-input" name="tipo1" value="Embalagens e Descartáveis" id="produto2" />
                                         <label class="form-check-label custom-cursor-pointer" for="produto2">Embalagens e Descartáveis</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="produto" value="produto3" id="produto3" />
+                                        <input type="checkbox" class="form-check-input" name="tipo2" value="Artigos para Festa" id="produto3" />
                                         <label class="form-check-label custom-cursor-pointer" for="produto3">Artigos para Festa</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="produto" value="produto4" id="produto4" />
+                                        <input type="checkbox" class="form-check-input" name="tipo3" value="Doces e Bebida" id="produto4" />
                                         <label class="form-check-label custom-cursor-pointer" for="produto4">Doces e Bebida</label>
                                     </div>
                                 </div>
@@ -54,16 +54,14 @@
                         </div>
                         <div class="col-md-6 col-12"> 
                             <div class="border p-3" style="background-color: white"> 
-                                <button type="button" class="btn btn-light custom-cursor-pointer" id="mostrarProdutos2">Produtos vinculados</button>
-                                <div id="listaProdutos2" style="display: none;">
+                                <button type="button" class="btn btn-light custom-cursor-pointer" id="mostrarProdutos2">Aplicáveis aos  produtos:</button>
+                                <div id="listaProdutos2" style="display: none;overflow-y: scroll; height:100px;">
+                                @foreach($produtos as $produto)
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="produto" value="2" id="2" />
-                                        <label class="form-check-label custom-cursor-pointer" for="2">produto 2</label>
+                                        <input type="checkbox" class="form-check-input" name="produto[]" value="{{$produto->id}}" id="{{$produto->id}}" />
+                                        <label class="form-check-label custom-cursor-pointer" for="{{$produto->id}}">{{$produto->nome}}</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" name="produto" value="1" id="1" />
-                                        <label class="form-check-label custom-cursor-pointer" for="1">produto 1</label>
-                                    </div>
+                                @endforeach
                                 </div>
                             </div>
                         </div>
@@ -74,7 +72,7 @@
                 </div>
             </div>
             <br>
-            <a class="btn btn-lg btn-light btn-outline-danger" href="{{route('administrador-index')}}">Cancelar</a>
+            <a class="btn btn-lg btn-light btn-outline-danger" href="{{route('gerenciar-cupom')}}">Cancelar</a>
             <input type="submit" value="Cadastrar" class="btn btn-lg btn-light btn-outline-danger"/>
             <br><br>
         </form>

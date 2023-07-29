@@ -173,7 +173,16 @@ class viewscontroller extends Controller
     }
 
     public function tela_gerenciar_cupom(){
-        return view('/administrador/gerenciar_cupom');
+        $cupons = DB::Table('cupom')
+        ->select('*')
+        ->where('deletado','!=','s')
+        ->get();
+        $prodcupons = produto::select('produto.*','cupom_produto.fk_cupom_id as cupomid')
+        ->join('cupom_produto', 'produto.id', '=', 'cupom_produto.fk_produto_id')
+        ->where('cupom_produto.deletado','!=','s')
+        ->get();
+        
+        return view('/administrador/gerenciar_cupom',['cupons'=>$cupons,'prodcupons'=>$prodcupons]);
     }
 
     public function novo_produto(){
@@ -181,7 +190,11 @@ class viewscontroller extends Controller
     }
 
     public function tela_novo_cupom(){
-        return view('/administrador/novo_cupom');
+        $produtos = DB::Table('produto')
+        ->select('*')
+        ->where('deletado','!=','s')
+        ->get();
+        return view('/administrador/novo_cupom',['produtos'=>$produtos]);
     }
 
 }
