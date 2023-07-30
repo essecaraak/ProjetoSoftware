@@ -111,13 +111,38 @@ class carrinhocontroller extends Controller
     }
 
     public function finalizar_pedido(Request $request){
-        $produtos = $request->input('produtos');
-        produto_compra::where('fk_compra_id', '=', session('carrinho')->id)
-        ->whereIn('fk_produto_id', $produtos)
-        ->delete();
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
+            ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
+            ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->where('compra.id', '=', session('carrinho')->id)
+            ->get();
+        
+        $msg='';
+        foreach($produtos as $produto){
+            if($produto->quantidade_carrinho>$produto->quantidade){
+                $procom= produto_compra::where('fk_produto_id',$produto->id)
+                ->where('fk_compra_id','=',session('carrinho')->id)
+                ->first();
+                $procom->quantidade=$produto->quantidade;
+                $procom->save();
+                $msg='infelizmente o estoque foi alterado,produtos podem ter sido diminuidos ou apagados';
+                session()->flash("mensagem_falha",$msg);
+            }
+            if($produto->quantidade==0){
+                produto_compra::where('fk_produto_id',$produto->id)
+                ->where('fk_compra_id','=',session('carrinho')->id)
+                ->first()
+                ->delete();
+                $msg='infelizmente o estoque foi alterado, produtos podem ter sido diminuidos ou apagados';
+                session()->flash("mensagem_falha",$msg);
+            }
+        }
+        if($msg!=''){
+            return redirect()->back();
+        }
         $produtosretirar = produto_compra::where('fk_compra_id', '=', session('carrinho')->id)
         ->get();
-
+        
         foreach($produtosretirar as $produto){
             $prodantigo= produto::where('id','=',$produto->fk_produto_id)->get()->first();
             $prodantigo->quantidade-=$produto->quantidade;
