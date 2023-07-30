@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-8">
-                <a href="novo_cartao"><button type="button" class="btn btn-danger">Adicionar novo Cartão</button></a><br><br>
+                <a href="{{route('novo_cartao')}}"><button type="button" class="btn btn-danger">Adicionar novo Cartão</button></a><br><br>
                 
                     <div class="accordion" id="divPedidos">
                     @foreach($cartoes as $cartao) 
