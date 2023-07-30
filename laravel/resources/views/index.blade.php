@@ -8,23 +8,20 @@
 <div class="container">
     <div id="carouselMain" class="carousel slide carousel-dark" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2"></button>
+            @foreach($noticias as $noticia)
+            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="{{$noticia->id}}" ></button>
+            
+            @endforeach
         </div>
         <div class="carousel-inner">
+            @foreach($noticias as $noticia )
             <div class="carousel-item active" data-bs-interval="3000">
-                <img src="/img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                <img src="/img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
+                <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-none d-md-block w-100" alt="">
+                <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-block d-md-none  w-100" alt="">
             </div>
+            @endforeach
             <div class="carousel-item" data-bs-interval="3000">
-                <img src="/img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                <img src="/img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <img src="/img/slides/slide01.jpg" class="d-none d-md-block w-100" alt="">
-                <img src="/img/slides/slide01small.jpg" class="d-block d-md-none  w-100" alt="">
-            </div>
+            
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>

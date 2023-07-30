@@ -41,7 +41,6 @@ class produtorequest extends FormRequest
         ],
         'valor'=>[
             'required',
-            'decimal:2',
             'min:0,00',
             'max:9999,99',
         ],
@@ -69,7 +68,6 @@ class produtorequest extends FormRequest
             'tipo.max' => 'Não altere o campo de tipo',
             'descricao.max' => 'o máximo de caracteres da descrição é 1000',
             'valor.required' => 'o valor é obrigatório',
-            'valor.decimal' => 'o valor deve ser um numero decimal com duas casas após a vírgula',
             'valor.max' => 'o preço máximo de produto é 9999,99',
             'valor.min' => 'o preço não pode ser negativo',
             'imagem.required' => 'a imagem do produto é obrigatória',

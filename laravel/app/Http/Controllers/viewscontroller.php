@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cartao;
 use App\Models\Compras;
 use App\Models\Endereco;
+use App\Models\noticia;
 use App\Models\produto;
 use App\Models\produto_compra;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class viewscontroller extends Controller
         ->select('*')
         ->where('deletado','!=','s')
         ->orderBy('nome')->get();
-        return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
+        
+        $noticia=noticia::where('deletado','!=','s')->get();
+        return view('/index',['produtos'=> $produtos,"tipobusca" =>1,'noticias'=>$noticia]);
     }
  
 
@@ -166,7 +169,8 @@ class viewscontroller extends Controller
         return view('/administrador/gerenciar_produtos',['produtos'=>$produtos]);
     }
     public function tela_gerenciar_feed(){
-        return view('/administrador/gerenciar_feed');
+        $numnoticias=noticia::where('deletado','!=','s')->get();
+        return view('/administrador/gerenciar_feed',['noticias'=>$numnoticias]);
     }
 
     public function tela_nova_noticia(){

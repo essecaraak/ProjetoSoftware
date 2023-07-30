@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     CompraController,
     cupomcontroller,
     enderecocontroller,
+    noticiacontroller,
     produtoscontroller
 };
 use App\Http\Middleware\verificaadministrador;
@@ -94,6 +95,12 @@ route::middleware([verificaadministrador::class])->group(function(){
         Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
         Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
         Route::get('/gerenciar_cupom', [viewscontroller::class, 'tela_gerenciar_cupom'])->name('gerenciar-cupom');
+        route::prefix('noticia')->group(function(){
+            
+            Route::get('/nova', [viewscontroller::class, 'tela_nova_noticia'])->name('nova-noticia');
+            Route::post('/create', [noticiacontroller::class, 'noticia_create'])->name('noticia-create');
+            Route::get('/delete/{id}', [noticiacontroller::class, 'noticia_delete'])->name('noticia-delete');
+        });
         route::prefix('cupom')->group(function(){
             
             Route::get('/novo', [viewscontroller::class, 'tela_novo_cupom'])->name('novo-cupom');
