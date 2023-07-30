@@ -132,7 +132,6 @@ class viewscontroller extends Controller
         return view('/cliente/fechamento_pedido');
     }
 
-
     //telas do atendente
 
     public function tela_atendente(){
@@ -156,8 +155,6 @@ class viewscontroller extends Controller
         return view('/atendente/index',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes]);
     }
 
-
-
     //telas do administrador
 
     public function tela_administrador(){
@@ -170,6 +167,10 @@ class viewscontroller extends Controller
     }
     public function tela_gerenciar_feed(){
         return view('/administrador/gerenciar_feed');
+    }
+
+    public function tela_nova_noticia(){
+        return view('administrador/nova_noticia');
     }
 
     public function tela_gerenciar_cupom(){

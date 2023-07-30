@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Área do Administrador</h1>
+        <h1>Tela de Cupons</h1>
         <div class="row gx-3">           
             <div>
                 <a href="{{route('novo-cupom')}}" class="margem d-inline-block"><button type="button" class="btn btn-primary">Adicionar novo cupom</button></a><br><br>

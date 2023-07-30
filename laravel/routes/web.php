@@ -17,6 +17,10 @@ use App\Http\Middleware\verificaatendente;
 use App\Http\Middleware\verificacliente;
 use App\Http\Middleware\verificalogado;
 
+// Matheus alterar aqui
+Route::get('/administrador/nova_noticia', function () {
+    return view('/administrador/nova_noticia');
+});
 
 // rotas para acesso do cliente
 route::middleware([verificacliente::class])->group(function(){
@@ -81,8 +85,6 @@ route::middleware([verificaatendente::class])->group(function(){
 
 });
 
-
-
 // rotas para acesso do administrador
 route::middleware([verificaadministrador::class])->group(function(){
 
@@ -99,6 +101,7 @@ route::middleware([verificaadministrador::class])->group(function(){
             Route::get('/update/{id}', [cupomcontroller::class, 'cupom_update'])->name('cupom-update');
             Route::get('/delete/{id}', [cupomcontroller::class, 'cupom_delete'])->name('cupom-delete');
         });
+
         route::prefix('produto')->group(function(){
 
             Route::get('/', [viewscontroller::class, 'novo_produto'])->name('novo-produto-index');
