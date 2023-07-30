@@ -99,39 +99,40 @@
                                         @if(is_null($compra->frete))
                                             <select class="form-control status" name="status" placeholder=" ">
                                                 <option value="" disabled selected>Selecione</option>
-                                                <option value="Pedido aguardando busca pelo cliente" data-show=".status_estabelecimento_{{$compra->id}}">Pedido aguardando busca pelo cliente</option>
-                                                <option value="Pedido Entregue" data-show=".status_entregue_{{$compra->id}}">Pedido Entregue</option>
-                                                <option value="Pedido Cancelado" data-show=".status_cancelado_{{$compra->id}}">Pedido Cancelado</option>
+                                                <option value="Pedido aguardando busca pelo cliente" data-target=".status_estabelecimento_{{$compra->id}}">Pedido aguardando busca pelo cliente</option>
+                                                <option value="Pedido Entregue" data-target=".status_entregue_{{$compra->id}}">Pedido Entregue</option>
+                                                <option value="Pedido Cancelado" data-target=".status_cancelado_{{$compra->id}}">Pedido Cancelado</option>
                                             </select>
                                         @else
                                             <select class="form-control status" name="status" placeholder=" ">
                                                 <option value="" disabled selected>Selecione</option>
-                                                <option value="Pedido saiu para a entrega" data-show=".status_estabelecimento_{{$compra->id}}">Pedido saiu para a entrega</option>
-                                                <option value="Pedido Entregue" data-show=".status_entregue_{{$compra->id}}">Pedido Entregue</option>
-                                                <option value="Pedido Cancelado" data-show=".status_cancelado_{{$compra->id}}">Pedido Cancelado</option>
+                                                <option value="Pedido saiu para a entrega" data-target=".status_estabelecimento_{{$compra->id}}">Pedido saiu para a entrega</option>
+                                                <option value="Pedido Entregue" data-target=".status_entregue_{{$compra->id}}">Pedido Entregue</option>
+                                                <option value="Pedido Cancelado" data-target=".status_cancelado_{{$compra->id}}">Pedido Cancelado</option>
                                             </select>
                                         @endif
                                         <label for="status"><b>Alterar Status:</b></label>
                                     </div>
-                                <div id="status_entregue" style="display: none">
+                                <div class= "status-details status_entregue_{{$compra->id}}" id="status_entregue" style="display: none">
                                     <div class="form-floating mb-3">
                                         <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d1{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
                                     <input type="submit" value="Confirmar pedido " class="btn btn-lg btn-light btn-outline-success"/>
                                 </div>
-                                <div id="status_estabelecimento" style="display: none">
+                                <div class= "status-details status_estabelecimento_{{$compra->id}}" id="status_estabelecimento" style="display: none">
                                     <div class="form-floating mb-3">
                                         <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d2{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Deixar anotação para o cliente (Opcional)</label>
                                     </div>
                                     <input type="submit" value="Confirmar alteração de status" class="btn btn-lg btn-light btn-outline-warning"/>
                                 </div>
-                                <div id="status_cancelado" style="display: none">
+                                <div class= "status-details status_cancelado_{{$compra->id}}" id="status_cancelado" style="display: none">
                                     <div class="form-floating mb-3">
                                         <textarea style="width: 100%; height: 150px;" class="form-control" maxlength="1000" id="{{$compra->id}}" name="d3{{$compra->id}}" placeholder=" "></textarea>
                                         <label for="{{$compra->id}}">Informe o motivo:</label>
                                     </div>
+                                    <input type="submit" value="Cancelar pedido " class="btn btn-lg btn-light btn-outline-danger"/>
                                 </form>
                             </div>
                         </div>

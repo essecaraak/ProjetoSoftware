@@ -20,7 +20,7 @@
         @elseif(session('user')->usertype == 'cliente') 
             <nav class="navbar navbar-expand-lg navbar-dark bg-danger border-bottom shadow-sm mb-3"> 
         @elseif(session('user')->usertype == 'administrador')      
-            <nav class="navbar navbar-expand-lg navbar-dark border-bottom shadow-sm mb-3" style="background-color: rgb(146, 129, 248)"> 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom shadow-sm mb-3"> 
         @elseif(session('user')->usertype == 'atendente')
             <nav class="navbar navbar-expand-lg navbar-dark bg-success border-bottom shadow-sm mb-3"> 
         @endif
@@ -43,7 +43,7 @@
                                 <li class="nav-item"><a href="{{route('tela_login')}}" class="nav-link text-white">Login</a></li>
                             @elseif(session('user')->usertype == 'cliente')
                                 <li class="nav-item"><a href="{{route('tela_cartao')}}" class="nav-link text-white">Área do cliente</a></li>
-                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">Logout</a></li>
                                 <li class="nav-item">
                                     <a href="{{route('carrinho-index')}}" class="nav-link text-white">
                                         <svg class="bi" width="24" height="24" fill="currentColor">
@@ -53,8 +53,8 @@
                                 </li>
                             @elseif(session('user')->usertype == 'administrador')
                                 <li class="nav-item"><a href="{{route('administrador-index')}}" class="nav-link text-white">Área do administrador</a></li>
-                                <li class="nav-item"><a href="{{route('gerenciar-cupom')}}" class="nav-link text-white"> cupons </a></li>
-                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>
+                                <li class="nav-item"><a href="{{route('gerenciar-cupom')}}" class="nav-link text-white">Gerenciar Cupons </a></li>
+                                <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">Logout</a></li>
                             @elseif(session('user')->usertype == 'atendente')
                                 <li class="nav-item"><a href="{{route('atendente-index')}}" class="nav-link text-white">Área do atendente</a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">logout</a></li>

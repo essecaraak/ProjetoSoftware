@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function() {
     statusSelects.forEach(function(select) {
         select.addEventListener("change", function() {
             var selectedOption = this.value;
-            var detailsToShow = this.options[this.selectedIndex].dataset.show;
+            var targetClass = this.options[this.selectedIndex].dataset.target;
 
             var allDetails = document.querySelectorAll(".status-details");
             allDetails.forEach(function(detail) {
                 detail.style.display = "none";
             });
 
-            var detailsToShowElements = document.querySelectorAll(detailsToShow);
+            var detailsToShowElements = document.querySelectorAll(targetClass);
             detailsToShowElements.forEach(function(detail) {
                 detail.style.display = "block";
             });

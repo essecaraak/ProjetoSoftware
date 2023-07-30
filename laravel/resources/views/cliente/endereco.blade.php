@@ -12,13 +12,13 @@
                     <a href="{{route('atualizar-dados')}}" class="list-group-item list-group-item-action">
                         <i class="bi-mailbox fs-6"></i> Dados cadastrais
                     </a>
-                    <a href="{{route('novo_endereco')}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('tela_endereco')}}" class="list-group-item list-group-item-action bg-danger text-light">
                         <i class="bi-house-door fs-6"></i> Endereço
                     </a>
                     <a href="{{route('pedidos')}}" class="list-group-item list-group-item-action">
                         <i class="bi-truck fs-6"></i> Pedidos
                     </a>
-                    <a href="{{route('tela_cartao')}}" class="list-group-item list-group-item-action bg-danger text-light">
+                    <a href="{{route('tela_cartao')}}" class="list-group-item list-group-item-action">
                         <i class="bi bi-card-list"></i> Cartão
                     </a>
                     <a href="{{route('index')}}" class="list-group-item list-group-item-action">
