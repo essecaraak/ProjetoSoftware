@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-8">
-                <a href="novo_endereco"><button type="button" class="btn btn-danger">Adicionar novo endereço</button></a><br><br>
+                <a href="{{route('novo_endereco')}}"><button type="button" class="btn btn-danger">Adicionar novo endereço</button></a><br><br>
                 @foreach($enderecos as $endereco)
                 <form action="{{route('endereco-update',[$endereco->id])}}" method="get">
                     <div class="accordion" id="divPedidos">

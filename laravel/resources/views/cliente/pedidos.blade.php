@@ -118,7 +118,9 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <textarea class="form-control border rounded" style="width: 100%" placeholder="mensagem do atendente">Texto do atendente aqui</textarea>
+                                @if(!is_null($compra->descricao))
+                                <textarea class="form-control border rounded" style="width: 100%" placeholder="mensagem do atendente" disabled>{{$compra->descricao}}</textarea>
+                                @endif
                             </div>
                         </div>
                     </div>
