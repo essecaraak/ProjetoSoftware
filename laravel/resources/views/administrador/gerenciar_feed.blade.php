@@ -27,7 +27,7 @@
             </div>
             <br><br><br>
             <div>
-                <a href="#" class="margem d-inline-block"><button type="button" class="btn btn-primary">Adicionar nova notícia</button></a><br><br>
+                <a href="{{route('nova-noticia')}}" class="margem d-inline-block"><button type="button" class="btn btn-primary">Adicionar nova notícia</button></a><br><br>
                 <form action="">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
