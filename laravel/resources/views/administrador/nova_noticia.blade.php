@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-floating mb-3 col-md-6">
-                        <input class="form-control border" name="titulo" type="text" placeholder=" " />
+                        <input class="form-control border" name="titulo" type="text" placeholder=" " maxlength="200"/>
                         <label for="txtEmail">Título: </label>
                     </div>
                     <div class="form-floating col-sm-12 col-md-6">

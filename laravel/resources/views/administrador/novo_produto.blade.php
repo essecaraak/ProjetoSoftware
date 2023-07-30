@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-floating mb-3">
-                        <input class="form-control border" type="text" name="nome" placeholder=" " />
+                        <input class="form-control border" type="text" name="nome" placeholder=" " maxlength="200"/>
                         <label for="nome">Nome do Produto</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -21,13 +21,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" type="number" step="any" name="valor" placeholder=" " />
-                                <label for="txtCEP">Preço:<span></span></label>
+                                <input class="form-control" type="number" oninput="limitDigits(this, 7)" step="any" name="valor" placeholder=" "/>
+                                <label for="txtCEP" >Preço:<span></span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control border" type="number" name="quantidade" step="1" placeholder=" " />
+                                <input class="form-control border" type="number" name="quantidade" step = "1" oninput="limitInput(this, 999999)" placeholder=" "/>
                                 <label class="form-label" for="quantidade">Quantidade:</label>
                             </div>
                         </div>
@@ -63,4 +63,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/preview_imagem.js"></script>
+    <script src="/js/tratamento_dados_numeros.js"></script>
+
 @endsection

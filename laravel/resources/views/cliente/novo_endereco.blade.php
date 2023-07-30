@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-floating mb-3 col-md-6">
                         <input class="form-control border" placeholder=" " maxlength="4" name="numero" value="{{old('numero')}}"  type="text" id="txtTelefone" />
-                        <label for="txtTelefone">Número</label>
+                        <label for="txtTelefone" oninput="this.value = this.value.replace(/[^0-9]/g, '')">Número</label>
                     </div>
                 </fieldset>
             <br>

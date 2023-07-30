@@ -21,13 +21,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" type="number" step="any" name="desconto" max="100" placeholder=" " />
+                                <input class="form-control" type="number" step="any" name="desconto" max="100" oninput="limitInput(this, 100)" placeholder=" " />
                                 <label for="txtCEP">Porcentagem de desconto:<span></span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control border" type="number" name="numporpessoa" placeholder=" " />
+                                <input class="form-control border" type="number" name="numporpessoa"  oninput="limitInput(this, 999999)" placeholder=" " />
                                 <label class="form-label" for="quantidade">Quantidade de usos por cliente:</label>
                             </div>
                         </div>
@@ -78,4 +78,5 @@
         </form>
     </div>
     <script src="/js/expandir_checkbox_cupom.js"></script>
+    <script src="/js/tratamento_dados_numeros.js"></script>
 @endsection
