@@ -24,9 +24,9 @@ class cupomrequest extends FormRequest
         return [
             'desconto'=>[
                 'required',
-                'integer',
+                'numeric',
                 'max:100',
-                'min:1',    
+                'min:0.01',    
             ],
                   
             'descricao'=>[
@@ -39,7 +39,8 @@ class cupomrequest extends FormRequest
                 'required',
                 'string',
                 'min:1',
-                'max:255'
+                'max:255',
+                'unique:cupom',
             ],
             'numporpessoa'=>[
                 'required',
@@ -54,13 +55,15 @@ class cupomrequest extends FormRequest
     {
         return [
            
-            'codigo.required' => 'o campo código é obrigatório',
-            'codigo.max' => 'o código não pode ter mais que 200 caracteres',
+            'codigo.required' => 'o código é obrigatório',
+            'codigo.max' => 'o código não pode ter mais que 255 caracteres',
+            'codigo.unique' => 'o código já existe',
             'descricao.max' => 'o máximo de caracteres da descrição é 1000',
             'desconto.required' => 'o desconto é obrigatório',
-            'desconto.integer' => 'a quantidade de produtos deve ser um número inteiro',
-            'desconto.min' => 'o desconto não pode ser menor que 0',
+            'desconto.numeric' => 'a porcentagem de desconto deve ser um número',
+            'desconto.min' => 'o desconto não pode ser menor que 0.01',
             'desconto.max' => 'o desconto não pode ser menor que 100',
+            'numporpessoa.required' => 'o numero de usos por pessoa é obrigatório',
             'numporpessoa.min' => 'o numero de usos por pessoa não pode ser menor que 0',
             'numporpessoa.max' => 'o numero de usos por pessoa não pode ser tão grande',
         ];

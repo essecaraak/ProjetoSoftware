@@ -6,6 +6,10 @@ use App\Http\Requests\editprodutocarrinhorequest;
 use App\Http\Requests\editprodutorequest;
 use App\Models\Cartao;
 use App\Models\Compras;
+use App\Models\cupom;
+use App\Models\cupom_compra;
+use App\Models\cupom_produto;
+use App\Models\cupom_user;
 use App\Models\Endereco;
 use App\Models\produto;
 use App\Models\produto_compra;
@@ -89,18 +93,79 @@ class carrinhocontroller extends Controller
                 session()->flash("mensagem_falha",$msg);
             }
         }
-        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho')
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho','produto_compra.id as prodcompraid')
             ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
             ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
             ->where('compra.id', '=', session('carrinho')->id)
             ->get();
         $valortotal=0;
         foreach($produtos as $produto){    
-            $valortotal+=$produto->valor *$produto->quantidade_carrinho;
+            $valortotal+=$produto->valor_carrinho *$produto->quantidade_carrinho;
         }
         session('carrinho')->valortotal = $valortotal;
         if(!is_null($request->cupom)){
-            return('cupom selecionado');
+            $cupom =cupom::where('codigo','=',$request->cupom)->get()->first();
+            if(is_null($cupom)){
+                return redirect()->back()->with('mensagem_falha','código de cupom inexistente');
+            }
+            $cupomprodkeys =cupom_produto::where('fk_cupom_id','=',$cupom->id)
+                ->get();
+            $usercupom= cupom_user::where('fk_user_id','=',session('user')->id)
+                ->where('fk_cupom_id','=',$cupom->id)
+                ->get()->first();
+            
+            if(is_null($usercupom)){
+                $usercupom=new cupom_user;
+                $usercupom->fk_cupom_id=$cupom->id;
+                $usercupom->fk_user_id=session('user')->id;
+                $usercupom->qtdrestante=$cupom->numporpessoa;
+                $usercupom->save();
+            }
+            if($usercupom->qtdrestante==0){
+                return redirect()->back()->with('mensagem_falha','acabaram seus usos desse cupom');
+            }else{
+                $usercupom->qtdrestante--;
+                $usercupom->save();
+            }
+            $cupomcompra= cupom_compra::where('fk_compra_id','=',session('carrinho')->id)
+                ->where('fk_cupom_id','=',$cupom->id)
+                ->get()->first();
+            if(is_null($cupomcompra)){
+                $cupomcompra=new cupom_compra;
+                $cupomcompra->fk_cupom_id=$cupom->id;
+                $cupomcompra->fk_compra_id=session('carrinho')->id;
+                $cupomcompra->save();
+            }else{
+                $cupomcompra->fk_cupom_id=$cupom->id;
+                $cupomcompra->save();
+            }
+            $valortotal=0;
+            
+            foreach($produtos as $produto){    
+                if($produto->tipo==$cupom->tipo1 || $produto->tipo==$cupom->tipo2 || $produto->tipo==$cupom->tipo3 ){
+                    $newprodcompra=produto_compra::findOrFail($produto->prodcompraid);
+                    $newprodcompra->valorproduto=($produto->valor*(100-$cupom->desconto))/100;
+                    $newprodcompra->save();
+                }
+                foreach($cupomprodkeys as $key){
+                    
+                    if($produto->id==$key->fk_produto_id){
+                        $newprodcompra=produto_compra::findOrFail($produto->prodcompraid);
+                        $newprodcompra->valorproduto=($produto->valor*(100-$cupom->desconto))/100;
+                        $newprodcompra->save();
+                    }
+                }
+            }
+            $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho','produto_compra.valorproduto as valor_carrinho')
+            ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
+            ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->where('compra.id', '=', session('carrinho')->id)
+            ->get();
+            $valortotal=0;
+            foreach($produtos as $produto){    
+                $valortotal+=$produto->valor_carrinho *$produto->quantidade_carrinho;
+            }
+            session('carrinho')->valortotal = $valortotal;
         }
         $cartoes = Cartao::where('fk_user_id','=',session('user')->id)
                         ->where('deletado','!=','s')->get(); 
@@ -172,8 +237,10 @@ class carrinhocontroller extends Controller
         }else if(is_null($request->endereco)){
             return redirect()->back()->with('mensagem_falha',"escolha um método de entrega");
         }else{
+            
             session('carrinho')->frete= 7.00;
             session('carrinho')->fk_endereco_id=$request->endereco;
+            session('carrinho')->valortotal=session('carrinho')->valortotal+7.00;
         }
         $carrinho= Compras::findOrFail(session('carrinho')->id);
         $carrinho->status="pedido recebido";

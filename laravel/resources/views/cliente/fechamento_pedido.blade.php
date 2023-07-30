@@ -130,7 +130,7 @@
                                 <b>
                                     <input form="form" hidden name="produtos[]" value="{{$produto->id}}">
                                     {{$produto->quantidade_carrinho}} unidade(s) <br>
-                                    R$ {{$produto->valorproduto}}
+                                    R$ {{$produto->valor_carrinho}}
                                 </b>
                             </h5>
                         </div>

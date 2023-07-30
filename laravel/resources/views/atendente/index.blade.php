@@ -78,11 +78,9 @@
                                         @endif
                                         <tr>
                                             <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            @if(is_null($compra->frete))
+                                            
                                                 <td class="text-end">R$ {{$compra->valortotal}}</td>
-                                            @else
-                                                <td class="text-end">R$ {{$compra->valortotal + 7.50}}</td>
-                                            @endif
+                                            
                                         </tr>
                                         <tr>
                                             <th class="text-end" colspan="3">Forma de Pagamento:</th>
