@@ -240,7 +240,7 @@ class carrinhocontroller extends Controller
             
             session('carrinho')->frete= 7.00;
             session('carrinho')->fk_endereco_id=$request->endereco;
-            session('carrinho')->valortotal=session('carrinho')->valortotal+7.00;
+            
         }
         $carrinho= Compras::findOrFail(session('carrinho')->id);
         $carrinho->status="pedido recebido";
