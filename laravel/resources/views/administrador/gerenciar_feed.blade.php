@@ -28,33 +28,35 @@
             <br><br><br>
             <div>
                 <a href="{{route('nova-noticia')}}" class="margem d-inline-block"><button type="button" class="btn btn-primary">Adicionar nova notícia</button></a><br><br>
-                <form action="">
+                @foreach($noticias as $noticia)
+                <form action="{{route('noticia-delete',[$noticia->id])}}" method="get">
                     <div class="accordion" id="divPedidos">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#pedido000010">
-                                    <b>Notícia 001</b>
+                                    data-bs-target="#{{$noticia->id}}">
+                                    <b>{{$noticia->titulo}}</b>
                                 </button>
                             </h2>
-                            <div id="pedido000010" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
+                            <div id="{{$noticia->id}}" class="accordion-collapse collapse" data-bs-parent="#divPedidos">
                                 <div class="accordion-body">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="text" id="txtRua" placeholder=" " />
+                                        <input class="form-control" type="text" value="{{$noticia->titulo}}" id="txtRua" placeholder=" " disabled/>
                                         <label for="txtRua">Título: <span></span></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea style="width: 100%; height: 150px;" class="form-control" id="descricao" placeholder= " "></textarea>
+                                        <textarea style="width: 100%; height: 150px;" class="form-control" id="descricao" placeholder= " "disabled>{{$noticia->descricao}}</textarea>
                                         <label for="descricao">Descrição: <span></span></label>
                                     </div>
                                     <div class="d-flex justify-content-center" id="imagemPreview"></div>
                                     <br><br>
-                                    <button type="button" class="btn btn-danger">Excluir notícia</button>
+                                    <button type="submit" class="btn btn-danger">Excluir notícia</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
+                @endforeach
             </div>
         </div>
     </div>

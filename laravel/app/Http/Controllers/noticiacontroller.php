@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\File;
 class noticiacontroller extends Controller
 {
     public function noticia_create(Request $request){
-        
+        $numnoticias=noticia::where('deletado','!=','s')->get();
+        if(sizeof($numnoticias)>=10){
+            return redirect()->back()->with('mensagem_falha','numero máximo de noticias alcançado, exclua uma para criar uma nova');
+        }
         $noticia =new  noticia();
        if($request->hasFile('imagem')){
         $noticia->titulo = $request->titulo;
