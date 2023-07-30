@@ -5,13 +5,13 @@
 @section('title', 'Bem Doces')
 
 @section('content')
-    <div class="container">
+    <div class="container shadow-lg" style="background-color: #464242; padding:10px; border-radius: 8px">
         <h2 class="h2" style="color:white; background-color: #464242; padding: 5px; border-radius: 3px">Carrinho de Compras</h2>       
         <ul class="list-group mb-3">
             <li class="list-group-item py-3">
                 @foreach($produtos as $produto)
                     <form method="put" action="{{route('carrinho-produto-update',[$produto->id])}}">
-                        <div class="row g-3">
+                        <div class="row g-3 border rounded p-2">
                             <div class="col-4 col-md-3 col-lg-2">
                                 <a href="#">
                                     <img src="{{asset('/storage/img/produtos/'.$produto->imagem)}}" class="img-thumbnail">
@@ -43,13 +43,14 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
                     </form>
                 @endforeach
             </li>
             <li class="list-group-item py-3">
                 <form name="f2" id="f2" method="get" action="{{route('carrinho-processar')}}">
                 <div class="text-end">
-                    <span class="d-block text-center">Adicionar Cupom: <input name="cupom" type="text" placeholder="cupom opcional"><br></span>
+                    <span class="d-block text-center">Código Cupom: <input name="cupom" type="text" placeholder="cupom opcional"><br></span>
                     <h4 class="text-dark mb-3">
                         Valor Total: R$ {{session('carrinho')->valortotal}}
                     </h4>
@@ -62,5 +63,6 @@
             </li>
         </ul>
     </div>
+    <br>
 
 @endsection

@@ -13,7 +13,7 @@
                 <fieldset class="row gx-3">
                     <legend>Dados Pessoais</legend>
                     <div class="form-floating mb-3">
-                        <input class="form-control border" type="text" name="nome" id="txtNome" value="{{old('nome')}}" placeholder=" "autofocus/>
+                        <input class="form-control border" type="text" name="nome" id="txtNome" maxlength="200" value="{{old('nome')}}" placeholder=" "autofocus />
                         <label for="txtNome">Nome</label>
                     </div>
                 </fieldset>
@@ -26,7 +26,7 @@
                         <label for="txtEmail">E-mail</label>
                     </div>
                     <div class="form-floating mb-3 col-md-6">
-                        <input class="form-control border" placeholder=" " name="telefone" value="{{old('telefone')}}" minlength="11" maxlength="11" type="text" id="txtTelefone" />
+                        <input class="form-control border" placeholder=" " name="telefone" value="{{old('telefone')}}" minlength="11" maxlength="11" type="text" id="txtTelefone" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                         <label for="txtTelefone">Telefone</label>
                     </div>
                 </fieldset>

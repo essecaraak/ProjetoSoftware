@@ -119,6 +119,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <textarea class="form-control border rounded" style="width: 100%" placeholder="mensagem do atendente">Texto do atendente aqui</textarea>
                             </div>
                         </div>
                     </div>

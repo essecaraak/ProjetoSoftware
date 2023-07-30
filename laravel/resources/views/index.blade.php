@@ -243,7 +243,6 @@
 
 
     <hr class="mt-3">
-
     
 </div>
 @endsection

@@ -6,6 +6,7 @@ body {
 .show-footer {
     display: block !important;
 }
+
 * {
   margin: 0;
 }
@@ -48,22 +49,24 @@ body {
     color: #0c6301;
 }
 
-/* Estilize o cursor apenas para os checkboxes quando o mouse estiver sobre eles */
 .custom-cursor-pointer:hover {
     cursor: pointer;
 }
 
-/* Estilo personalizado para rótulos (labels) de checkboxes selecionados */
 .form-check-input:checked + .form-check-label {
-    color: green; /* Defina a cor do texto desejada para quando o checkbox estiver selecionado */
+    color: green; 
 }
 
-/* Estilo para rótulos (labels) de checkboxes não selecionados */
 .form-check-label {
-    color: #000; /* Defina a cor do texto desejada para quando o checkbox não estiver selecionado */
+    color: #000; 
 }
 
-p{
-    background-color: rgb(88, 62, 238)"
+.card-img-top{
+    width: 150px;
+    height: 150px;
+}
+
+.img-thumbnail{
+    max-height: 150px;
 }
 
