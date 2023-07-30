@@ -21,13 +21,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" type="number" step="any" name="valor" placeholder=" " />
+                                <input class="form-control" type="text" step="any" name="valor" placeholder=" " />
                                 <label for="txtCEP">Preço:<span></span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control border" type="number" name="quantidade" placeholder=" " />
+                                <input class="form-control border" type="number" name="quantidade" step="1" placeholder=" " />
                                 <label class="form-label" for="quantidade">Quantidade:</label>
                             </div>
                         </div>
@@ -61,5 +61,7 @@
             <br><br>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/tratar_dados_novos_produtos.js"></script>
     <script src="/js/preview_imagem.js"></script>
 @endsection
