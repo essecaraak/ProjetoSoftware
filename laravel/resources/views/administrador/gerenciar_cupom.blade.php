@@ -7,7 +7,7 @@
         <h1>Área do Administrador</h1>
         <div class="row gx-3">           
             <div>
-                <a href="{{route('novo-cupom')}}" class="margem d-inline-block"><button type="button" class="btn btn-danger">Adicionar novo cupom</button></a><br><br>
+                <a href="{{route('novo-cupom')}}" class="margem d-inline-block"><button type="button" class="btn btn-primary">Adicionar novo cupom</button></a><br><br>
                 @foreach($cupons as $cupom)
                 <form action="{{route('cupom-delete',[$cupom->id])}}" method="get">
                     <div class="accordion" id="divPedidos">

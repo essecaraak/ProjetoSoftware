@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Carrinho de Compras</h1>
+        <h2 class="h2" style="color:white; background-color: #464242; padding: 5px; border-radius: 3px">Carrinho de Compras</h2>       
         <ul class="list-group mb-3">
             <li class="list-group-item py-3">
                 @foreach($produtos as $produto)
@@ -49,14 +49,14 @@
             <li class="list-group-item py-3">
                 <form name="f2" id="f2" method="get" action="{{route('carrinho-processar')}}">
                 <div class="text-end">
-                    <span class="d-block text-center">Adicionar Cupom: <input name="cupom" type="text"><br></span>
+                    <span class="d-block text-center">Adicionar Cupom: <input name="cupom" type="text" placeholder="cupom opcional"><br></span>
                     <h4 class="text-dark mb-3">
                         Valor Total: R$ {{session('carrinho')->valortotal}}
                     </h4>
                     <a href="{{route('index')}}" class="btn btn-outline-success btn-lg">
                         Continuar Comprando                            
                     </a>
-                    <input type="submit" value="Fechar Compra" class="btn btn-danger btn-lg ms-2 mt-xs-3">
+                    <input type="submit" value="Finalizar Compra" class="btn btn-danger btn-lg ms-2 mt-xs-3">
                 </div>
                 </form>
             </li>

@@ -10,7 +10,6 @@ body {
   margin: 0;
 }
 
-
 .espacamento {
     margin-left: 10px;
 }
@@ -62,5 +61,9 @@ body {
 /* Estilo para rótulos (labels) de checkboxes não selecionados */
 .form-check-label {
     color: #000; /* Defina a cor do texto desejada para quando o checkbox não estiver selecionado */
+}
+
+p{
+    background-color: rgb(88, 62, 238)"
 }
 
