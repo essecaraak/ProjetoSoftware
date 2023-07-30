@@ -98,7 +98,6 @@
                                         @endif
                                         <tr>
                                             <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                            [
                                             <td class="text-end">R$ {{$compra->valortotal+$compra->frete}}</td>
                                             
                                             
