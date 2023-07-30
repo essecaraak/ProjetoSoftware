@@ -93,15 +93,23 @@ class carrinhocontroller extends Controller
                 session()->flash("mensagem_falha",$msg);
             }
         }
-        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho','produto_compra.id as prodcompraid')
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho','produto_compra.id as prodcompraid','produto_compra.valorproduto as valor_carrinho')
             ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
             ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
             ->where('compra.id', '=', session('carrinho')->id)
             ->get();
         $valortotal=0;
         foreach($produtos as $produto){    
+            $prodcompra= produto_compra::findOrFail($produto->prodcompraid);
+            $prodcompra->valorproduto=$produto->valor;
+            $prodcompra->save();
             $valortotal+=$produto->valor_carrinho *$produto->quantidade_carrinho;
         }
+        $produtos = produto::select('produto.*','produto_compra.quantidade as quantidade_carrinho','produto_compra.id as prodcompraid','produto_compra.valorproduto as valor_carrinho')
+            ->join('produto_compra', 'produto_compra.fk_produto_id', '=', 'produto.id')
+            ->join('compra', 'produto_compra.fk_compra_id', '=', 'compra.id')
+            ->where('compra.id', '=', session('carrinho')->id)
+            ->get();
         session('carrinho')->valortotal = $valortotal;
         if(!is_null($request->cupom)){
             $cupom =cupom::where('codigo','=',$request->cupom)->get()->first();
