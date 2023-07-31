@@ -23,6 +23,11 @@ Route::get('/administrador/nova_noticia', function () {
     return view('/administrador/nova_noticia');
 });
 
+// Matheus alterar aqui
+Route::get('/visualizar_noticia', function () {
+    return view('/visualizar_noticia');
+});
+
 // rotas para acesso do cliente
 route::middleware([verificacliente::class])->group(function(){
 
