@@ -42,20 +42,20 @@ class viewscontroller extends Controller
 
     public function pesquisa_produto(Request $request){
 
-        
+        $noticia=noticia::where('deletado','!=','s')->get();
         if(!isNull($request->textobusca)){
             if($request->tipobusca =='Ordenar pelo menor preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
                     ->where('deletado','!=','s')
                     ->orderBy('valor')->get();
-                return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>2,'noticias'=>$noticia]);
             }else if($request->tipobusca =='Ordenar pelo maior preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
                     ->where('deletado','!=','s')
                     ->orderBy('valor')->get()->reverse()->values();
-                return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>3,'noticias'=>$noticia]);
             }else{
                 return redirect()->route('index');
             }
@@ -66,21 +66,21 @@ class viewscontroller extends Controller
                     ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('valor')->get();
-                return view('/index',['produtos'=> $produtos,"tipobusca" =>2]);
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>2,'noticias'=>$noticia]);
             }else if($request->tipobusca =='Ordenar pelo maior preço'){
                 $produtos = DB::Table('produto')
                     ->select('*')
                     ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('valor')->get()->reverse()->values();
-                return view('/index',['produtos'=> $produtos,"tipobusca" =>3]);
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>3,'noticias'=>$noticia]);
             }else{
                 $produtos = DB::Table('produto')
                     ->select('*')
                     ->where('deletado','!=','s')
                     ->where('nome','LIKE','%'.$request->textobusca.'%')
                     ->orderBy('nome')->get();
-                return view('/index',['produtos'=> $produtos,"tipobusca" =>1]);
+                return view('/index',['produtos'=> $produtos,"tipobusca" =>1,'noticias'=>$noticia]);
             }
         }
         
