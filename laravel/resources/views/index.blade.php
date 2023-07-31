@@ -16,7 +16,7 @@
                 <div class="carousel-inner">
                     @foreach($noticias as $noticia)
                     <div class="carousel-item active" data-bs-interval="3000">
-                       <a href=""> <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-none d-md-block w-100" alt=""></a>
+                       <a href="{{route('noticia',[$noticia->id])}}"> <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-none d-md-block w-100" alt=""></a>
                     </div>
                    @endforeach
                 </div>

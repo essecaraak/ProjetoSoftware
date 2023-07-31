@@ -197,7 +197,7 @@ class viewscontroller extends Controller
     public function novo_produto(){
         return view('/administrador/novo_produto');
     }
-    public function visualizar_pedidos(){
+    public function tela_visualizar_pedidos(){
         $compras = Compras::where('status','!=','carrinho')
             ->where('status','!=','carrinho')
             ->orderBy('hora_compra')

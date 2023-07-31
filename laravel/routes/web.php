@@ -157,7 +157,7 @@ Route::post('/login/store', [cadastro_login_controller::class,'login'])->name('l
 Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
 Route::get('/noticia/{id}',[viewscontroller::class,'visualizar_noticia'])->name('noticia');
  
-//{{route('visualizar_noticia',[$noticia->id])}}
+
 //Route tratamento de Erros
 
 Route::fallback(function () {
