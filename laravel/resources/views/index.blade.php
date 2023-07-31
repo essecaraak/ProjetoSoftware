@@ -6,34 +6,31 @@
 
 @section('header')
 <div class="container">
-    <div id="carouselMain" class="carousel slide carousel-dark" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            @foreach($noticias as $noticia)
-            <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="{{$noticia->id}}" ></button>
-            
-            @endforeach
-        </div>
-        <div class="carousel-inner">
-            @foreach($noticias as $noticia )
-            <div class="carousel-item active" data-bs-interval="3000">
-                <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-none d-md-block w-100" alt="">
-                <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-block d-md-none  w-100" alt="">
+            <div id="carouselMain" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="-1" class="active"></button>
+                    @foreach($noticias as $noticia)
+                    <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="{{$noticia->id}}" ></button>
+                    @endforeach
+                </div>
+                <div class="carousel-inner">
+                    @foreach($noticias as $noticia)
+                    <div class="carousel-item active" data-bs-interval="3000">
+                       <a href=""> <img src="{{asset('/storage/img/produtos/'.$noticia->foto)}}" class="d-none d-md-block w-100" alt=""></a>
+                    </div>
+                   @endforeach
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
             </div>
-            @endforeach
-            <div class="carousel-item" data-bs-interval="3000">
-            
+            <hr class="mt-3">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-            <span class="visually-hidden">Próximo</span>
-        </button>
-    </div>
-    <hr class="mt-3">
-</div>
 @endsection
 
 @section('content')

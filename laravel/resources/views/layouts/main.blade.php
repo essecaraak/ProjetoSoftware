@@ -54,6 +54,7 @@
                             @elseif(session('user')->usertype == 'administrador')
                                 <li class="nav-item"><a href="{{route('administrador-index')}}" class="nav-link text-white">Área do administrador</a></li>
                                 <li class="nav-item"><a href="{{route('gerenciar-cupom')}}" class="nav-link text-white">Gerenciar Cupons </a></li>
+                                <li class="nav-item"><a href="{{route('visualizar-pedidos')}}" class="nav-link text-white">Visualizar pedidos </a></li>
                                 <li class="nav-item"><a href="{{route('login-destroy')}}" class="nav-link text-white">Logout</a></li>
                             @elseif(session('user')->usertype == 'atendente')
                                 <li class="nav-item"><a href="{{route('atendente-index')}}" class="nav-link text-white">Área do atendente</a></li>

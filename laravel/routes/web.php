@@ -19,9 +19,7 @@ use App\Http\Middleware\verificacliente;
 use App\Http\Middleware\verificalogado;
 
 // Matheus alterar aqui
-Route::get('/administrador/nova_noticia', function () {
-    return view('/administrador/nova_noticia');
-});
+
 
 // Matheus alterar aqui
 Route::get('/visualizar_noticia', function () {
@@ -100,6 +98,7 @@ route::middleware([verificaadministrador::class])->group(function(){
         Route::get('/gerenciar_produtos', [viewscontroller::class, 'tela_administrador'])->name('administrador-index');
         Route::get('/gerenciar_feed', [viewscontroller::class, 'tela_gerenciar_feed'])->name('gerenciar-feed');
         Route::get('/gerenciar_cupom', [viewscontroller::class, 'tela_gerenciar_cupom'])->name('gerenciar-cupom');
+        Route::get('/visualizar_pedidos', [viewscontroller::class, 'tela_visualizar_pedidos'])->name('visualizar-pedidos');
         route::prefix('noticia')->group(function(){
             
             Route::get('/nova', [viewscontroller::class, 'tela_nova_noticia'])->name('nova-noticia');
@@ -156,7 +155,9 @@ Route::get('/',[viewscontroller::class,'tela_index'])->name('index');
 Route::get('/pesquisaproduto',[viewscontroller::class,'pesquisa_produto'])->name('pesquisa_produto');
 Route::post('/login/store', [cadastro_login_controller::class,'login'])->name('login-store');
 Route::get('/login/destroy', [cadastro_login_controller::class,'logout'])->name('login-destroy');
-
+Route::get('/noticia/{id}',[viewscontroller::class,'visualizar_noticia'])->name('noticia');
+ 
+//{{route('visualizar_noticia',[$noticia->id])}}
 //Route tratamento de Erros
 
 Route::fallback(function () {

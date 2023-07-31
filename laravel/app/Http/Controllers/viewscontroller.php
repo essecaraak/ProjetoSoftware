@@ -34,6 +34,10 @@ class viewscontroller extends Controller
         $noticia=noticia::where('deletado','!=','s')->get();
         return view('/index',['produtos'=> $produtos,"tipobusca" =>1,'noticias'=>$noticia]);
     }
+    function visualizar_noticia($id) {
+        $noticia=noticia::findOrFail($id);
+        return view('/visualizar_noticia',['noticia'=>$noticia]);
+    }
  
 
     public function pesquisa_produto(Request $request){
@@ -193,6 +197,23 @@ class viewscontroller extends Controller
     public function novo_produto(){
         return view('/administrador/novo_produto');
     }
+    public function visualizar_pedidos(){
+        $compras = Compras::where('status','!=','carrinho')
+            ->where('status','!=','carrinho')
+            ->orderBy('hora_compra')
+            ->get()->reverse()->values();
+            
+        $produtos =produto_compra::select('produto_compra.*')
+            ->join('compra','produto_compra.fk_compra_id','=','compra.id')->get();
+            
+        $enderecos =Endereco::select('endereco.*','compra.id as compraid')
+            ->join('compra','compra.fk_endereco_id','=','endereco.id')->get();
+            
+        $cartoes =cartao::select('cartao.*','compra.id as compraid')
+            ->join('compra','compra.fk_cartao_id','=','cartao.id')->get();
+        return view('/administrador/visualizar_pedidos',['compras'=>$compras,'produtos'=>$produtos,'enderecos'=>$enderecos,'cartoes'=>$cartoes]);
+    }
+    
 
     public function tela_novo_cupom(){
         $produtos = DB::Table('produto')
